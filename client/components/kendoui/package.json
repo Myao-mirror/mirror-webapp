@@ -1,0 +1,53 @@
+{
+  "name": "kendo-ui-react-wrappers",
+  "version": "1.0.0",
+  "description": "Sample application showcasing Kendo UI react wrappers.",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "demo",
+    "react",
+    "Kendo UI"
+  ],
+  "author": "",
+  "private": true,
+  "license": "ISC",
+  "dependencies": {
+    "@progress/kendo-buttons-react-wrapper": "latest",
+    "@progress/kendo-dateinputs-react-wrapper": "latest",
+    "@progress/kendo-grid-react-wrapper": "latest",
+    "@progress/kendo-dropdowns-react-wrapper": "latest",
+    "@progress/kendo-inputs-react-wrapper": "latest",
+    "@progress/kendo-layout-react-wrapper": "latest",
+    "@progress/kendo-popups-react-wrapper": "latest",
+    "@progress/kendo-theme-default": "latest",
+    "@progress/kendo-ui": "latest",
+    "@progress/kendo-window-react-wrapper": "latest",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-scripts": "^1.0.17","@types/react": "latest",
+    "@types/react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^4.0.7","awesome-typescript-loader": "^3.2.1",
+    "babel-core": "^6.24.1",
+    "css-loader": "^0.28.3",
+    "file-loader": "^0.11.2",
+    "glob": "^7.1.2",
+    "image-webpack-loader": "^3.3.1",
+    "node-sass": "^4.5.3",
+    "path": "^0.12.7",
+    "postcss-loader": "^2.0.6",
+    "resolve-url-loader": "^2.1.0",
+    "sass-loader": "^6.0.5",
+    "source-map-loader": "^0.2.1",
+    "style-loader": "^0.18.1",
+    "webpack": "^2.6.0",
+    "webpack-dev-server": "^2.4.5"
+  }
+}

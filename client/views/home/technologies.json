@@ -1,0 +1,138 @@
+[
+  {
+    "title": "aspnet-starter-kit",
+    "author": "kriasoft",
+    "url": "https://github.com/kriasoft/aspnet-starter-kit",
+    "includes": [
+      {
+        "title": "ASP.NET Core 1.1",
+        "author": "Microsoft",
+        "url": "https://www.microsoft.com/net",
+        "includes": []
+      },
+      {
+        "title": "Entity Framework Core 1.1",
+        "author": "Microsoft",
+        "url": "https://ef.readthedocs.io/en/latest/",
+        "includes": []
+      },
+      {
+        "title": ".NET Core Identity 1.1",
+        "author": "Microsoft",
+        "url": "https://ef.readthedocs.io/en/latest/",
+        "includes": []
+      },
+      {
+        "title": "Babel",
+        "author": "Babel",
+        "url": "http://babeljs.io/",
+        "includes": []
+      },
+      {
+        "title": "Webpack",
+        "author": "Webpack",
+        "url": "https://webpack.github.io/",
+        "includes": []
+      },
+      {
+        "title": "React",
+        "author": "Facebook",
+        "url": "https://facebook.github.io/react",
+        "includes": []
+      },
+      {
+        "title": "Redux",
+        "author": "Redux",
+        "url": "http://redux.js.org/",
+        "includes": []
+      },
+      {
+        "title": "CSS Modules",
+        "author": "CSS Modules",
+        "url": "https://github.com/css-modules/css-modules",
+        "includes": []
+      },
+      {
+        "title": "React Hot Loader",
+        "author": "Dan Abramov",
+        "url": "http://gaearon.github.io/react-hot-loader/",
+        "includes": []
+      },
+      {
+        "title": "Browsersync",
+        "author": "JH",
+        "url": "https://browsersync.io/",
+        "includes": []
+      },
+      {
+        "title": "Azure App Service",
+        "author": "Microsoft",
+        "url": "https://azure.microsoft.com/services/app-service/",
+        "includes": []
+      }
+    ]
+  },
+  {
+    "title": ".NET Core Upgrade from Version 1.1 to 2.0",
+    "author": "Microsoft",
+    "url": "https://docs.microsoft.com/en-us/aspnet/core/migration/1x-to-2x/",
+    "includes": [
+      {
+        "title": "ASP.NET Core 2.0",
+        "author": "Microsoft",
+        "url": "https://docs.microsoft.com/en-us/aspnet/core/",
+        "includes": []
+      },
+      {
+        "title": "Entity Framework Core 2.0",
+        "author": "Microsoft",
+        "url": "https://docs.microsoft.com/en-us/ef/core/",
+        "includes": []
+      },
+      {
+        "title": ".NET Core Identity 2.0",
+        "author": "Microsoft",
+        "url": "https://ef.readthedocs.io/en/latest/",
+        "includes": []
+      }
+    ]
+  },
+  {
+    "title": "PostgreSQL 10.1",
+    "author": "PostgreSQL",
+    "url": "https://www.postgresql.org/",
+    "includes": [
+      {
+        "title": "NpgSQL",
+        "author": "NpgSQL",
+        "url": "http://www.npgsql.org/",
+        "includes": []
+      }
+    ]
+  },
+  {
+    "title": "OAuth 2.0 using Facebook Login",
+    "author": "Facebook",
+    "url": "https://developers.facebook.com/docs/facebook-login",
+    "includes": []
+  },
+  {
+    "title": "Kendo UI for jQuery",
+    "author": "Telerik",
+    "url": "https://www.telerik.com/kendo-ui",
+    "includes": [
+      {
+        "title": "Kendo UI for React",
+        "author": "Telerik",
+        "url": "https://www.telerik.com/kendo-react-ui",
+        "includes": []
+      },
+      {
+        "title": "Telerik UI for ASP.NET Core",
+        "author": "Telerik",
+        "url": "https://www.telerik.com/aspnet-core-ui",
+        "includes": []
+      }
+    ]
+  }
+]

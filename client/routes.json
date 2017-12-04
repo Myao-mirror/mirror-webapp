@@ -1,0 +1,27 @@
+[
+  {
+    "path": "/",
+    "view": "./views/home",
+    "chunk": "main",
+    "data": {
+      "articles": "GET https://gist.githubusercontent.com/makiroggers/4c591aacebd5184a4b52eb31485141c6/raw/technologies.json"
+    }
+  },
+  {
+    "path": "/error",
+    "view": "./views/error",
+    "chunk": "main"
+  },
+  {
+    "path": "/about",
+    "view": "./views/about"
+  },
+  {
+    "path": "/grid",
+    "view":"./views/gridExample"
+  },
+  {
+    "path": "/tasks/:status(pending|completed)?",
+    "view": "./views/home"
+  }
+]
