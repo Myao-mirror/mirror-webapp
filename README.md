@@ -1,4 +1,4 @@
-# ASP.NET Core MVC Starter Template with React and Redux &nbsp; <a href="https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/stargazers"><img src="https://img.shields.io/github/stars/makiroggers/aspnet-core-mvc-template-with-react-redux.svg?style=social&label=Star&maxAge=3600" alt="" height="20"></a> <a href="https://twitter.com/dotnetreact"><img src="https://img.shields.io/twitter/follow/dotnetreact.svg?style=social&label=Follow&maxAge=3600" alt="" height="20"></a> <a href="https://gitter.im/makiroggers/aspnet-core-mvc-template-with-react-redux"><img src="https://img.shields.io/badge/chat-online-green.svg?style=social&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA%2F4ePzL8AAAAJcEhZcwAADE4AAAxOAX93jCMAAAAHdElNRQfgCQEGNCoLIPKlAAAA00lEQVQY023QsSuEcRjA8c%2BPy%2BJwkzt1R%2FEPqNuUkpDB33DFbjNYFFYzZSV%2FgfWKySiLxUBew7HoOpLjrZ%2Fh7erwfp%2FxMzw9T5A1ZkbZt8Sjrr6Grbvw4l3HgzPzBnpUcqgr9s2zhpDhrq9fFEVP6hkm%2FyiK9qFgQl5VC9oFLbUcTKyYzd%2BZWHalS8nRH25p2JbqwLgbUerDm3snVm1pi04LgjlTXh1rKkqVbVoy5NxOULUh1XQtWtRQN6ri05pLQu8bCIoqpu25c2Ak5F45aFLN7Q%2BBul12FZqKDAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNi0wOS0wMVQwNjo1Mjo0Mi0wNDowMOcKwTgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTYtMDktMDFUMDY6NTI6NDItMDQ6MDCWV3mEAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm%2B48GgAAAABJRU5ErkJggg%3D%3D&maxAge=86400" alt="" height="20"></a>
+# ASP.NET Core MVC Starter Template with React and Redux &nbsp; <a href="https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/stargazers"><img src="https://img.shields.io/github/stars/makiroggers/aspnet-core-mvc-template-with-react-redux.svg?style=social&label=Star&maxAge=3600" alt="" height="20"></a> <a href="https://twitter.com/makiroggers"><img src="https://img.shields.io/twitter/follow/makiroggers.svg?style=social&label=Follow&maxAge=3600" alt="" height="20"></a> <a href="https://gitter.im/makiroggers/aspnet-core-mvc-template-with-react-redux"><img src="https://img.shields.io/badge/chat-online-green.svg?style=social&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA%2F4ePzL8AAAAJcEhZcwAADE4AAAxOAX93jCMAAAAHdElNRQfgCQEGNCoLIPKlAAAA00lEQVQY023QsSuEcRjA8c%2BPy%2BJwkzt1R%2FEPqNuUkpDB33DFbjNYFFYzZSV%2FgfWKySiLxUBew7HoOpLjrZ%2Fh7erwfp%2FxMzw9T5A1ZkbZt8Sjrr6Grbvw4l3HgzPzBnpUcqgr9s2zhpDhrq9fFEVP6hkm%2FyiK9qFgQl5VC9oFLbUcTKyYzd%2BZWHalS8nRH25p2JbqwLgbUerDm3snVm1pi04LgjlTXh1rKkqVbVoy5NxOULUh1XQtWtRQN6ri05pLQu8bCIoqpu25c2Ak5F45aFLN7Q%2BBul12FZqKDAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNi0wOS0wMVQwNjo1Mjo0Mi0wNDowMOcKwTgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTYtMDktMDFUMDY6NTI6NDItMDQ6MDCWV3mEAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm%2B48GgAAAABJRU5ErkJggg%3D%3D&maxAge=86400" alt="" height="20"></a>
 
 > [ASP.NET Core MVC Starter Template with React and Redux](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux) is a real-world
 > boilerplate and tooling for creating [single-page web applications](https://en.wikipedia.org/wiki/Single-page_application)
@@ -13,14 +13,7 @@
 **See** [demo](https://aspnet-core.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** on
 [Gitter](https://gitter.im/makiroggers/aspnet-core-mvc-template-with-react-redux) or [Twitter](https://twitter.com/dotnetreact)
 &nbsp;|&nbsp; **Learn** [React.js, ES6 and ASP.NET Core](#learn-reactjs-es6-and-aspnet-core)
-&nbsp;|&nbsp; **Visit our sponsors**:
-
-<p align="center" align="top">
-  <a href="https://rollbar.com/?utm_source=reactstartkit(github)&amp;utm_medium=link&amp;utm_campaign=reactstartkit(github)"><img src="https://koistya.github.io/files/rollbar-362x72.png" height="36" align="top" /></a>
-  <a href="https://x-team.com/hire-react-developers/?utm_source=reactstarterkit&utm_medium=github-link&utm_campaign=reactstarterkit-june"><img src="https://koistya.github.io/files/xteam-255x72.png" height="36" align="top" /></a>
-  <sup><a href="https://x-team.com/join/?utm_source=reactstarterkit&utm_medium=github-link&utm_campaign=reactstarterkit-june">Hiring</a></sup>
-</p>
-
+&nbsp;
 
 ### Features
 
@@ -87,14 +80,6 @@
 $ git clone -o aspnet-core-mvc-template-with-react-redux -b master --single-branch \
       https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux.git MyApp
 $ cd MyApp
-```
-
-Alternatively, scaffold your project with [Yeoman](http://yeoman.io/):
-
-```shell
-$ npm install -g yo
-$ npm install -g generator-aspnetcore
-$ yo aspnetcore
 ```
 
 **Step 2**. Install project dependencies listed in [`project.json`](server/project.json) and
