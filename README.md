@@ -1,4 +1,4 @@
-# ASP.NET Core MVC Starter Template with React and Redux &nbsp; <a href="https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/stargazers"><img src="https://img.shields.io/github/stars/makiroggers/aspnet-core-mvc-template-with-react-redux.svg?style=social&label=Star&maxAge=3600" alt="" height="20"></a> <a href="https://twitter.com/makiroggers"><img src="https://img.shields.io/twitter/follow/makiroggers.svg?style=social&label=Follow&maxAge=3600" alt="" height="20"></a> <a href="https://gitter.im/makiroggers/aspnet-core-mvc-template-with-react-redux"><img src="https://img.shields.io/badge/chat-online-green.svg?style=social&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAABGdBTUEAALGPC%2FxhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA%2F4ePzL8AAAAJcEhZcwAADE4AAAxOAX93jCMAAAAHdElNRQfgCQEGNCoLIPKlAAAA00lEQVQY023QsSuEcRjA8c%2BPy%2BJwkzt1R%2FEPqNuUkpDB33DFbjNYFFYzZSV%2FgfWKySiLxUBew7HoOpLjrZ%2Fh7erwfp%2FxMzw9T5A1ZkbZt8Sjrr6Grbvw4l3HgzPzBnpUcqgr9s2zhpDhrq9fFEVP6hkm%2FyiK9qFgQl5VC9oFLbUcTKyYzd%2BZWHalS8nRH25p2JbqwLgbUerDm3snVm1pi04LgjlTXh1rKkqVbVoy5NxOULUh1XQtWtRQN6ri05pLQu8bCIoqpu25c2Ak5F45aFLN7Q%2BBul12FZqKDAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNi0wOS0wMVQwNjo1Mjo0Mi0wNDowMOcKwTgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTYtMDktMDFUMDY6NTI6NDItMDQ6MDCWV3mEAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm%2B48GgAAAABJRU5ErkJggg%3D%3D&maxAge=86400" alt="" height="20"></a>
+# ASP.NET Core MVC Starter Template with React and Redux &nbsp; <a href="https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/stargazers"><img src="https://img.shields.io/github/stars/makiroggers/aspnet-core-mvc-template-with-react-redux.svg?style=social&label=Star&maxAge=3600" alt="" height="20"></a> <a href="https://twitter.com/makiroggers"><img src="https://img.shields.io/twitter/follow/makiroggers.svg?style=social&label=Follow&maxAge=3600" alt="" height="20"></a> 
 
 > [ASP.NET Core MVC Starter Template with React and Redux](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux) is a real-world
 > boilerplate and tooling for creating [single-page web applications](https://en.wikipedia.org/wiki/Single-page_application)
@@ -10,8 +10,7 @@
 > [React Hot Loader](http://gaearon.github.io/react-hot-loader/) and more. This boilerplate comes in
 > both [C#](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux) and [F#](https://github.com/kriasoft/fsharp-starter-kit) flavors.
 
-**See** [demo](https://aspnet-core.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** on
-[Gitter](https://gitter.im/makiroggers/aspnet-core-mvc-template-with-react-redux) or [Twitter](https://twitter.com/dotnetreact)
+**See** [demo](https://makiroggers.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** [Twitter](https://twitter.com/makiroggers)
 &nbsp;|&nbsp; **Learn** [React.js, ES6 and ASP.NET Core](#learn-reactjs-es6-and-aspnet-core)
 &nbsp;
 
@@ -26,7 +25,6 @@
 &nbsp; &nbsp; ✓ Lightweight build automation with plain JavaScript (see [`run.js`](run.js))<br>
 &nbsp; &nbsp; ✓ Cross-device testing with [Browsersync](https://browsersync.io/)<br>
 &nbsp; &nbsp; ✓ Git-based deployment to [Azure App Service](https://azure.microsoft.com/services/app-service/) (see [`run.js/publish`](run.js))<br>
-&nbsp; &nbsp; ✓ **24/7** community support on [Gitter](https://gitter.im/makiroggers/aspnet-core-mvc-template-with-react-redux) or [StackOverflow](http://stackoverflow.com/questions/tagged/aspnet-core-mvc-template-with-react-redux); consulting and customization requests on [Codementor](https://www.codementor.io/koistya)<br>
 
 
 ### Directory Layout
@@ -135,7 +133,7 @@ Anyone and everyone is welcome to [contribute](CONTRIBUTING.md) to this project.
 start is by checking our [open issues](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues),
 [submit a new issues](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues/new?labels=bug) or
 [feature request](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues/new?labels=enhancement),
-participate in discussions, upvote or downvote the issues you like or dislike, send [pull
+participate in discussions, upvote or downvote the issues you like or dislike, or send [pull
 requests](CONTRIBUTING.md#pull-requests).
 
 
@@ -149,12 +147,6 @@ requests](CONTRIBUTING.md#pull-requests).
 :green_book: &nbsp; **[C# 6 and .NET Core 1.0: Modern Cross-Platform Development](http://amzn.to/2beV5uS)** by Mark J. Price (Mar, 2016)<br>
 :green_book: &nbsp; **[Professional C# 6 and .NET Core 1.0](http://amzn.to/2bhILsn)** by Christian Nagel (Apr, 2016)<br>
 
-### Get in Touch
-
-* [#aspnet-core-mvc-template-with-react-redux](https://gitter.im/makiroggers/aspnet-core-mvc-template-with-react-redux) on Gitter
-* [@makiroggers](https://twitter.com/makiroggers) on [Codementor](https://www.codementor.io/makiroggers)
-  or [Skype](http://hatscripts.com/addskype?koistya)
-
 
 ### License
 
@@ -165,4 +157,3 @@ license.
 
 ---
 Updated with ♥ by Maki Roggers ([@makiroggers](https://twitter.com/makiroggers)) and [contributors](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/graphs/contributors)
-# aspnet-core-mvc-template-with-react-redux
