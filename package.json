@@ -176,5 +176,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues"
+  },
+  "homepage": "https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux#readme"
 }
