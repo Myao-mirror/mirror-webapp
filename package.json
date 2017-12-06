@@ -34,7 +34,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "serve-index": "^1.9.1",
+    "serve": "^1.9.1",
     "whatwg-fetch": "^2.0.3",
     "yargs": "^10.0.3"
   },
