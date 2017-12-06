@@ -73,7 +73,6 @@ typings/
 [Dd]ebug/
 [Rr]elease/
 x64/
-build/
 [Bb]in/
 [Oo]bj/
 
@@ -198,6 +197,16 @@ Temporary Items
 /dist
 /tmp
 /out-tsc
+Microsoft.*.*.*.dll
+Microsoft.*.*.dll
+Microsoft.*.dll
+Npgsql*.dll
+NuGet*.dll
+System.*.*.dll
+server*.dll
+dotnet*.dll
+server.*.json
+public/dist
 
 # PRODUCTION
 /build
