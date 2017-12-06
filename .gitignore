@@ -350,7 +350,3 @@ yarn-error.log*
 client/components/kendoui/apptemplates/*
 !client/components/kendoui/apptemplates/GridExample/
 client/components/kendoui/examples
-client/components/kendoui/js
-client/components/kendoui/src
-client/components/kendoui/styles
-client/components/kendoui
