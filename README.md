@@ -4,11 +4,10 @@
 > boilerplate and tooling for creating [single-page web applications](https://en.wikipedia.org/wiki/Single-page_application)
 > (SPA) oriented towards [progressive enhancement](https://en.wikipedia.org/wiki/Progressive_enhancement)
 > design, cross-platform compatability and component-based UI architecture. It is built upon best of
-> breed technologies including [.NET Core](https://dot.net/core), [Kestrel](https://github.com/aspnet/KestrelHttpServer),
-> [EF Core](https://ef.readthedocs.io/en/latest/), [Babel](http://babeljs.io/), [Webpack](https://webpack.github.io/),
+> breed technologies including [ASP.NET Core 2.0](https://dot.net/core), [Kestrel](https://github.com/aspnet/KestrelHttpServer),
+> [Entity Framework Core 2.0](https://ef.readthedocs.io/en/latest/), [Babel](http://babeljs.io/), [Webpack](https://webpack.github.io/),
 > [React](https://facebook.github.io/react), [Redux](http://redux.js.org/), [CSS Modules](https://github.com/css-modules/css-modules),
-> [React Hot Loader](http://gaearon.github.io/react-hot-loader/) and more. This boilerplate comes in
-> both [C#](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux) and [F#](https://github.com/kriasoft/fsharp-starter-kit) flavors.
+> [React Hot Loader](http://gaearon.github.io/react-hot-loader/) and more.
 
 **See** [demo](https://makiroggers.azurewebsites.net), [docs](docs) &nbsp;|&nbsp; **Follow us** [Twitter](https://twitter.com/makiroggers)
 &nbsp;|&nbsp; **Learn** [React.js, ES6 and ASP.NET Core](#learn-reactjs-es6-and-aspnet-core)
@@ -31,34 +30,34 @@
 
 ```shell
 .
-├── /.vscode/                   # Visual Studio Code settings
-├── /build/                     # The folder for compiled output
-├── /client/                    # Client-side app (frontend)
-│   ├── /components/            # Common or shared UI components
-│   ├── /utils/                 # Helper functions and utility classes
-│   ├── /views/                 # UI components for web pages (screens)
-│   ├── history.js              # HTML5 History API wrapper used for navigation
-│   ├── main.js                 # Entry point that bootstraps the app
-│   ├── router.js               # Lightweight application router
-│   ├── routes.json             # The list of application routes
-│   └── store.js                # Application state manager (Redux)
-├── /client.test/               # Unit and integration tests for the frontend app
-├── /docs/                      # Documentation to the project
-├── /public/                    # Static files such as favicon.ico etc.
-│   ├── robots.txt              # Instructions for search engine crawlers
-│   └── ...                     # etc.
-├── /server/                    # Web server and data API (backend)
-│   ├── /Controllers/           # ASP.NET Web API and MVC controllers
-│   ├── /Models/                # Entity Framework models (entities)
-│   ├── /Views/                 # Server-side rendered views
-│   ├── appsettings.json        # Server-side application settings
-│   ├── Startup.cs              # Server-side application entry point
-│   └── web.config              # Web server settings for IIS
-├── /server.test/               # Unit and integration tests for the backend app
-│── jsconfig.json               # Visual Studio Code settings for JavaScript
-│── package.json                # The list of project dependencies and NPM scripts
-│── run.js                      # Build automation script (similar to gulpfile.js)
-└── webpack.config.js           # Bundling and optimization settings for Webpack
+├── /build/                               # The folder for compiled output
+├── /client/                              # Client-side app (frontend)
+│   ├── /components/                      # Common or shared UI components
+│   ├── /utils/                           # Helper classes and optional KendoUI files
+│   ├── /views/                           # UI components for web pages (screens)
+│   ├── history.js                        # HTML5 History API wrapper used for navigation
+│   ├── main.js                           # Entry point that bootstraps the app
+│   ├── router.js                         # Lightweight application router
+│   ├── routes.json                       # The list of application routes
+│   └── store.js                          # Application state manager (Redux)
+├── /client.test/                         # Unit and integration tests for the frontend app
+├── /docs/                                # Documentation to the project
+├── /public/                              # Static files such as favicon.ico etc.
+│   ├── robots.txt                        # Instructions for search engine crawlers
+│   └── ...                               # etc.
+├── /server/                              # Web server and data API (backend)
+│   ├── /Controllers/                     # ASP.NET Web API and MVC controllers
+│   ├── /Models/                          # Entity Framework and Identity models
+│   ├── /Views/                           # Server-side rendered views
+│   ├── appsettings.json                  # Server-side application settings
+│   ├── DesignTimeDbContextFactory.cs     # PostgreSQL connection string settings
+│   ├── Startup.cs                        # Server-side application entry point
+│   └── web.config                        # Web server settings for IIS
+├── /server.test/                         # Unit and integration tests for the backend app
+│── package.json                          # The list of project dependencies and NPM scripts
+│── run.js                                # Build automation script (similar to gulpfile.js)
+└── webpack.config.js                     # Bundling and optimization settings for Webpack
+└── yarn.lock                             # Yarn generated list of project dependencies
 ```
 
 
@@ -66,7 +65,7 @@
 
 * OS X, Windows or Linux
 * [Node.js](https://nodejs.org) v6 or newer
-* [.NET Core](https://www.microsoft.com/net/core) and [.NET Core SDK](https://www.microsoft.com/net/core)
+* [.NET Core](https://www.microsoft.com/net/core) and [.NET Core SDK](https://www.microsoft.com/net/core) v2.0 or newer
 * [Visual Studio Code](https://code.visualstudio.com/) with [C# extension](https://github.com/OmniSharp/omnisharp-vscode) (or Visual Studio 2015 or newer)
 
 
@@ -135,17 +134,6 @@ start is by checking our [open issues](https://github.com/makiroggers/aspnet-cor
 [feature request](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues/new?labels=enhancement),
 participate in discussions, upvote or downvote the issues you like or dislike, or send [pull
 requests](CONTRIBUTING.md#pull-requests).
-
-
-### Learn React.js, ES6 and ASP.NET Core
-
-:mortar_board: &nbsp; **[React.js Training Program](http://www.reactjsprogram.com/?asdf=36750_q0pu0tfa)** by Tyler McGinnis<br>
-:mortar_board: &nbsp; **[React for Beginners](https://reactforbeginners.com/friend/konstantin)** and **[ES6 Training Course](https://es6.io/friend/konstantin)** by Wes Bos<br>
-:green_book: &nbsp; **[React: Up & Running: Building Web Applications](http://amzn.to/2bBkZs1)** by Stoyan Stefanov (Aug, 2016)<br>
-:green_book: &nbsp; **[Getting Started with React](http://amzn.to/2beVRI9)** by Doel Sengupta and Manu Singhal (Apr, 2016)<br>
-:green_book: &nbsp; **[You Don't Know JS: ES6 & Beyond](http://amzn.to/2bFzlqe)** by Kyle Simpson (Dec, 2015)<br>
-:green_book: &nbsp; **[C# 6 and .NET Core 1.0: Modern Cross-Platform Development](http://amzn.to/2beV5uS)** by Mark J. Price (Mar, 2016)<br>
-:green_book: &nbsp; **[Professional C# 6 and .NET Core 1.0](http://amzn.to/2bhILsn)** by Christian Nagel (Apr, 2016)<br>
 
 
 ### License

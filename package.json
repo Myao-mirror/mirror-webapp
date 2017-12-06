@@ -18,7 +18,7 @@
     "@progress/kendo-ui": "^2017.3.1116",
     "@progress/kendo-window-react-wrapper": "^2017.3.1124",
     "@types/history": "^4.6.2",
-    "@types/react": "^16.0.26",
+    "@types/react": "^16.0.27",
     "@types/react-dom": "^16.0.3",
     "ajv": "^5.5.1",
     "babel-polyfill": "6.26.0",
@@ -34,7 +34,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "serve-index": "^1.9.1",
+    "serve": "^1.9.1",
     "whatwg-fetch": "^2.0.3",
     "yargs": "^10.0.3"
   },
@@ -90,7 +90,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.5",
     "postcss-media-minmax": "^3.0.0",
-    "postcss-modules-extract-imports": "^1.1.0",
+    "postcss-modules-extract-imports": "^1.2.0",
     "postcss-nesting": "^4.2.1",
     "postcss-sass": "^0.2.0",
     "postcss-selector-matches": "^3.0.1",
@@ -103,7 +103,7 @@
     "stylelint": "^8.3.1",
     "stylelint-config-standard": "^18.0.0",
     "url-loader": "^0.6.2",
-    "webpack": "^3.9.1",
+    "webpack": "^3.10.0",
     "webpack-dev-middleware": "^1.12.2",
     "webpack-dev-server": "^2.9.5",
     "webpack-hot-middleware": "^2.21.0"
@@ -176,5 +176,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues"
+  },
+  "homepage": "https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux#readme"
 }
