@@ -84,6 +84,7 @@ namespace Server
         public static void Main()
         {
             var cwd = Directory.GetCurrentDirectory();
+            System.Console.WriteLine(Path.GetFileName(cwd));
             var web = Path.GetFileName(cwd) == "server" ? "../public" : "public";
 
             var host = new WebHostBuilder()
