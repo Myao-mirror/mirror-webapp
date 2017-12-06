@@ -33,7 +33,7 @@
 ├── /build/                               # The folder for compiled output
 ├── /client/                              # Client-side app (frontend)
 │   ├── /components/                      # Common or shared UI components
-│   ├── /utils/                           # Helper functions and utility classes
+│   ├── /utils/                           # Helper classes and optional KendoUI files
 │   ├── /views/                           # UI components for web pages (screens)
 │   ├── history.js                        # HTML5 History API wrapper used for navigation
 │   ├── main.js                           # Entry point that bootstraps the app
@@ -47,18 +47,17 @@
 │   └── ...                               # etc.
 ├── /server/                              # Web server and data API (backend)
 │   ├── /Controllers/                     # ASP.NET Web API and MVC controllers
-│   ├── /Models/                          # Entity Framework models (entities)
+│   ├── /Models/                          # Entity Framework and Identity models
 │   ├── /Views/                           # Server-side rendered views
 │   ├── appsettings.json                  # Server-side application settings
 │   ├── DesignTimeDbContextFactory.cs     # PostgreSQL connection string settings
 │   ├── Startup.cs                        # Server-side application entry point
 │   └── web.config                        # Web server settings for IIS
 ├── /server.test/                         # Unit and integration tests for the backend app
-│── jsconfig.json                         # Visual Studio Code settings for JavaScript
 │── package.json                          # The list of project dependencies and NPM scripts
-│── run.js                      # Build automation script (similar to gulpfile.js)
-└── webpack.config.js           # Bundling and optimization settings for Webpack
-└── yarn.lock                   # Yarn generated list of project dependencies
+│── run.js                                # Build automation script (similar to gulpfile.js)
+└── webpack.config.js                     # Bundling and optimization settings for Webpack
+└── yarn.lock                             # Yarn generated list of project dependencies
 ```
 
 
