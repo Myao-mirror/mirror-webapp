@@ -1,7 +1,7 @@
 {
   "name": "app",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "engines": {
     "node": ">=6",
     "npm": ">=3.8"
@@ -22,7 +22,7 @@
     "@types/react-dom": "^16.0.3",
     "ajv": "^5.5.1",
     "babel-polyfill": "6.26.0",
-    "caniuse-lite": "^1.0.30000778",
+    "caniuse-lite": "^1.0.30000780",
     "classnames": "^2.2.5",
     "css-selector-tokenizer": "^0.7.0",
     "fastclick": "^1.0.6",
@@ -34,7 +34,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "serve": "^1.9.1",
+    "serve-index": "^1.9.1",
     "whatwg-fetch": "^2.0.3",
     "yargs": "^10.0.3"
   },
