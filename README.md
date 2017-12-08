@@ -1,6 +1,6 @@
-# ASP.NET Core MVC Starter Template with React and Redux &nbsp; <a href="https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/stargazers"><img src="https://img.shields.io/github/stars/makiroggers/aspnet-core-mvc-template-with-react-redux.svg?style=social&label=Star&maxAge=3600" alt="" height="20"></a> <a href="https://twitter.com/makiroggers"><img src="https://img.shields.io/twitter/follow/makiroggers.svg?style=social&label=Follow&maxAge=3600" alt="" height="20"></a> 
+# ASP.NET Core MVC Starter Template with React and Redux &nbsp; <a href="https://github.com/Myao-mirror/mirror-webapp/stargazers"><img src="https://img.shields.io/github/stars/makiroggers/aspnet-core-mvc-template-with-react-redux.svg?style=social&label=Star&maxAge=3600" alt="" height="20"></a> <a href="https://twitter.com/makiroggers"><img src="https://img.shields.io/twitter/follow/makiroggers.svg?style=social&label=Follow&maxAge=3600" alt="" height="20"></a> 
 
-> [ASP.NET Core MVC Starter Template with React and Redux](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux) is a real-world
+> [ASP.NET Core MVC Starter Template with React and Redux](https://github.com/Myao-mirror/mirror-webapp) is a real-world
 > boilerplate and tooling for creating [single-page web applications](https://en.wikipedia.org/wiki/Single-page_application)
 > (SPA) oriented towards [progressive enhancement](https://en.wikipedia.org/wiki/Progressive_enhancement)
 > design, cross-platform compatability and component-based UI architecture. It is built upon best of
@@ -75,7 +75,7 @@
 
 ```shell
 $ git clone -o aspnet-core-mvc-template-with-react-redux -b master --single-branch \
-      https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux.git MyApp
+      https://github.com/Myao-mirror/mirror-webapp.git MyApp
 $ cd MyApp
 ```
 
@@ -129,19 +129,19 @@ your project by using a diff tool such as [Beyond Compare](http://www.scootersof
 ### How to Contribute
 
 Anyone and everyone is welcome to [contribute](CONTRIBUTING.md) to this project. The best way to
-start is by checking our [open issues](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues),
-[submit a new issues](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues/new?labels=bug) or
-[feature request](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/issues/new?labels=enhancement),
+start is by checking our [open issues](https://github.com/Myao-mirror/mirror-webapp/issues),
+[submit a new issues](https://github.com/Myao-mirror/mirror-webapp/issues/new?labels=bug) or
+[feature request](https://github.com/Myao-mirror/mirror-webapp/issues/new?labels=enhancement),
 participate in discussions, upvote or downvote the issues you like or dislike, or send [pull
 requests](CONTRIBUTING.md#pull-requests).
 
 
 ### License
 
-This source code is licensed under the MIT license found in the [LICENSE.txt](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/blob/master/LICENSE.txt)
+This source code is licensed under the MIT license found in the [LICENSE.txt](https://github.com/Myao-mirror/mirror-webapp/blob/master/LICENSE.txt)
 file. The documentation to the project is licensed under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
 license.
 
 
 ---
-Updated with ♥ by Maki Roggers ([@makiroggers](https://twitter.com/makiroggers)) and [contributors](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux/graphs/contributors)
+Updated with ♥ by the Myao Team ([@Myao-mirror](https://twitter.com/makiroggers)) and [contributors](https://github.com/Myao-mirror/mirror-webapp/graphs/contributors)

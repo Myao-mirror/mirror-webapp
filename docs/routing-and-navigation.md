@@ -1,6 +1,6 @@
 ## Routing and Navigation
 
-[ASP.NET Core MVC Starter Template with React and Redux](https://github.com/makiroggers/aspnet-core-mvc-template-with-react-redux-kit) uses a custom
+[ASP.NET Core MVC Starter Template with React and Redux](https://github.com/Myao-mirror/mirror-webapp-kit) uses a custom
 minimalistic (under 100 LOC) declarative routing approach that is easy to customize. It's comprised
 of five major parts:
 
