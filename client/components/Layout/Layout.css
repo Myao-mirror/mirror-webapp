@@ -7,8 +7,8 @@
 .ribbon {
   width: 100%;
   height: 40vh;
-  background-color: #3f51b5;
-  background-image: linear-gradient(-225deg, #3db0ef, #5e5bb7);
+  background-color: #35363b;
+  background-image: linear-gradient(0deg, #000000, #2f2f36);
   flex-shrink: 0;
 }
 
