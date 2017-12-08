@@ -1,7 +1,12 @@
+body {
+  background-color: #000000;
+}
+
 .content {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+  color: #ffffff;
 }
 
 .ribbon {
