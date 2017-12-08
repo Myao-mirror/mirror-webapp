@@ -17,10 +17,6 @@
     "view": "./views/about"
   },
   {
-    "path": "/grid",
-    "view":"./views/gridExample"
-  },
-  {
     "path": "/tasks/:status(pending|completed)?",
     "view": "./views/home"
   }

@@ -5,7 +5,7 @@ import history from '../../history';
 class Link extends React.Component {
   static propTypes = {
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func, // TODO: default prop declaration
   };
 
   handleClick = (event) => {
@@ -39,7 +39,7 @@ class Link extends React.Component {
 
   render() {
     const { to, ...props } = this.props; // eslint-disable-line no-use-before-define
-    return (<a href={history.createHref({ pathname: to })} {...props} onClick={this.handleClick}></a>);
+    return (<a href={history.createHref({ pathname: to })} {...props} onClick={this.handleClick}></a>); // eslint-disable-line
   }
 }
 

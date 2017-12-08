@@ -19,9 +19,7 @@
     "useCache": true
   },
   "include": [
-    "./src/",
-    "./js/",
-    "./styles/"
+    "../../node_modules/redbox-react"
   ],
   "exclude": [
     "../../node_modules"

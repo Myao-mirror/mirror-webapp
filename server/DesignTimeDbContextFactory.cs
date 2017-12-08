@@ -6,6 +6,7 @@ using System.IO;
 
 namespace Server.Models
 {
+    // Needed for Npgsql/Postgres
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
     {
         public DatabaseContext CreateDbContext(string[] args)

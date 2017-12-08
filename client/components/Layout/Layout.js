@@ -19,9 +19,9 @@ class Layout extends React.Component {
           <div className={s.ribbon}>
             <Header />
             <div className={s.container}>
-              <h1 className={`mdl-typography--title ${s.tagline}`}>Maki Roggers Portfolio</h1>
+              <h1 className={`mdl-typography--title ${s.tagline}`}>Introducing the Myao Mirror</h1>
               <p className={`mdl-typography--body-1 ${s.summary}`}>
-                Apprenti Software Development Apprentice at Microsoft
+                The bestest smartest mirror ever.
               </p>
             </div>
           </div>
