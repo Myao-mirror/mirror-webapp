@@ -53,7 +53,7 @@
 
 ### Prerequisites
 
-* Desktop computer running OS X, Windows or Linux
+* Desktop or laptop computer running OS X, Windows or Linux
 * [Node.js](https://nodejs.org) v6 or newer
 * [.NET Core](https://www.microsoft.com/net/core) and [.NET Core SDK](https://www.microsoft.com/net/core) v2.0 or newer
 
@@ -89,17 +89,16 @@ Hot Module Replacement (HMR) by running `node run --no-hmr`.
 ### How to Deploy
 
 Whenever you need to compile your
-app into a distributable format for deployment, simply run: (_*currently only supports Azure AppService_)
+app into a distributable format for deployment, update your appsettings.json and simply run:* 
 
 ```shell
 $ node run publish              # Same as running: npm run publish
 ```
+_*must be configured for use outside of Azure App Services_
 
 ### How to Update
 
-We work hard on keeping the project up-to-date and adding new features. Down the road, after
-starting a new web application project based on this boilerplate, you can always fetch and merge
-the latest changes from this (upstream) repo back into your project by running:
+If this project is updated and you would like to fetch and merge the latest changes from this repo (upstream) back into your project, you can do so by running:
 
 ```shell
 $ git checkout master
