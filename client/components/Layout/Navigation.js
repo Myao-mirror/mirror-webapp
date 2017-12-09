@@ -1,5 +1,4 @@
 import React from 'react';
-import '@progress/kendo-theme-default/dist/all.css';
 import Link from '../Link';
 
 class Navigation extends React.Component {

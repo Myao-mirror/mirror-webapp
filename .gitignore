@@ -216,7 +216,4 @@ public/dist
 .env.production.local
 appsettings*.json
 
-# LOCAL EXTRA FILES
-client/components/kendoui/apptemplates/*
-!client/components/kendoui/apptemplates/GridExample/
-client/components/kendoui/examples
+assets.json
