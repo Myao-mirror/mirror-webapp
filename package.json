@@ -1,6 +1,6 @@
 {
   "name": "myao-mirror",
-  "version": "0.0.1",
+  "version": "0.0.1 alpha",
   "bundleDependencies": [],
   "description": "Smart mirror using Raspberry Pi",
   "main": "run.js",
@@ -606,7 +606,7 @@
     "url": "git+https://github.com/Myao-mirror/mirror-webapp.git"
   },
   "keywords": [],
-  "author": "makiroggers <makiroggers@gmail.com>",
+  "author": "Myao Mirror",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Myao-mirror/mirror-webapp/issues"
