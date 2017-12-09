@@ -1,7 +1,7 @@
 # The Myao Mirror &nbsp; <a href="https://github.com/Myao-mirror/mirror-webapp/stargazers"><img src="https://img.shields.io/github/stars/Myao-mirror/mirror-webapp.svg?style=flat-square" alt="" height="20"></a> <a href="https://github.com/Myao-mirror/mirror-webapp/issues"><img src="https://img.shields.io/github/issues/Myao-mirror/mirror-webapp.svg?style=flat-square" alt="" height="20"></a> <a href="https://github.com/Myao-mirror/mirror-webapp/blob/master/LICENSE.txt"><img src="https://img.shields.io/github/license/Myao-mirror/mirror-webapp.svg?style=flat-square" alt="" height="20"></a>
 
 > The [Myao Mirror](https://github.com/Myao-mirror/mirror-webapp) consists of a  [single-page web applications](https://en.wikipedia.org/wiki/Single-page_application)
-> (SPA) that can be used with a smart mirror and boasts cross-platform compatibility and component-based UI architecture. It is built upon some of the latest frontend and backend technologies including [ASP.NET Core 2.0](https://dot.net/core), [Kestrel](https://github.com/aspnet/KestrelHttpServer),
+> (SPA) that can be used with a smart mirror and boasts cross-platform compatibility with a component-based UI architecture. It is built upon some of the latest frontend and backend technology suites including [ASP.NET Core 2.0](https://dot.net/core), [Kestrel](https://github.com/aspnet/KestrelHttpServer),
 > [Entity Framework Core 2.0](https://ef.readthedocs.io/en/latest/), [Babel](http://babeljs.io/), [Webpack](https://webpack.github.io/),
 > [React](https://facebook.github.io/react), [Redux](http://redux.js.org/), [CSS Modules](https://github.com/css-modules/css-modules),
 > [React Hot Loader](http://gaearon.github.io/react-hot-loader/) and more.
@@ -107,16 +107,11 @@ $ git fetch mirror-webapp
 $ git merge mirror-webapp/master 
 ```
 
-Alternatively, pull the latest version of this repository into a separate folder and compare it with
-your project by using a diff tool such as [Beyond Compare](http://www.scootersoftware.com/).
-
 ### How to Contribute
 Anyone and everyone is welcome to [contribute](CONTRIBUTING.md) to this project. The best way to
-start is by checking our [open issues](https://github.com/Myao-mirror/mirror-webapp/issues),
-[submit a new issues](https://github.com/Myao-mirror/mirror-webapp/issues/new?labels=bug) or
-[feature request](https://github.com/Myao-mirror/mirror-webapp/issues/new?labels=enhancement),
-participate in discussions, upvote or downvote the issues you like or dislike, or send [pull
-requests](CONTRIBUTING.md#pull-requests).
+start is by checking out our [open issues](https://github.com/Myao-mirror/mirror-webapp/issues),
+[submitting a new issue](https://github.com/Myao-mirror/mirror-webapp/issues/new?labels=bug), making a [feature request](https://github.com/Myao-mirror/mirror-webapp/issues/new?labels=enhancement), or sending a [pull
+request](CONTRIBUTING.md#pull-requests).
 
 ### License
 This source code is licensed under the MIT license found in the [LICENSE.txt](https://github.com/Myao-mirror/mirror-webapp/blob/master/LICENSE.txt)
@@ -124,4 +119,4 @@ file. The documentation to the project is licensed under the [CC BY-SA 4.0](http
 license.
 
 ---
-Updated with ♥ by the Myao Team ([@Myao-mirror](https://github.com/Myao-mirror)) and [contributors](https://github.com/Myao-mirror/mirror-webapp/graphs/contributors)
+Updated with ♥ by the Myao Team ([@Myao-mirror](https://github.com/Myao-mirror)) and our [contributors](https://github.com/Myao-mirror/mirror-webapp/graphs/contributors).
