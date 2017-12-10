@@ -10,7 +10,7 @@ function getTimeNDay() {
     day: 'numeric',
   };
   const gotTime = new Date().toLocaleTimeString();
-  const time = gotTime.slice(0, 4) + gotTime.slice(7, 10);
+  const time = gotTime.slice(0, 4) + gotTime.slice(7, gotTime.length);
   const date = new Date().toLocaleDateString('en-US', options);
   const timeNday = {
     time: time,
