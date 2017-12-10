@@ -2,7 +2,6 @@ import { combineReducers, applyMiddleware, createStore } from 'redux';
 import { logger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import axios from 'axios';
-import { create } from 'domain';
 
 // Centralized application state
 // For more information visit http://redux.js.org/
