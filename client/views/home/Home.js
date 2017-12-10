@@ -1,15 +1,11 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
 
 const title = 'Myao Mirror';
 const link1 = 'https://github.com/Myao-mirror';
 
 class Home extends React.Component {
-  static propTypes = {
-    articles: PropTypes.any.isRequired,
-  };
-
   componentDidMount() {
     document.title = title;
   }
@@ -54,5 +50,13 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  articles: PropTypes.array,
+};
+
+Home.defaultProps = {
+  articles: [],
+};
 
 export default Home;

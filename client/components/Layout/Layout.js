@@ -3,7 +3,6 @@ import Header from './Header';
 import s from './Layout.css';
 
 class Layout extends React.Component {
-
   componentDidMount() {
     window.componentHandler.upgradeElement(this.root);
   }
@@ -14,7 +13,7 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <div className="mdl-layout mdl-js-layout" ref={node => { this.root = node; }}>
+      <div className="mdl-layout mdl-js-layout" ref={(node) => { this.root = node; }}>
         <div className="mdl-layout__inner-container">
           <div className={s.ribbon}>
             <Header />

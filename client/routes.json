@@ -17,6 +17,10 @@
     "view": "./views/about"
   },
   {
+    "path": "/news",
+    "view": "./views/news"
+  },
+  {
     "path": "/tasks/:status(pending|completed)?",
     "view": "./views/home"
   }
