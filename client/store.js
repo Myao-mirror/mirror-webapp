@@ -3,7 +3,7 @@ import { logger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 
-import weatherReducer from './reducers/weatherReducer';
+import reducers from './reducers/allReducers';
 
 // Centralized application state
 // For more information visit http://redux.js.org/
@@ -75,23 +75,23 @@ const middleware = applyMiddleware(thunk, logger);
 
 
 // create in diff files, then import here
-const tweetsReducer = (state = {}, action) => {
-  switch (action.type) {
-    case 'GET_TWEETS': {
-      state = { ...state, tweets: 'GOT tweets' };
-      break;
-    }
-    default:
-      return state;
-  }
-  return state;
-};
+// const tweetsReducer = (state = {}, action) => {
+//   switch (action.type) {
+//     case 'GET_TWEETS': {
+//       state = { ...state, tweets: 'GOT tweets' };
+//       break;
+//     }
+//     default:
+//       return state;
+//   }
+//   return state;
+// };
 
 // combine reducers
-const reducers = combineReducers({
-  weather: weatherReducer, // what data we modify(weather), using what(weatherReducer)
-  tweets: tweetsReducer,
-});
+// const reducers = combineReducers({
+//   weather: weatherReducer, // what data we modify(weather), using what(weatherReducer)
+//   tweets: tweetsReducer,
+// });
 
 const store = createStore(reducers, middleware);
 store.subscribe(() => {
