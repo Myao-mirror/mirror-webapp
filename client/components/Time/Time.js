@@ -49,8 +49,8 @@ class Time extends React.Component {
 
   updateTime() {
     this.setState({
-      time: this.getTimeNDay().time,
-      date: this.getTimeNDay().day,
+      time: getTimeNDay().time,
+      date: getTimeNDay().day,
       // day: new Date().getDay(),
     });
   }
