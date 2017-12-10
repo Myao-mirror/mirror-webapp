@@ -1,6 +1,8 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux';
+import { logger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import axios from 'axios';
+import { create } from 'domain';
 
 // Centralized application state
 // For more information visit http://redux.js.org/
@@ -15,16 +17,16 @@ import axios from 'axios';
 // });
 
 // BITCH WHY YOU COMPLAIN!
-const logger = (store) => (next) => (action) => {
-  console.log('action fired ', action);
-  next(action);
-};
-const middleware = applyMiddleware(logger);
+// const logger = (store) => (next) => (action) => {
+//   console.log('action fired ', action);
+//   next(action);
+// };
+const middleware = applyMiddleware(thunk, logger);
 
 const weatherInitialState = {
   fetching: false,
   fetched: false,
-  weather: [],
+  // weather: [],
   err: null,
   data: null,
   res: null,
@@ -33,24 +35,26 @@ const weatherInitialState = {
 // create in diff files, , then import here
 const weatherReducer = (state = weatherInitialState, action) => {
   switch (action.type) {
-    case 'CHANGE_CITY': {
-      state = { ...state, city: action.payload };
-      break;
-    }
-    case 'CHANGE_TEMP': {
-      state = { ...state, temp: action.payload };
-      break;
-    }
+    // case 'CHANGE_CITY': {
+    //   state = { ...state, city: action.payload };
+    //   break;
+    // }
+    // case 'CHANGE_TEMP': {
+    //   state = { ...state, temp: action.payload };
+    //   break;
+    // }
     case 'REQUEST_WEATHER': {
-      state = { ...state, data: action.payload };
+      // take the data: action.payload out
+      state = { ...state, fetching: true, data: action.payload };
       break;
     }
     case 'RECEIVE_WEATHER': {
-      state = { ...state, res: action.payload };
+      state = { ...state, fetching: false, fetched: true, res: action.payload };
       break;
     }
     case 'WEATHER_ERROR': {
-      state = { ...state, err: action.payload };
+      state = { ...state, fetching: false, err: action.payload };
+      break;
     }
     default:
       return state;
@@ -60,7 +64,15 @@ const weatherReducer = (state = weatherInitialState, action) => {
 
 
 // create in diff files, then import here
-const tweetsReducer = (state = [], action) => {
+const tweetsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'GET_TWEETS': {
+      state = {...state, tweets: 'GOT tweets'};
+      break;
+    }
+    default:
+      return state;
+  }
   return state;
 };
 
@@ -70,7 +82,7 @@ const reducers = combineReducers({
   tweets: tweetsReducer,
 });
 
-const store = createStore(reducers, {}, middleware);
+const store = createStore(reducers, middleware);
 store.subscribe(() => {
   console.log('************** store changed', store.getState());
 });
@@ -91,6 +103,7 @@ store.dispatch((dispatch) => {
     .catch((err) => {
       dispatch({ type: 'WEATHER_ERROR', payload: err });
     });
+  dispatch({ type: 'GET_TWEETS' });
 });
 
 export default store;
