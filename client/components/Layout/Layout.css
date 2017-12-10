@@ -1,9 +1,13 @@
+* {
+  font-family: 'Cousine', monospace;
+}
+
 body {
   background-color: #000000;
   color: #00FFFF; 
-  font-family: 'Cousine', monospace;
   /* cyan */
 }
+
 
 .content {
   width: 100%;
