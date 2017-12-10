@@ -27,7 +27,6 @@ const weatherInitialState = {
   fetched: false,
   // weather: [],
   err: null,
-  data: null,
   res: null,
 };
 
@@ -43,12 +42,21 @@ const weatherReducer = (state = weatherInitialState, action) => {
     //   break;
     // }
     case 'REQUEST_WEATHER': {
-      // take the data: action.payload out
-      state = { ...state, fetching: true, data: action.payload };
+      // TODO: take the data: action.payload out
+      state = {
+        ...state,
+        fetching: true,
+        // data: action.payload
+      };
       break;
     }
     case 'RECEIVE_WEATHER': {
-      state = { ...state, fetching: false, fetched: true, res: action.payload };
+      state = {
+        ...state,
+        fetching: false,
+        fetched: true,
+        res: action.payload,
+      };
       break;
     }
     case 'WEATHER_ERROR': {
@@ -66,7 +74,7 @@ const weatherReducer = (state = weatherInitialState, action) => {
 const tweetsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'GET_TWEETS': {
-      state = {...state, tweets: 'GOT tweets'};
+      state = { ...state, tweets: 'GOT tweets' };
       break;
     }
     default:
@@ -94,7 +102,7 @@ store.subscribe(() => {
 // dispatch things together ASYNC
 store.dispatch((dispatch) => {
   dispatch({ type: 'REQUEST_WEATHER' });
-  let apiKey = '91989caa792ff47f0d8628d457e8864b';
+  const apiKey = '91989caa792ff47f0d8628d457e8864b';
   axios.get(`http://api.openweathermap.org/data/2.5/weather?q=seattle&appid=${apiKey}`)
     .then((res) => {
       dispatch({ type: 'RECEIVE_WEATHER', payload: res.data });
