@@ -1,12 +1,15 @@
+/* TODO: may not need */
 body {
   background-color: #000000;
+  color: #00FFFF; 
+  /* cyan */
 }
 
 .content {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
 .ribbon {
@@ -24,7 +27,7 @@ body {
 
 .tagline,
 .summary {
-  color: #fff;
+  /* color: #fff; */
 }
 
 .tagline {

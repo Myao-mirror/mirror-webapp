@@ -23,5 +23,9 @@
   {
     "path": "/tasks/:status(pending|completed)?",
     "view": "./views/home"
+  },
+  {
+    "path": "/landing",
+    "view": "./views/landing"
   }
 ]
