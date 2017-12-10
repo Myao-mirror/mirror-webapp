@@ -110,7 +110,9 @@ store.dispatch((dispatch) => {
     .catch((err) => {
       dispatch({ type: 'WEATHER_ERROR', payload: err });
     });
-  dispatch({ type: 'GET_TWEETS' });
+  // dispatch({ type: 'GET_TWEETS' });
 });
+
+store.dispatch({ type: 'GET_TWEETS' });
 
 export default store;
