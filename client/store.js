@@ -3,6 +3,8 @@ import { logger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 
+import weatherReducer from './reducers/weatherReducer';
+
 // Centralized application state
 // For more information visit http://redux.js.org/
 // const store = createStore((state, action) => {
@@ -20,54 +22,56 @@ import axios from 'axios';
 //   console.log('action fired ', action);
 //   next(action);
 // };
+
+// Add middleware to store
 const middleware = applyMiddleware(thunk, logger);
 
-const weatherInitialState = {
-  fetching: false,
-  fetched: false,
-  // weather: [],
-  err: null,
-  res: null,
-};
+// const weatherInitialState = {
+//   fetching: false,
+//   fetched: false,
+//   // weather: [],
+//   err: null,
+//   res: null,
+// };
 
 // create in diff files, , then import here
-const weatherReducer = (state = weatherInitialState, action) => {
-  switch (action.type) {
-    // case 'CHANGE_CITY': {
-    //   state = { ...state, city: action.payload };
-    //   break;
-    // }
-    // case 'CHANGE_TEMP': {
-    //   state = { ...state, temp: action.payload };
-    //   break;
-    // }
-    case 'REQUEST_WEATHER': {
-      // TODO: take the data: action.payload out
-      state = {
-        ...state,
-        fetching: true,
-        // data: action.payload
-      };
-      break;
-    }
-    case 'RECEIVE_WEATHER': {
-      state = {
-        ...state,
-        fetching: false,
-        fetched: true,
-        res: action.payload,
-      };
-      break;
-    }
-    case 'WEATHER_ERROR': {
-      state = { ...state, fetching: false, err: action.payload };
-      break;
-    }
-    default:
-      return state;
-  }
-  return state;
-};
+// const weatherReducer = (state = weatherInitialState, action) => {
+//   switch (action.type) {
+//     // case 'CHANGE_CITY': {
+//     //   state = { ...state, city: action.payload };
+//     //   break;
+//     // }
+//     // case 'CHANGE_TEMP': {
+//     //   state = { ...state, temp: action.payload };
+//     //   break;
+//     // }
+//     case 'REQUEST_WEATHER': {
+//       // TODO: take the data: action.payload out
+//       state = {
+//         ...state,
+//         fetching: true,
+//         // data: action.payload
+//       };
+//       break;
+//     }
+//     case 'RECEIVE_WEATHER': {
+//       state = {
+//         ...state,
+//         fetching: false,
+//         fetched: true,
+//         res: action.payload,
+//       };
+//       break;
+//     }
+//     case 'WEATHER_ERROR': {
+//       state = { ...state, fetching: false, err: action.payload };
+//       break;
+//     }
+//     default:
+//       return state;
+//   }
+//   return state;
+// };
 
 
 // create in diff files, then import here
@@ -83,7 +87,7 @@ const tweetsReducer = (state = {}, action) => {
   return state;
 };
 
-// combine them
+// combine reducers
 const reducers = combineReducers({
   weather: weatherReducer, // what data we modify(weather), using what(weatherReducer)
   tweets: tweetsReducer,

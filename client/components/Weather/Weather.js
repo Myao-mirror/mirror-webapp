@@ -9,6 +9,7 @@ class Weather extends React.PureComponent {
       border: '4px solid white',
     };
     return (
+    // TODO: sometimes there is no res from API call, make sure to catch err, otherwise res.name will say null object ref
       <h2 style={weatherstyle}>{this.props.weather.res.name}</h2>
     );
   }
