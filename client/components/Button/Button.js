@@ -20,8 +20,7 @@ class Button extends React.Component {
     const { className, ...other } = this.props;
     return (
       <button
-        ref={node => { this.root = node; }}
-        className={cx('mdl-button mdl-js-button', className)}
+        ref={(node) => { this.root = node; }}
         {...other}
       />
     );

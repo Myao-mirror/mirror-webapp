@@ -17,39 +17,32 @@ class Home extends React.Component {
   render() {
     return (
       <Layout>
-        <div className="mdl-grid">
-          <div className="mdl-cell mdl-cell--6-col">
-            <h1 className="mdl-typography--title">Welcome to {title}!</h1>
-            <p className="mdl-typography--body-1">
-              For more information visit <a href={link1}>{link1}</a>.
-            </p>
-          </div>
-          <div className="mdl-cell mdl-cell--6-col">
-            <h1 className="mdl-typography--title">Featured Technologies</h1>
-            <ul>
-              {this.props.articles.map((article, i) => (
-                <li key={i}>
-                  <span className="mdl-typography--menu">
-                    <a href={article.url} className="mdl-typography--font-bold">
-                      {article.title}
-                    </a> [{article.author}]
-                  </span>
-                  <ul>
-                    {article.includes.map((product, n) => (
-                      <li key={n}>
-                        <span className="mdl-typography--menu mdl-typography--font-thin">
-                          <a href={product.url}>
-                            {product.title}
-                          </a> [{product.author}]
-                        </span>
-                      </li>))}
-                  </ul>
-                </li>))
-              }
-            </ul>
-            <p />
-          </div>
-        </div>
+        <h1>Welcome to {title}!</h1>
+        <p>
+          For more information visit <a href={link1}>{link1}</a>.
+        </p>
+        <h1>Featured Technologies</h1>
+        <ul>
+          {this.props.articles.map((article, i) => (
+            <li key={i}>
+              <span>
+                <a href={article.url}>
+                  {article.title}
+                </a> [{article.author}]
+              </span>
+              <ul>
+                {article.includes.map((product, n) => (
+                  <li key={n}>
+                    <span>
+                      <a href={product.url}>
+                        {product.title}
+                      </a> [{product.author}]
+                    </span>
+                  </li>))}
+              </ul>
+            </li>))
+          }
+        </ul>
       </Layout>
     );
   }
