@@ -43,4 +43,4 @@ const weatherReducer = (state = weatherInitialState, action) => {
   return state;
 };
 
-export default weatherReducer
+export default weatherReducer;

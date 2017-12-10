@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import reducers from './reducers/allReducers';
 
+import fetchWeather from './actions/weatherActions';
+
 // Centralized application state
 // For more information visit http://redux.js.org/
 // const store = createStore((state, action) => {
@@ -104,19 +106,21 @@ store.subscribe(() => {
 
 
 // dispatch things together ASYNC
-store.dispatch((dispatch) => {
-  dispatch({ type: 'REQUEST_WEATHER' });
-  const apiKey = '91989caa792ff47f0d8628d457e8864b';
-  axios.get(`http://api.openweathermap.org/data/2.5/weather?q=seattle&appid=${apiKey}`)
-    .then((res) => {
-      dispatch({ type: 'RECEIVE_WEATHER', payload: res.data });
-    })
-    .catch((err) => {
-      dispatch({ type: 'WEATHER_ERROR', payload: err });
-    });
-  // dispatch({ type: 'GET_TWEETS' });
-});
+// store.dispatch((dispatch) => {
+//   dispatch({ type: 'REQUEST_WEATHER' });
+//   const apiKey = '91989caa792ff47f0d8628d457e8864b';
+//   axios.get(`http://api.openweathermap.org/data/2.5/weather?q=seattle&appid=${apiKey}`)
+//     .then((res) => {
+//       dispatch({ type: 'RECEIVE_WEATHER', payload: res.data });
+//     })
+//     .catch((err) => {
+//       dispatch({ type: 'WEATHER_ERROR', payload: err });
+//     });
+//   // dispatch({ type: 'GET_TWEETS' });
+// });
 
-store.dispatch({ type: 'GET_TWEETS' });
+// store.dispatch(fetchWeather());
+
+// store.dispatch({ type: 'GET_TWEETS' });
 
 export default store;

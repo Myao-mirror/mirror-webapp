@@ -1,7 +1,7 @@
 const tweetsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'GET_TWEETS': {
-      state = { ...state, tweets: 'GOT tweets' };
+      state = { ...state, tweets: action.payload };
       break;
     }
     default:
