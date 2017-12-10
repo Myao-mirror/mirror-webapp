@@ -9,20 +9,14 @@ class About extends React.Component {
   render() {
     return (
       <Layout>
-        <div className="mdl-grid">
-          <div className="mdl-cell mdl-cell--6-col">
-            <h1 className="mdl-typography--title">About Mirror</h1>
-            <p className="mdl-typography--body-1">
-              Coming soon.
-            </p>
-          </div>
-          <div className="mdl-cell mdl-cell--6-col">
-            <h1 className="mdl-typography--title">Mirror Stuff</h1>
-            <p className="mdl-typography--body-1">
-              This mirror is the most awesome mirror ever.
-            </p>
-          </div>
-        </div>
+        <h1>About Mirror</h1>
+        <p>
+          Coming soon.
+        </p>
+        <h1>Mirror Stuff</h1>
+        <p>
+          This mirror is the most awesome mirror ever.
+        </p>
       </Layout>
     );
   }
