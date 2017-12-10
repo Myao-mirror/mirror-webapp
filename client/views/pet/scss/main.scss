@@ -1,0 +1,137 @@
+$subtle-color: #30162B;
+$attention-color: #3FB094;
+$dull-color: #BCCF9F;
+$link-color: #F5F2C4;
+$title-font: 'Pacifico', cursive;
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: $subtle-color;
+  font-family: 'Arimo', sans-serif;
+  color: $dull-color;
+}
+
+h1 {
+    color: $attention-color;
+}
+
+.page-wrap {
+    min-height: calc(100% - 2.5em);
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+
+    * {
+        margin: 0;
+    }
+
+    h1 {
+        font-family: $title-font;
+        font-size: 6em;
+        margin-left: -2%;
+
+        span {
+            cursor: pointer;
+        }
+    }
+
+    @media (max-width: 550px) {
+      h1 {font-size: 3.5em;}
+    }
+}
+
+#wrapMain {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    margin-top: -3.5em;
+    width: 90%;
+    padding: 0 5%;
+
+    .firstRow {
+        margin: 0 1em;
+    }
+
+    #wrapGif {
+        position: relative;
+        margin-top: 7em;
+
+        #gif {
+            padding: 10px;
+            border-radius: 5%;
+            background: $attention-color;
+            width: 93%;
+        }
+
+        #ears {
+            height: 7em;
+            width: 10em;
+            margin-top: -5.5em;
+            left: calc(50% - 3.5em);
+            z-index: 0;
+            position: absolute;
+        }
+    }
+
+    #wrapQuote {
+        text-align: center;
+        margin-top: 7em;
+    }
+
+    #nextAction {
+        flex: 1 auto;
+        order: 3;
+        width: 100%;
+        margin: 1em 0;
+        align-items: center;
+        flex-flow: row wrap;
+        text-align: center;
+
+        button {
+            flex: 1 auto;
+            height: 6.5em;
+            min-width: 6.5em;
+            text-align: center;
+            font-weight: 900;
+            text-align: center;
+            background-color: Transparent;
+            border: $attention-color solid 4px;
+            color: $attention-color;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 25%;
+        }
+
+        button:hover {
+            color: $subtle-color;
+            background-color: $attention-color;
+        }
+    }
+}
+
+footer {
+    height: 1em;
+    margin-top: 1em;
+    text-align: center;
+
+    a {
+        color: $link-color;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+}
