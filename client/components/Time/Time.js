@@ -30,23 +30,6 @@ class Time extends React.Component {
     // this.getTimeNDay = this.getTimeNDay.bind(this);
   }
 
-  // getTimeNDay() {      
-  //   const options = {
-  //     weekday: 'long',
-  //     year: 'numeric',
-  //     month: 'long',
-  //     day: 'numeric',
-  //   };
-  //   const gotTime = new Date().toLocaleTimeString();
-  //   const time = gotTime.slice(0, 4) + gotTime.slice(8, 10);
-  //   const date = new Date().toLocaleDateString('en-US', options);
-  //   const timeNday = {
-  //     time: time,
-  //     day: date,
-  //   };
-  //   return timeNday;
-  // }
-
   updateTime() {
     this.setState({
       time: getTimeNDay().time,
