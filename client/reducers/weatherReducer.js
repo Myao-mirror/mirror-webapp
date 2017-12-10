@@ -7,20 +7,10 @@ const weatherInitialState = {
 
 const weatherReducer = (state = weatherInitialState, action) => {
   switch (action.type) {
-    // case 'CHANGE_CITY': {
-    //   state = { ...state, city: action.payload };
-    //   break;
-    // }
-    // case 'CHANGE_TEMP': {
-    //   state = { ...state, temp: action.payload };
-    //   break;
-    // }
     case 'REQUEST_WEATHER': {
-      // TODO: take the data: action.payload out
       state = {
         ...state,
         fetching: true,
-        // data: action.payload
       };
       break;
     }

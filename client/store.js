@@ -1,11 +1,9 @@
-import { combineReducers, applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { logger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import axios from 'axios';
+
 
 import reducers from './reducers/allReducers';
-
-import fetchWeather from './actions/weatherActions';
 
 // Centralized application state
 // For more information visit http://redux.js.org/
@@ -18,12 +16,6 @@ import fetchWeather from './actions/weatherActions';
 //       return state;
 //   }
 // });
-
-// BITCH WHY YOU COMPLAIN!
-// const logger = (store) => (next) => (action) => {
-//   console.log('action fired ', action);
-//   next(action);
-// };
 
 // Add middleware to store
 const middleware = applyMiddleware(thunk, logger);
