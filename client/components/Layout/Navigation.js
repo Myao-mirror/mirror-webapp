@@ -18,6 +18,8 @@ class Navigation extends React.Component {
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/news">News</Link>
+        <Link to="/weather">Weather</Link>
+        <Link to="/time">Time</Link>
         <Link to="/landing">Landing</Link>
         <Link to="/not-found">Not Found</Link>
       </nav>

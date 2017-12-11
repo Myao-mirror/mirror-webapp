@@ -21,6 +21,14 @@
     "view": "./views/news"
   },
   {
+    "path": "/weather",
+    "view": "./views/weather"
+  },
+  {
+    "path": "/time",
+    "view": "./views/time"
+  },
+  {
     "path": "/landing",
     "view": "./views/landing"
   },
