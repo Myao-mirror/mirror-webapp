@@ -18,11 +18,19 @@ class Weather extends React.PureComponent {
     // this.props.dispatch(fetchTweets(4));
   }
 
-//   fetchTweetsComponent() {
-//     this.props.dispatch(fetchTweets(2));
-//     const gotTime = new Date().toLocaleTimeString();
-//     console.log('fired! TWEEEEEEEEEEEEETS', gotTime);
-//   }
+  componentDidMount() {
+    this.interval = setInterval(this.fetchWeatherComponentFunc, 1800000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  //   fetchTweetsComponent() {
+  //     this.props.dispatch(fetchTweets(2));
+  //     const gotTime = new Date().toLocaleTimeString();
+  //     console.log('fired! TWEEEEEEEEEEEEETS', gotTime);
+  //   }
 
   fetchWeatherComponentFunc() {
     this.props.dispatch(fetchWeather());
@@ -31,7 +39,7 @@ class Weather extends React.PureComponent {
 
   render() {
     // setInterval(this.fetchTweetsComponent, 5000);
-    setInterval(this.fetchWeatherComponentFunc, 36000000);
+    // setInterval(this.fetchWeatherComponentFunc, 36000000);
     console.log('$$$$$$$$$$$$$$$$$$$$$$$ from weather component, this.props: ', this.props);
     const weather = this.props.weather.res;
     if (!weather) {
