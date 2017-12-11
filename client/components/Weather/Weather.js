@@ -33,15 +33,32 @@ class Weather extends React.PureComponent {
     // setInterval(this.fetchTweetsComponent, 5000);
     setInterval(this.fetchWeatherComponentFunc, 36000000 / 4);
     console.log('$$$$$$$$$$$$$$$$$$$$$$$ from weather component, this.props: ', this.props);
-    const weather = {
-      status: this.props.weather.res,
+    const weather = this.props.weather.res;
+    if (!weather) {
+      return (
+        <p>Weather is here, wish you were wonderful.</p>
+      );
+    }
+    const iconMap = {
+      clouds: <i className="material-icons">wb_cloudy</i>,
+      rain: <i className="material-icons">wb_grain</i>,
+      clear: <i className="material-icons" >wb_sunny</i>,
+      snow: <i className="material-icons" >ac_unit</i>,
+      mist: <i className="material-icons" >line_weight</i>,
+      fog: <i className="material-icons" >line_weight</i>,
     };
-    const result = weather.status ? weather.status.name : 'Weather is here, wish you were wonderful.';
+    const iconKey = weather.weather[0].main.toLowerCase();
+    const icon = iconMap[iconKey];
     return (
-      <p>{ result }</p>
+      <div>
+        <h1>{Math.floor(weather.main.temp)}F</h1>
+        <p>{ weather.name }</p>
+        <h2>{ weather.weather[0].main.toUpperCase() } { icon }</h2>
+      </div>
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {

@@ -83,13 +83,13 @@ class Button extends React.Component {
     raised: PropTypes.bool,
   };
 
-  componentDidMount() {
-    window.componentHandler.upgradeElement(this.root);      // <==
-  }
+  // componentDidMount() {
+  //   window.componentHandler.upgradeElement(this.root);      // <==
+  // }
   
-  componentWillUnmount() {
-    window.componentHandler.downgradeElements(this.root);   // <==
-  }
+  // componentWillUnmount() {
+  //   window.componentHandler.downgradeElements(this.root);   // <==
+  // }
 
   render() {
     return (
