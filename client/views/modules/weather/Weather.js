@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../../components/Layout';
-import Weather from '../../components/Weather/Weather';
+import Layout from '../../../components/Layout';
+import Weather from '../../../components/Weather/Weather';
 
 
 class WeatherDisplay extends React.Component {

@@ -4,9 +4,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import counter from '../../reducer';
-import Layout from '../../components/Layout';
-import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import counter from '../../../reducer';
+import Layout from '../../../components/Layout';
+import * as s from '../../../../node_modules/materialize-css/dist/css/materialize.min.css';
 // import Materialize from '../../../node_modules/materialize-css/dist/css'
 const store = createStore(counter);
 
