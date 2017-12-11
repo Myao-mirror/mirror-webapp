@@ -482,7 +482,6 @@
     "eslint-restricted-globals": "^0.1.1",
     "eslint-scope": "^3.7.1",
     "mocha": "^4.0.1",
-    "react-mdl": "^1.11.0",
     "react-scripts": "^1.0.17",
     "react-test-renderer": "^16.2.0",
     "stylelint": "^8.3.1",

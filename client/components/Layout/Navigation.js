@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from '../Link';
-import '../../../node_modules/react-mdl/extra/material';
-import '../../../node_modules/react-mdl/extra/material.css';
+// import '../../../node_modules/react-mdl/extra/material';
+// import '../../../node_modules/react-mdl/extra/material.css';
 
 class Navigation extends React.Component {
-  componentDidMount() {
-    window.componentHandler.upgradeElement(this.root);
-  }
+  // componentDidMount() {
+  //   window.componentHandler.upgradeElement(this.root);
+  // }
 
-  componentWillUnmount() {
-    window.componentHandler.downgradeElements(this.root);
-  }
+  // componentWillUnmount() {
+  //   window.componentHandler.downgradeElements(this.root);
+  // }
 
   render() {
     return (

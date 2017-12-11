@@ -3,14 +3,14 @@ import Layout from '../../components/Layout';
 import Weather from '../../components/Weather/Weather';
 
 
-class Landing extends React.Component {
+class WeatherDisplay extends React.Component {
   render() {
     return (
-        <Layout>
-              <Weather />
-        </Layout>
+      <Layout>
+        <Weather />
+      </Layout>
     );
   }
 }
 
-export default Landing;
+export default WeatherDisplay;

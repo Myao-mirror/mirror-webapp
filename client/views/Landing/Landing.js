@@ -8,11 +8,11 @@ import Weather from '../../components/Weather/Weather';
 class Landing extends React.Component {
   render() {
     return (
-        <Layout>
-              <Time />
-              <News />
-              <Weather />
-        </Layout>
+      <Layout>
+        <Time />
+        <News />
+        <Weather />
+      </Layout>
     );
   }
 }

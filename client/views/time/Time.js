@@ -3,14 +3,18 @@ import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
 
 
-class Landing extends React.Component {
+class TimeDisplay extends React.Component {
+  componentDidMount() {
+    document.title = 'Time Display';
+  }
+
   render() {
     return (
-        <Layout>
-              <Time />
-        </Layout>
+      <Layout>
+        <Time />
+      </Layout>
     );
   }
 }
 
-export default Landing;
+export default TimeDisplay;
