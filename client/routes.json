@@ -17,8 +17,8 @@
     "view": "./views/about"
   },
   {
-    "path": "/news",
-    "view": "./views/modules/news"
+    "path": "/posts",
+    "view": "./views/modules/posts"
   },
   {
     "path": "/weather",

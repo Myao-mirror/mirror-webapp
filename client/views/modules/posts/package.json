@@ -1,7 +1,7 @@
 {
-    "name": "News",
+    "name": "Posts",
     "version": "0.0.0",
     "private": true,
-    "main": "./News.js"
+    "main": "./Posts.js"
   }
   

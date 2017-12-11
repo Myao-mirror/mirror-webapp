@@ -18,11 +18,11 @@ class Weather extends React.PureComponent {
     // this.props.dispatch(fetchTweets(4));
   }
 
-//   fetchTweetsComponent() {
-//     this.props.dispatch(fetchTweets(2));
-//     const gotTime = new Date().toLocaleTimeString();
-//     console.log('fired! TWEEEEEEEEEEEEETS', gotTime);
-//   }
+  //   fetchTweetsComponent() {
+  //     this.props.dispatch(fetchTweets(2));
+  //     const gotTime = new Date().toLocaleTimeString();
+  //     console.log('fired! TWEEEEEEEEEEEEETS', gotTime);
+  //   }
 
   fetchWeatherComponentFunc() {
     this.props.dispatch(fetchWeather());
@@ -43,12 +43,10 @@ class Weather extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    weather: state.weather,
-    // tweets: state.tweets,
-  };
-};
+const mapStateToProps = state => ({
+  weather: state.weather,
+  // tweets: state.tweets,
+});
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
