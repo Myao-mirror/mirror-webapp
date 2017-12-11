@@ -34,7 +34,7 @@ class News extends React.Component {
           <h3>{`/r/${this.props.subreddit}`}</h3>
           <ul>
             {this.state.posts.map(post =>
-              <li key={post.id}>{post.title}</li>)}
+              <li key={post.id}>{post.title} {post.score}</li>)}
           </ul>
         </div>
       </Provider>
