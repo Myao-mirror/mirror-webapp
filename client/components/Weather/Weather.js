@@ -64,7 +64,7 @@ class Weather extends React.PureComponent {
     const icon = iconMap[iconKey];
     return (
       <div>
-        <h1>{Math.floor(weather.main.temp)}F</h1>
+        <h1>{Math.floor(weather.main.temp)}˚F</h1>
         <h2>{ weather.weather[0].main.toLowerCase() } {icon}</h2>
         <p>{ weather.name }</p>
       </div>
