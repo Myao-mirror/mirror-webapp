@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './Header';
-import Time from '../Time/Time';
 import s from './Layout.css';
 
 class Layout extends React.Component {
