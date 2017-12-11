@@ -52,12 +52,12 @@ class Weather extends React.PureComponent {
       );
     }
     const iconMap = {
-      clouds: <Cloud />,
-      rain: <BigRain />,
-      clear: <Sunny />,
-      snow: <Snowflake />,
-      mist: <Mist />,
-      fog: <Mist />,
+      clouds: <Cloud height="3rem" width="3rem" />,
+      rain: <BigRain height="3rem" width="3rem" />,
+      clear: <Sunny height="3rem" width="3rem" />,
+      snow: <Snowflake height="3rem" width="3rem" />,
+      mist: <Mist height="3rem" width="3rem" />,
+      fog: <Mist height="3rem" width="3rem" />,
     };
     const iconKey = weather.weather[0].main.toLowerCase();
     const icon = iconMap[iconKey];
@@ -65,8 +65,7 @@ class Weather extends React.PureComponent {
       <div>
         <h1>{Math.floor(weather.main.temp)}F</h1>
         <p>{ weather.name }</p>
-        <h2>{ weather.weather[0].main.toLowerCase() } { icon }</h2>
-
+        <h2>{ weather.weather[0].main.toLowerCase() } {icon}</h2>
       </div>
     );
   }
