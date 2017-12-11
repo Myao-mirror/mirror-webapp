@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import fetchWeather from '../../actions/weatherActions';
 // import fetchTweets from '../../actions/tweetsActions';
-
+import Cloud from './weatherIcons/cloud';
+import Sunny from './weatherIcons/sunny';
+import Mist from './weatherIcons/mist';
+import BigRain from './weatherIcons/bigRain';
+import Snowflake from './weatherIcons/snowflake';
 
 // TODO: take all the tweets out!
 class Weather extends React.PureComponent {
@@ -48,12 +52,12 @@ class Weather extends React.PureComponent {
       );
     }
     const iconMap = {
-      clouds: <i className="material-icons">wb_cloudy</i>,
-      rain: <i className="material-icons">wb_grain</i>,
-      clear: <i className="material-icons" >wb_sunny</i>,
-      snow: <i className="material-icons" >ac_unit</i>,
-      mist: <i className="material-icons" >line_weight</i>,
-      fog: <i className="material-icons" >line_weight</i>,
+      clouds: <Cloud />,
+      rain: <BigRain />,
+      clear: <Sunny />,
+      snow: <Snowflake />,
+      mist: <Mist />,
+      fog: <Mist />,
     };
     const iconKey = weather.weather[0].main.toLowerCase();
     const icon = iconMap[iconKey];
@@ -62,18 +66,17 @@ class Weather extends React.PureComponent {
         <h1>{Math.floor(weather.main.temp)}F</h1>
         <p>{ weather.name }</p>
         <h2>{ weather.weather[0].main.toLowerCase() } { icon }</h2>
+
       </div>
     );
   }
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    weather: state.weather,
-    // tweets: state.tweets,
-  };
-};
+const mapStateToProps = state => ({
+  weather: state.weather,
+  // tweets: state.tweets,
+});
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
