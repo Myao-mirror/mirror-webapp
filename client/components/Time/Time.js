@@ -10,7 +10,8 @@ function getTimeNDay() {
     day: 'numeric',
   };
   const gotTime = new Date().toLocaleTimeString();
-  const time = gotTime.slice(0, 4) + gotTime.slice(7, gotTime.length);
+  // const time = gotTime.slice(0, 4) + gotTime.slice(7, gotTime.length);
+  const time = gotTime;
   const date = new Date().toLocaleDateString('en-US', options);
   const timeNday = {
     time: time,
@@ -30,6 +31,14 @@ class Time extends React.Component {
     // this.getTimeNDay = this.getTimeNDay.bind(this);
   }
 
+  componentDidMount() {
+    this.interval = setInterval(this.updateTime, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   updateTime() {
     this.setState({
       time: getTimeNDay().time,
@@ -40,10 +49,10 @@ class Time extends React.Component {
 
   render() {
     // const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][this.state.day];
-    setInterval(this.updateTime, 60000);
+    // setInterval(this.updateTime, 60000);
     return (
       <div>
-        <h4>Hello</h4>
+        <h4>Myao Mirror</h4>
         <h2>{this.state.time}</h2>
         <h5>{this.state.date}</h5>
       </div>

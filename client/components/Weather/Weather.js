@@ -31,7 +31,7 @@ class Weather extends React.PureComponent {
 
   render() {
     // setInterval(this.fetchTweetsComponent, 5000);
-    setInterval(this.fetchWeatherComponentFunc, 36000000 / 4);
+    setInterval(this.fetchWeatherComponentFunc, 36000000);
     console.log('$$$$$$$$$$$$$$$$$$$$$$$ from weather component, this.props: ', this.props);
     const weather = this.props.weather.res;
     if (!weather) {
@@ -53,7 +53,7 @@ class Weather extends React.PureComponent {
       <div>
         <h1>{Math.floor(weather.main.temp)}F</h1>
         <p>{ weather.name }</p>
-        <h2>{ weather.weather[0].main.toUpperCase() } { icon }</h2>
+        <h2>{ weather.weather[0].main.toLowerCase() } { icon }</h2>
       </div>
     );
   }
