@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
+import s from '../../components/Layout/Layout.css';
 
 const title = 'Myao Mirror';
 const link1 = 'https://github.com/Myao-mirror';

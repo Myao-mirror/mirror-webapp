@@ -1,16 +1,15 @@
 import React from 'react';
 import Header from './Header';
-import Time from '../Time/Time';
 import s from './Layout.css';
 
 class Layout extends React.Component {
-  componentDidMount() {
-    window.componentHandler.upgradeElement(this.root);
-  }
+  // componentDidMount() {
+  //   window.componentHandler.upgradeElement(this.root);
+  // }
 
-  componentWillUnmount() {
-    window.componentHandler.downgradeElements(this.root);
-  }
+  // componentWillUnmount() {
+  //   window.componentHandler.downgradeElements(this.root);
+  // }
 
   render() {
     return (
