@@ -23,7 +23,8 @@ class Weather extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.fetchWeatherComponentFunc, 1800000);
+    // make weather api call every 15min
+    this.interval = setInterval(this.fetchWeatherComponentFunc, 900000);
   }
 
   componentWillUnmount() {
@@ -64,8 +65,8 @@ class Weather extends React.PureComponent {
     return (
       <div>
         <h1>{Math.floor(weather.main.temp)}F</h1>
-        <p>{ weather.name }</p>
         <h2>{ weather.weather[0].main.toLowerCase() } {icon}</h2>
+        <p>{ weather.name }</p>
       </div>
     );
   }
