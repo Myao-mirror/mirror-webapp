@@ -51,6 +51,8 @@ namespace Server
                     facebookOptions.AppSecret = Configuration.GetConnectionString("AppSecret");
                 });
 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddMvcCore()
                 .AddAuthorization()
                 .AddViews()
@@ -72,6 +74,8 @@ namespace Server
             // Enable external authentication provider(s)
             // https://docs.asp.net/en/latest/security/authentication/sociallogins.html
             app.UseAuthentication();
+
+            app.UseSession();
 
             // Configure ASP.NET MVC
             // https://docs.asp.net/en/latest/mvc/index.html
