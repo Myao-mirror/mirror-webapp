@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import fetchWeather from '../../actions/weatherActions';
 // import fetchTweets from '../../actions/tweetsActions';
-
+import Cloud from './weatherIcons/cloud';
+import Sunny from './weatherIcons/sunny';
+import Mist from './weatherIcons/mist';
+import BigRain from './weatherIcons/bigRain';
+import Snowflake from './weatherIcons/snowflake';
 
 // TODO: take all the tweets out!
 class Weather extends React.PureComponent {
@@ -18,11 +22,20 @@ class Weather extends React.PureComponent {
     // this.props.dispatch(fetchTweets(4));
   }
 
-//   fetchTweetsComponent() {
-//     this.props.dispatch(fetchTweets(2));
-//     const gotTime = new Date().toLocaleTimeString();
-//     console.log('fired! TWEEEEEEEEEEEEETS', gotTime);
-//   }
+  componentDidMount() {
+    // make weather api call every 15min
+    this.interval = setInterval(this.fetchWeatherComponentFunc, 900000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  //   fetchTweetsComponent() {
+  //     this.props.dispatch(fetchTweets(2));
+  //     const gotTime = new Date().toLocaleTimeString();
+  //     console.log('fired! TWEEEEEEEEEEEEETS', gotTime);
+  //   }
 
   fetchWeatherComponentFunc() {
     this.props.dispatch(fetchWeather());
@@ -31,24 +44,39 @@ class Weather extends React.PureComponent {
 
   render() {
     // setInterval(this.fetchTweetsComponent, 5000);
-    setInterval(this.fetchWeatherComponentFunc, 36000000 / 4);
+    // setInterval(this.fetchWeatherComponentFunc, 36000000);
     console.log('$$$$$$$$$$$$$$$$$$$$$$$ from weather component, this.props: ', this.props);
-    const weather = {
-      status: this.props.weather.res,
+    const weather = this.props.weather.res;
+    if (!weather) {
+      return (
+        <p>Weather is here, wish you were wonderful.</p>
+      );
+    }
+    const iconMap = {
+      clouds: <Cloud height="3rem" width="3rem" />,
+      rain: <BigRain height="3rem" width="3rem" />,
+      clear: <Sunny height="3rem" width="3rem" />,
+      snow: <Snowflake height="3rem" width="3rem" />,
+      mist: <Mist height="3rem" width="3rem" />,
+      fog: <Mist height="3rem" width="3rem" />,
     };
-    const result = weather.status ? weather.status.name : 'Weather is here, wish you were wonderful.';
+    const iconKey = weather.weather[0].main.toLowerCase();
+    const icon = iconMap[iconKey];
     return (
-      <p>{ result }</p>
+      <div>
+        <h1>{Math.floor(weather.main.temp)}F</h1>
+        <h2>{ weather.weather[0].main.toLowerCase() } {icon}</h2>
+        <p>{ weather.name }</p>
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    weather: state.weather,
-    // tweets: state.tweets,
-  };
-};
+
+const mapStateToProps = state => ({
+  weather: state.weather,
+  // tweets: state.tweets,
+});
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
