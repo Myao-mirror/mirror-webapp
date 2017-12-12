@@ -1,17 +1,15 @@
 // import { Provider } from 'react-redux';
 import React from 'react';
-import Counter from '../../../components/PetComp/Counter';
+import App from '../../../components/Pet/PetComponent';
 import Layout from '../../../components/Layout';
 // import store from '../../../store';
 
-class PetDisplay extends React.Component {
-  render() {
-    return (
-      <Layout>
-        <Counter />
-      </Layout>
-    );
-  }
+function PetDisplay() {
+  return (
+    <Layout>
+      <App />
+    </Layout>
+  );
 }
 
 export default PetDisplay;
