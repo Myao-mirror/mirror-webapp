@@ -6,6 +6,7 @@ class PetModel {
     this.timeBirth = new Moment();
     this.timeSinceBirth = this.setTimeSinceBirth();
     this.life = 100;
+    this.image = 'dojodachiIdling.gif';
   }
 
   setTimeSinceBirth() {

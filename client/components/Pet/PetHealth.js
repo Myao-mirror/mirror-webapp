@@ -14,6 +14,7 @@ class PetHealth extends React.Component {
     this.reduceLife = this.reduceLife.bind(this);
     this.state = {
       life: 100,
+      image: 'dojodachiIdling.gif',
     };
   }
 
@@ -24,6 +25,10 @@ class PetHealth extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.life);
+    this.state = {
+      life: 0,
+      image: 'dojodachiDead.gif',
+    };
     Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000);
     alert('Sorry your pet has died');
   }
@@ -39,27 +44,43 @@ class PetHealth extends React.Component {
   }
 
   addFood(event) {
+    const newFoodGif = 'dojodachiEating.gif';
     const newFood = this.state.life + 5;
     console.log('Food clicked');
-    this.setState({ life: newFood });
+    this.setState({
+      life: newFood,
+      image: newFoodGif,
+    });
   }
 
   addRest(event) {
+    const newRestGif = 'dojodachiSleeping.gif';
     const newRest = this.state.life + 10;
     console.log('Rest clicked');
-    this.setState({ life: newRest });
+    this.setState({
+      life: newRest,
+      image: newRestGif,
+    });
   }
 
   addWork(event) {
+    const newWorkGif = 'dojodachiWorking.gif';
     const newWork = this.state.life - 3;
     console.log('Work clicked');
-    this.setState({ life: newWork });
+    this.setState({
+      life: newWork,
+      image: newWorkGif,
+    });
   }
 
   addPlay(event) {
+    const newPlayGif = 'dojodachiPlaying.gif';
     const newPlay = this.state.life + 3;
     console.log('Play clicked');
-    this.setState({ life: newPlay });
+    this.setState({
+      life: newPlay,
+      image: newPlayGif,
+    });
   }
 
   render() {
@@ -68,7 +89,7 @@ class PetHealth extends React.Component {
     };
     return (
       <div className={[s.card, s.black, s['white-text'], s['center-align']].join(' ')}>
-        <img style={imgStyle} src="pusheen.png" alt="This is alt" />
+        <img style={imgStyle} src={this.state.image} alt="This is alt" />
         <div className={s['card-content']}>
           <div className={[s.section, s.row].join(' ')}>
             <span className={s['red-text']}><MaterialIcon icon="favorite" size={16} /></span> {this.state.life}
@@ -96,6 +117,7 @@ class PetHealth extends React.Component {
 PetHealth.propTypes = {
   componentDidMount: PropTypes.func,
   life: PropTypes.number,
+  image: PropTypes.string,
   reduceLife: PropTypes.func,
   name: PropTypes.string,
   addFood: PropTypes.func,
