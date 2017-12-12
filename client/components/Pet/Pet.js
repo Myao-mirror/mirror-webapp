@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PetControlTop from './PetControlTop';
 import PetList from './PetList';
+import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 class Pet extends React.Component {
   constructor(props) {
@@ -9,16 +10,15 @@ class Pet extends React.Component {
     this.state = {
       masterPet: [],
     };
-
     this.addNewCreatureToPet = this.addNewCreatureToPet.bind(this);
-    this.updatePetLife = this.updatePetLife.bind(this);
   }
 
   componentDidMount() {
+    this.updatePetLife = this.updatePetLife.bind(this);
     this.timeSinceBirth = setInterval(
       () =>
         this.updatePetLife(),
-      5000,
+      1000,
     );
   }
 

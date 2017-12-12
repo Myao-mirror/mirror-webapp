@@ -91,7 +91,7 @@ News.propTypes = {
 };
 
 News.defaultProps = {
-  subreddit: 'all/new',
+  subreddit: 'news/new',
 };
 
 export default connect(mapStateToProps)(News);

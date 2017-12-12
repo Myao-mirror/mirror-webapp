@@ -8,7 +8,7 @@ class PetControlTop extends React.Component {
     super(props);
     this.showForm = this.showForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
-    this.state = { formVisibleOnPage: false };
+    this.state = { formVisibleOnPage: true };
   }
 
   showForm() {
@@ -22,14 +22,23 @@ class PetControlTop extends React.Component {
   render() {
     const formVisibleOnPage = this.state.formVisibleOnPage;
     let formAreaContent = null;
-    if (this.state.formVisibleOnPage) {
-      formAreaContent = (<CreatePet
-        addNewCreatureToPet={this.props.addNewCreatureToPet}
-        hideFormAfterSubmission={this.hideForm}
-      />);
+    if (formVisibleOnPage) {
+      formAreaContent = (
+        <CreatePet
+          addNewCreatureToPet={this.props.addNewCreatureToPet}
+          hideFormAfterSubmission={this.hideForm}
+        />
+      );
     } else {
-      formAreaContent = <button onClick={this.showForm.bind(this)} className={s.btn}>New Pet</button>;
+      //  TODO: Clear this code if unneeded
+      // formAreaContent = <button onClick={
+      //                                     this.showForm.bind(this),
+      //                                     this.showInstructions.bind(this)
+      //                                   }
+      //                           className={s.btn}>New Pet</button>;
+      <div />
     }
+
     return (
       <div className={s['center-align']}>
         {formAreaContent}

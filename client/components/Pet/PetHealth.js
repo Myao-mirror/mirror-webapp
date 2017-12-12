@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import * as Materialize from '../../../node_modules/materialize-css/dist/js/materialize.min';
+import MaterialIcon from '../../../node_modules/react-google-material-icons';
 
-class PetDies extends React.Component {
+class PetHealth extends React.Component {
   constructor(props) {
     super(props);
     this.addRest = this.addRest.bind(this);
     this.addPlay = this.addPlay.bind(this);
+    this.addWork = this.addWork.bind(this);
     this.addFood = this.addFood.bind(this);
     this.reduceLife = this.reduceLife.bind(this);
     this.state = {
@@ -16,11 +19,12 @@ class PetDies extends React.Component {
 
   componentDidMount() {
     this.life = setInterval(() =>
-      this.reduceLife(), 10000);
+      this.reduceLife(), 5000);
   }
 
   componentWillUnmount() {
     clearInterval(this.life);
+    Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000);
     alert('Sorry your pet has died');
   }
 
@@ -46,6 +50,12 @@ class PetDies extends React.Component {
     this.setState({ life: newRest });
   }
 
+  addWork(event) {
+    const newWork = this.state.life - 3;
+    console.log('Work clicked');
+    this.setState({ life: newWork });
+  }
+
   addPlay(event) {
     const newPlay = this.state.life + 3;
     console.log('Play clicked');
@@ -53,21 +63,28 @@ class PetDies extends React.Component {
   }
 
   render() {
+    const imgStyle = {
+      width: 200,
+    };
     return (
-      <div className={[s.card, s.black, s['white-text']].join(' ')}>
-        <div className={[s['card-content'], s['center-align']].join(' ')}>
+      <div className={[s.card, s.black, s['white-text'], s['center-align']].join(' ')}>
+        <img style={imgStyle} src="pusheen.png" alt="This is alt" />
+        <div className={s['card-content']}>
           <div className={[s.section, s.row].join(' ')}>
-            <span className={s['card-title']}>Life: {this.state.life}</span>
+            <span className={s['red-text']}><MaterialIcon icon="favorite" size={16} /></span> {this.state.life}
           </div>
           <div className={[s.section, s.row].join(' ')}>
-            <div className={[s.col, s.s4].join(' ')}>
-              <button onClick={this.addFood} className={s.btn}>Feed me!</button>
+            <div className={[s.col, s.s3].join(' ')}>
+              <button onClick={this.addFood} className={[s.btn, s.white, s['black-text']].join(' ')}>Eat!</button>
             </div>
-            <div className={[s.col, s.s4].join(' ')}>
-              <button onClick={this.addRest} className={s.btn}>Sleep</button>
+            <div className={[s.col, s.s3].join(' ')}>
+              <button onClick={this.addRest} className={[s.btn, s.white, s['black-text']].join(' ')}>Sleep!</button>
             </div>
-            <div className={[s.col, s.s4].join(' ')}>
-              <button onClick={this.addPlay} className={s.btn}>Play!</button>
+            <div className={[s.col, s.s3].join(' ')}>
+              <button onClick={this.addWork} className={[s.btn, s.white, s['black-text']].join(' ')}>Work!</button>
+            </div>
+            <div className={[s.col, s.s3].join(' ')}>
+              <button onClick={this.addPlay} className={[s.btn, s.white, s['black-text']].join(' ')}>Play!</button>
             </div>
           </div>
         </div>
@@ -76,7 +93,7 @@ class PetDies extends React.Component {
   }
 }
 
-PetDies.propTypes = {
+PetHealth.propTypes = {
   componentDidMount: PropTypes.func,
   life: PropTypes.number,
   reduceLife: PropTypes.func,
@@ -84,4 +101,4 @@ PetDies.propTypes = {
   addFood: PropTypes.func,
 };
 
-export default PetDies;
+export default PetHealth;
