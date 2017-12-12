@@ -29,6 +29,10 @@
     "view": "./views/modules/time"
   },
   {
+    "path": "/pet",
+    "view": "./views/modules/pet"
+  },
+  {
     "path": "/landing",
     "view": "./views/landing"
   },
