@@ -25,12 +25,13 @@ class PetHealth extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.life);
-    this.state = {
-      life: 0,
-      image: 'dojodachiDead.gif',
-    };
-    Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000);
     alert('Sorry your pet has died');
+    const clearLife = this.state.life - (this.state.life);
+    this.setState({
+      life: clearLife,
+      image: 'dojodachiDead.gif',
+    });
+    Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000);
   }
 
   reduceLife() {
