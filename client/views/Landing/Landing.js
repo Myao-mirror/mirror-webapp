@@ -17,12 +17,12 @@ class Landing extends React.Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(testDisplayAction(false));
+    this.props.dispatch(testDisplayAction());
     console.log('_________________________ componentWillMount, testDisplayAction fired');
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.updateDisplay, 2000);
+    this.interval = setInterval(this.updateDisplay, 5000);
   }
 
   componentWillUnmount() {
@@ -30,17 +30,17 @@ class Landing extends React.Component {
   }
 
   updateDisplay() {
-    if (this.props.test.testState) {
-      this.props.dispatch(testDisplayAction(false));
-    } else {
-      this.props.dispatch(testDisplayAction(true));
-    }
+    this.props.dispatch(testDisplayAction());
     console.log('TEST FIRED!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
   }
 
   render() {
-    const testDisplayBoolFromStore = this.props.test.testState;
-    console.log('########################## this.props.test.testState: ', this.props.test.testState);
+    let testDisplayBoolFromStore = false;
+    console.log('########################## 1testDisplayBoolFromStore: ', testDisplayBoolFromStore);
+    if (this.props.test.testState.displayBool != undefined) {
+      testDisplayBoolFromStore = this.props.test.testState.displayBool;
+    }
+    console.log('########################## testDisplayBoolFromStore: ', testDisplayBoolFromStore);
     return (
       <Layout>
         <Time />
