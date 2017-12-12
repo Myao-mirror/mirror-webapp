@@ -215,5 +215,5 @@ public/dist
 .env.test.local
 .env.production.local
 appsettings*.json
-
+server/appsettings*.json
 assets.json

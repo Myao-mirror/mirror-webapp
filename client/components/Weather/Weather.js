@@ -16,12 +16,10 @@ class Weather extends React.PureComponent {
     this.fetchWeatherComponentFunc = this.fetchWeatherComponentFunc.bind(this);
   }
 
-
   componentWillMount() {
     this.props.dispatch(fetchWeather());
     // this.props.dispatch(fetchTweets(4));
   }
-
   componentDidMount() {
     // make weather api call every 15min
     this.interval = setInterval(this.fetchWeatherComponentFunc, 900000);
@@ -71,7 +69,6 @@ class Weather extends React.PureComponent {
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   weather: state.weather,

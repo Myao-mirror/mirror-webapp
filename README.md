@@ -53,7 +53,7 @@
 
 ### Prerequisites
 
-* Desktop or laptop computer running OS X, Windows or Linux
+* Desktop or laptop computer running macOS, Windows, or Linux
 * [Node.js](https://nodejs.org) v6 or newer
 * [.NET Core](https://www.microsoft.com/net/core) and [.NET Core SDK](https://www.microsoft.com/net/core) v2.0 or newer
 

@@ -3,7 +3,6 @@ import React from 'react';
 import cx from 'classnames';
 
 class Button extends React.Component {
-
   static propTypes = {
     className: PropTypes.string,
   };

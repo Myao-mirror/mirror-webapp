@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 
 class About extends React.Component {
   componentDidMount() {
-    document.title = 'About Me';
+    document.title = 'About Mirror';
   }
 
   render() {
