@@ -65,7 +65,6 @@ tasks.set('appsettings', () => new Promise((resolve) => {
   });
 }));
 
-
 //
 // Copy static files into the output folder
 // -----------------------------------------------------------------------------

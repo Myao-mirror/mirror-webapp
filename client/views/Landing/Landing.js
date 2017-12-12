@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
+import News from '../../components/News/News';
+import App from '../../components/Pet/PetComponent';
 import Weather from '../../components/Weather/Weather';
 import Test from '../../components/Time/Test';
 import { testPostDisplayRequest, testDisplayAction } from '../../actions/testActions';
@@ -52,6 +54,8 @@ class Landing extends React.Component {
     return (
       <Layout>
         <Time />
+        <News />
+        <App />
         <Weather />
         <button onClick={this.toUpdateDisplay}>Toggle Test Component</button>
         <h4>testDisplayBoolFromStore: {testDisplayBoolFromStore.toString()}</h4>
