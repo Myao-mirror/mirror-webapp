@@ -2,6 +2,6 @@
     "name": "Weather",
     "version": "0.0.0",
     "private": true,
-    "main": "./Weather.js"
+    "main": "./WeatherView.js"
   }
   

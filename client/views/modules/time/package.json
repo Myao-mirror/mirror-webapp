@@ -2,6 +2,6 @@
     "name": "Time",
     "version": "0.0.0",
     "private": true,
-    "main": "./Time.js"
+    "main": "./TimeView.js"
   }
   

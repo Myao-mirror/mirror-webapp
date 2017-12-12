@@ -4,7 +4,7 @@ import App from '../../../components/Pet/PetComponent';
 import Layout from '../../../components/Layout';
 // import store from '../../../store';
 
-function PetDisplay() {
+function PetView() {
   return (
     <Layout>
       <App />
@@ -12,4 +12,4 @@ function PetDisplay() {
   );
 }
 
-export default PetDisplay;
+export default PetView;

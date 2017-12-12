@@ -2,10 +2,9 @@ import React from 'react';
 import Layout from '../../../components/Layout';
 import Time from '../../../components/Time/Time';
 
-
-class TimeDisplay extends React.Component {
+class TimeView extends React.Component {
   componentDidMount() {
-    document.title = 'Time Display';
+    document.title = 'Time View';
   }
 
   render() {
@@ -17,4 +16,4 @@ class TimeDisplay extends React.Component {
   }
 }
 
-export default TimeDisplay;
+export default TimeView;
