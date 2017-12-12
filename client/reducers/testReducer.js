@@ -13,6 +13,10 @@ const testReducer = (state = testInitialState, action) => {
       state = { ...state, err: action.payload };
       break;
     }
+    case 'POST_DATA': {
+      state = { ...state, err: action.payload };
+      break;
+    }
     default:
       return state;
   }

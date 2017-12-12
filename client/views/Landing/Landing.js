@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
 import Weather from '../../components/Weather/Weather';
 import Test from '../../components/Time/Test';
-import testDisplayAction from '../../actions/testActions';
+import { testPostDisplayRequest, testDisplayAction } from '../../actions/testActions';
 
 
 class Landing extends React.Component {
@@ -13,38 +13,47 @@ class Landing extends React.Component {
     // this.state = {
     //   testDisplay: this.props.test.testState,
     // };
-    this.updateDisplay = this.updateDisplay.bind(this);
+    this.getUpdatedDisplay = this.getUpdatedDisplay.bind(this);
+    this.toUpdateDisplay = this.toUpdateDisplay.bind(this);
   }
 
   componentWillMount() {
     this.props.dispatch(testDisplayAction());
-    console.log('_________________________ componentWillMount, testDisplayAction fired');
+    // console.log('_________________________ componentWillMount, testDisplayAction fired');
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.updateDisplay, 5000);
+    this.interval = setInterval(this.getUpdatedDisplay, 10000);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  updateDisplay() {
+  getUpdatedDisplay() {
     this.props.dispatch(testDisplayAction());
-    console.log('TEST FIRED!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    // console.log('TEST FIRED!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  }
+
+  toUpdateDisplay() {
+    let bool = true;
+    if (this.props.test.testState.displayBool !== undefined) {
+      bool = !this.props.test.testState.displayBool;
+    }
+    this.props.dispatch(testPostDisplayRequest(bool));
+    console.log('************************** POSTED: ', bool);
   }
 
   render() {
     let testDisplayBoolFromStore = false;
-    console.log('########################## 1testDisplayBoolFromStore: ', testDisplayBoolFromStore);
-    if (this.props.test.testState.displayBool != undefined) {
+    if (this.props.test.testState.displayBool !== undefined) {
       testDisplayBoolFromStore = this.props.test.testState.displayBool;
     }
-    console.log('########################## testDisplayBoolFromStore: ', testDisplayBoolFromStore);
     return (
       <Layout>
         <Time />
         <Weather />
+        <button onClick={this.toUpdateDisplay}>Toggle Test Component</button>
         <h4>testDisplayBoolFromStore: {testDisplayBoolFromStore.toString()}</h4>
         {testDisplayBoolFromStore ? <Test /> : null}
       </Layout>
