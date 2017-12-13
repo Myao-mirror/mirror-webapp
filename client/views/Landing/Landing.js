@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import * as firebase from 'firebase';
+import fire from '../../Firebase/setup';
+
 import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
 import News from '../../components/News/News';
@@ -8,24 +11,33 @@ import Weather from '../../components/Weather/Weather';
 import Test from '../../components/Time/Test';
 import { testPostDisplayRequest, testDisplayAction } from '../../actions/testActions';
 
-
+// TODO: get rid of all the test
 class Landing extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   testDisplay: this.props.test.testState,
-    // };
+    this.state = {
+      fireNews: false,
+    };
     this.getUpdatedDisplay = this.getUpdatedDisplay.bind(this);
     this.toUpdateDisplay = this.toUpdateDisplay.bind(this);
   }
 
   componentWillMount() {
     this.props.dispatch(testDisplayAction());
-    // console.log('_________________________ componentWillMount, testDisplayAction fired');
   }
 
   componentDidMount() {
     this.interval = setInterval(this.getUpdatedDisplay, 10000);
+    const rootRef = fire.database().ref().child('animal-knowledge');
+    const fireUser = rootRef.child('lola');
+    const userNews = fireUser.child('news');
+    // on method sync data in realtime
+    userNews.on('value', (snap) => {
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIRE: ', snap);
+      this.setState({
+        fireNews: snap.val(),
+      });
+    });
   }
 
   componentWillUnmount() {
@@ -43,7 +55,6 @@ class Landing extends React.Component {
       bool = !this.props.test.testState.displayBool;
     }
     this.props.dispatch(testPostDisplayRequest(bool));
-    console.log('************************** POSTED: ', bool);
   }
 
   render() {
@@ -54,9 +65,10 @@ class Landing extends React.Component {
     return (
       <Layout>
         <Time />
-        <News />
+        { this.state.fireNews ? <News /> : null }
         <App />
         <Weather />
+        {/* <h1>fireData is: {this.state.fireData.news}</h1> */}
         <button onClick={this.toUpdateDisplay}>Toggle Test Component</button>
         <h4>testDisplayBoolFromStore: {testDisplayBoolFromStore.toString()}</h4>
         {testDisplayBoolFromStore ? <Test /> : null}

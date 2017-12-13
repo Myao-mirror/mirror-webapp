@@ -6,9 +6,9 @@ import { setInterval } from 'timers';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 
-const mapStateToProps = state => ({
-  news: state.news,
-});
+// const mapStateToProps = state => ({
+//   news: state.news,
+// });
 
 class News extends React.Component {
   constructor(props) {
@@ -18,15 +18,15 @@ class News extends React.Component {
     };
   }
 
-  componentWillMount() {
-    // axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
-    //   .then((res) => {
-    //     const news = res.data.data.children.map(obj => obj.data);
-    //     news.length = 6;
-    //     this.setState({ news });
-    //   });
-    this.getNews();
-  }
+  // componentWillMount() {
+  //   // axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
+  //   //   .then((res) => {
+  //   //     const news = res.data.data.children.map(obj => obj.data);
+  //   //     news.length = 6;
+  //   //     this.setState({ news });
+  //   //   });
+  //   this.getNews();
+  // }
 
   componentDidMount() {
     // TODO: LOOKS LIKE IF WE DON'T SETSTATE IN INTERVALS THE ERROR WILL GO AWAY
@@ -37,7 +37,7 @@ class News extends React.Component {
     //       news.length = 6;
     //       this.setState({ news });
     //     })), 10000);
-    this.interval = setInterval(this.getNews(), 10000);
+    this.interval = setInterval(() => (this.getNews()), 10000);
   }
 
   componentWillUnmount() {
@@ -47,9 +47,9 @@ class News extends React.Component {
   getNews() {
     axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
       .then((res) => {
-        const news = res.data.data.children.map(obj => obj.data);
-        news.length = 6;
-        this.setState({ news });
+        const resnews = res.data.data.children.map(obj => obj.data);
+        resnews.length = 6;
+        this.setState({ news: resnews });
       })
       .catch((err) => {
         console.log('** An error occurred getting news on page load: ', err);
@@ -110,4 +110,5 @@ News.defaultProps = {
   subreddit: 'news/new',
 };
 
-export default connect(mapStateToProps)(News);
+// export default connect(mapStateToProps)(News);
+export default News;
