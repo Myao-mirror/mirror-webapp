@@ -36,7 +36,7 @@ class PetControlTop extends React.Component {
       //                                     this.showInstructions.bind(this)
       //                                   }
       //                           className={s.btn}>New Pet</button>;
-      <div />
+      // <div />
     }
 
     return (

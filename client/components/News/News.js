@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setInterval } from 'timers';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
+
 const mapStateToProps = state => ({
   news: state.news,
 });
@@ -18,26 +19,41 @@ class News extends React.Component {
   }
 
   componentWillMount() {
+    // axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
+    //   .then((res) => {
+    //     const news = res.data.data.children.map(obj => obj.data);
+    //     news.length = 6;
+    //     this.setState({ news });
+    //   });
+    this.getNews();
+  }
+
+  componentDidMount() {
+    // TODO: LOOKS LIKE IF WE DON'T SETSTATE IN INTERVALS THE ERROR WILL GO AWAY
+    // this.interval = setInterval(() => (
+    //   axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
+    //     .then((res) => {
+    //       const news = res.data.data.children.map(obj => obj.data);
+    //       news.length = 6;
+    //       this.setState({ news });
+    //     })), 10000);
+    this.interval = setInterval(this.getNews(), 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  getNews() {
     axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
       .then((res) => {
         const news = res.data.data.children.map(obj => obj.data);
         news.length = 6;
         this.setState({ news });
+      })
+      .catch((err) => {
+        console.log('** An error occurred getting news on page load: ', err);
       });
-  }
-
-  componentDidMount() {
-    setInterval(() => (
-      axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
-        .then((res) => {
-          const news = res.data.data.children.map(obj => obj.data);
-          news.length = 6;
-          this.setState({ news });
-        })), 10000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 
   render() {

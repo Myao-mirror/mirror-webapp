@@ -12,15 +12,21 @@ class Pet extends React.Component {
       masterPet: [],
     };
     this.addNewCreatureToPet = this.addNewCreatureToPet.bind(this);
+    this.updatePetLife = this.updatePetLife.bind(this);
   }
 
   componentDidMount() {
-    this.updatePetLife = this.updatePetLife.bind(this);
+    // MOVED YOUR CODE TO THE CONSTRUCTOR SEEMS TO SOLVE THE ERR WE SEE IN THE CONSOLE
+    // this.updatePetLife = this.updatePetLife.bind(this);
     this.timeSinceBirth = setInterval(
       () =>
         this.updatePetLife(),
       1000,
     );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timeSinceBirth);
   }
 
   addNewCreatureToPet(newPet) {
