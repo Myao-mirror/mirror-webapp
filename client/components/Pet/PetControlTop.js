@@ -20,7 +20,8 @@ class PetControlTop extends React.Component {
   }
 
   render() {
-    const formVisibleOnPage = this.state.formVisibleOnPage;
+    const { formVisibleOnPage } = this.state;
+    // const formVisibleOnPage = this.state.formVisibleOnPage;
     let formAreaContent = null;
     if (formVisibleOnPage) {
       formAreaContent = (
@@ -29,14 +30,6 @@ class PetControlTop extends React.Component {
           hideFormAfterSubmission={this.hideForm}
         />
       );
-    } else {
-      //  TODO: Clear this code if unneeded
-      // formAreaContent = <button onClick={
-      //                                     this.showForm.bind(this),
-      //                                     this.showInstructions.bind(this)
-      //                                   }
-      //                           className={s.btn}>New Pet</button>;
-      <div />
     }
 
     return (
@@ -49,6 +42,10 @@ class PetControlTop extends React.Component {
 
 PetControlTop.propTypes = {
   addNewCreatureToPet: PropTypes.func,
+};
+
+PetControlTop.defaultProps = {
+  addNewCreatureToPet: null,
 };
 
 export default PetControlTop;

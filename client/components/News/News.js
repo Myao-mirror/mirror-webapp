@@ -18,26 +18,25 @@ class News extends React.Component {
   }
 
   componentWillMount() {
+    this.getNews();
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => (
+      this.getNews()), 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  getNews() {
     axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
       .then((res) => {
         const news = res.data.data.children.map(obj => obj.data);
         news.length = 6;
         this.setState({ news });
       });
-  }
-
-  componentDidMount() {
-    setInterval(() => (
-      axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
-        .then((res) => {
-          const news = res.data.data.children.map(obj => obj.data);
-          news.length = 6;
-          this.setState({ news });
-        })), 10000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 
   render() {
@@ -91,7 +90,7 @@ News.propTypes = {
 };
 
 News.defaultProps = {
-  subreddit: 'news/new',
+  subreddit: 'all/new',
 };
 
 export default connect(mapStateToProps)(News);
