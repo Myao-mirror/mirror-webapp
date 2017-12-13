@@ -18,7 +18,7 @@ class Pet extends React.Component {
     this.timeSinceBirth = setInterval(
       () =>
         this.updatePetLife(),
-      5000,
+      1000,
     );
   }
 
