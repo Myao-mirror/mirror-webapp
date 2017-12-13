@@ -23,7 +23,7 @@ class News extends React.Component {
 
   componentDidMount() {
     this.interval = setInterval(() => (
-      this.getNews()), 5000);
+      this.getNews()), 10000);
   }
 
   componentWillUnmount() {
@@ -90,7 +90,7 @@ News.propTypes = {
 };
 
 News.defaultProps = {
-  subreddit: 'all/new',
+  subreddit: 'news/new',
 };
 
 export default connect(mapStateToProps)(News);

@@ -20,7 +20,7 @@ class PetHealth extends React.Component {
 
   componentDidMount() {
     this.life = setInterval(() =>
-      this.reduceLife(), 5000);
+      this.reduceLife(), 10000);
   }
 
   componentWillUnmount() {
