@@ -16,16 +16,9 @@ class Landing extends React.Component {
     this.state = {
       fireNews: false,
     };
-    this.getUpdatedDisplay = this.getUpdatedDisplay.bind(this);
-    this.toUpdateDisplay = this.toUpdateDisplay.bind(this);
-  }
-
-  componentWillMount() {
-    this.props.dispatch(testDisplayAction());
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.getUpdatedDisplay, 10000);
     const rootRef = fire.database().ref().child('animal-knowledge');
     const fireUser = rootRef.child('lola');
     const userNews = fireUser.child('news');
@@ -36,10 +29,6 @@ class Landing extends React.Component {
         fireNews: snap.val(),
       });
     });
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 
   render() {
