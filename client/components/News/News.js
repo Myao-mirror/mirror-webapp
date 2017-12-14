@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { setInterval } from 'timers';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
-const mapStateToProps = state => ({
-  news: state.news,
-});
+
+// const mapStateToProps = state => ({
+//   news: state.news,
+// });
 
 class News extends React.Component {
   constructor(props) {
@@ -93,4 +94,5 @@ News.defaultProps = {
   subreddit: 'news/new',
 };
 
-export default connect(mapStateToProps)(News);
+// export default connect(mapStateToProps)(News);
+export default News;
