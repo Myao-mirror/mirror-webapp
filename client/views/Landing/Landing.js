@@ -29,7 +29,7 @@ class Landing extends React.Component {
     const rootRef = fire.database().ref().child('animal-knowledge');
     const fireUser = rootRef.child('lola');
     const userNews = fireUser.child('news');
-    // on method sync data in realtime
+    // "on" method sync data in realtime
     userNews.on('value', (snap) => {
       console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIRE: ', snap);
       this.setState({
