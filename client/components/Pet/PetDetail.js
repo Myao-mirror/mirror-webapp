@@ -22,4 +22,11 @@ PetDetail.propTypes = {
   reduceLife: PropTypes.func,
 };
 
+PetDetail.defaultProps = {
+  name: '',
+  timeSinceBirth: '',
+  life: 0,
+  reduceLife: null,
+};
+
 export default PetDetail;

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PetModel from './PetModel';
-import Layout from '../Layout';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 class CreatePet extends React.Component {

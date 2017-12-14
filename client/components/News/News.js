@@ -18,26 +18,13 @@ class News extends React.Component {
     };
   }
 
-  // componentWillMount() {
-  //   // axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
-  //   //   .then((res) => {
-  //   //     const news = res.data.data.children.map(obj => obj.data);
-  //   //     news.length = 6;
-  //   //     this.setState({ news });
-  //   //   });
-  //   this.getNews();
-  // }
+  componentWillMount() {
+    this.getNews();
+  }
 
   componentDidMount() {
-    // TODO: LOOKS LIKE IF WE DON'T SETSTATE IN INTERVALS THE ERROR WILL GO AWAY
-    // this.interval = setInterval(() => (
-    //   axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
-    //     .then((res) => {
-    //       const news = res.data.data.children.map(obj => obj.data);
-    //       news.length = 6;
-    //       this.setState({ news });
-    //     })), 10000);
-    this.interval = setInterval(() => (this.getNews()), 10000);
+    this.interval = setInterval(() => (
+      this.getNews()), 10000);
   }
 
   componentWillUnmount() {
@@ -47,12 +34,9 @@ class News extends React.Component {
   getNews() {
     axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
       .then((res) => {
-        const resnews = res.data.data.children.map(obj => obj.data);
-        resnews.length = 6;
-        this.setState({ news: resnews });
-      })
-      .catch((err) => {
-        console.log('** An error occurred getting news on page load: ', err);
+        const news = res.data.data.children.map(obj => obj.data);
+        news.length = 6;
+        this.setState({ news });
       });
   }
 

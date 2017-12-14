@@ -20,7 +20,7 @@ class PetHealth extends React.Component {
 
   componentDidMount() {
     this.life = setInterval(() =>
-      this.reduceLife(), 5000);
+      this.reduceLife(), 10000);
   }
 
   componentWillUnmount() {
@@ -31,6 +31,7 @@ class PetHealth extends React.Component {
       life: clearLife,
       image: 'dojodachiDead.gif',
     });
+    // TODO: Either make work or remove
     Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000);
   }
 
@@ -45,6 +46,7 @@ class PetHealth extends React.Component {
   }
 
   addFood(event) {
+    console.log(event);
     const newFoodGif = 'dojodachiEating.gif';
     const newFood = this.state.life + 5;
     console.log('Food clicked');
@@ -55,6 +57,7 @@ class PetHealth extends React.Component {
   }
 
   addRest(event) {
+    console.log(event);
     const newRestGif = 'dojodachiSleeping.gif';
     const newRest = this.state.life + 10;
     console.log('Rest clicked');
@@ -65,6 +68,7 @@ class PetHealth extends React.Component {
   }
 
   addWork(event) {
+    console.log(event);
     const newWorkGif = 'dojodachiWorking.gif';
     const newWork = this.state.life - 3;
     console.log('Work clicked');
@@ -75,6 +79,7 @@ class PetHealth extends React.Component {
   }
 
   addPlay(event) {
+    console.log(event);
     const newPlayGif = 'dojodachiPlaying.gif';
     const newPlay = this.state.life + 3;
     console.log('Play clicked');
@@ -116,12 +121,17 @@ class PetHealth extends React.Component {
 }
 
 PetHealth.propTypes = {
-  componentDidMount: PropTypes.func,
   life: PropTypes.number,
   image: PropTypes.string,
-  reduceLife: PropTypes.func,
   name: PropTypes.string,
-  addFood: PropTypes.func,
+  reduceLife: PropTypes.func,
+};
+
+PetHealth.defaultProps = {
+  life: 0,
+  image: '',
+  name: '',
+  reduceLife: null,
 };
 
 export default PetHealth;
