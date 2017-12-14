@@ -22,6 +22,10 @@ class Pet extends React.Component {
     );
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timeSinceBirth);
+  }
+
   addNewCreatureToPet(newPet) {
     const newMasterPet = this.state.masterPet.slice();
     newMasterPet.push(newPet);

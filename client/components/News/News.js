@@ -33,9 +33,12 @@ class News extends React.Component {
   getNews() {
     axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
       .then((res) => {
-        const news = res.data.data.children.map(obj => obj.data);
-        news.length = 6;
-        this.setState({ news });
+        const newsResults = res.data.data.children.map(obj => obj.data);
+        newsResults.length = 6;
+        this.setState({ news: newsResults });
+      })
+      .catch((err) => {
+        console.log('An error occurred trying to get the news component to load: ', err);
       });
   }
 
