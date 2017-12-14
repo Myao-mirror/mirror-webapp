@@ -1,6 +1,4 @@
 import React from 'react';
-// import history from '../../history';
-// import { Layout } from '../Layout';
 
 function getTimeNDay() {
   const options = {
@@ -10,7 +8,6 @@ function getTimeNDay() {
     day: 'numeric',
   };
   const gotTime = new Date().toLocaleTimeString();
-  // const time = gotTime.slice(0, 4) + gotTime.slice(7, gotTime.length);
   const time = gotTime;
   const date = new Date().toLocaleDateString('en-US', options);
   const timeNday = {
@@ -28,7 +25,6 @@ class Time extends React.Component {
       date: getTimeNDay().day,
     };
     this.updateTime = this.updateTime.bind(this);
-    // this.getTimeNDay = this.getTimeNDay.bind(this);
   }
 
   componentDidMount() {
@@ -43,13 +39,10 @@ class Time extends React.Component {
     this.setState({
       time: getTimeNDay().time,
       date: getTimeNDay().day,
-      // day: new Date().getDay(),
     });
   }
 
   render() {
-    // const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][this.state.day];
-    // setInterval(this.updateTime, 60000);
     return (
       <div>
         <h4>Myao Mirror</h4>
