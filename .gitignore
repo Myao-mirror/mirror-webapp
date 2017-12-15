@@ -217,3 +217,5 @@ public/dist
 appsettings*.json
 server/appsettings*.json
 assets.json
+*/*/*/*/node_modules
+*/*/*/node_modules

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import fire from '../../firebase/setup';
+import fire from '../../utils/setup';
 import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
 import News from '../../components/News/News';
@@ -18,8 +18,8 @@ class Landing extends React.Component {
 
   componentDidMount() {
     const rootRef = fire.database().ref().child('voice-pi');
-    const defaultUser = rootRef.child('Default');
-    const newsActive = defaultUser.child('news');
+    const defaultUser = rootRef.child('admin-apple');
+    const newsActive = defaultUser.child('news').child('settings').child('active');
 
     newsActive.on('value', (changeSetting) => {
       console.log('Fire: ', changeSetting);
