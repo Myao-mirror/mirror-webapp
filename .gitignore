@@ -1,5 +1,6 @@
 # DEPENDENCIES
 /node_modules
+/functions/node_modules
 
 # IDE and EDITOR FILES
 /.idea
