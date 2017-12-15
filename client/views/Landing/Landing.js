@@ -28,25 +28,31 @@ class Landing extends React.Component {
     const weatherActive = fireUser.child('/weather/settings/active');
     const petActive = fireUser.child('/pet/settings/active');
     const timeActive = fireUser.child('/time/settings/active');
+
+    const stringBoolMap = {
+      false: false,
+      true: true,
+    };
+
     // "on" method sync data in realtime
     newsActive.on('value', (snap) => {
       this.setState({
-        newsActive: snap.val(),
+        newsActive: stringBoolMap[snap.val()],
       });
     });
     weatherActive.on('value', (snap) => {
       this.setState({
-        weatherActive: snap.val(),
+        weatherActive: stringBoolMap[snap.val()],
       });
     });
     petActive.on('value', (snap) => {
       this.setState({
-        petActive: snap.val(),
+        petActive: stringBoolMap[snap.val()],
       });
     });
     timeActive.on('value', (snap) => {
       this.setState({
-        timeActive: snap.val(),
+        timeActive: stringBoolMap[snap.val()],
       });
     });
   }
@@ -63,4 +69,4 @@ class Landing extends React.Component {
   }
 }
 
-export default Landing;
+export default connect()(Landing);

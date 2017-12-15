@@ -17,6 +17,11 @@ const USERNAME_PARAM = 'username';
 const COMPONENT_PARAM = 'component';
 const DISPLAY_BOOL_PARAM = 'bool';
 
+// CHANGE THE STRING "TRUE"/"FALSE" TO BOOL
+const stringBoolMap = {
+  false: false,
+  true: true,
+};
 
 exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
   const assistant = new Assistant({ request: req, response: res });
@@ -27,14 +32,13 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
   actionMap.set(WEATHER_INTENT, weatherSettings);
   assistant.handleRequest(actionMap);
 
-  // GET USER INFORMATION TO USE IN THE FUNC BELOW
-  const username = req.body.result.parameters[USERNAME_PARAM];
-  const component = req.body.result.parameters[COMPONENT_PARAM];
-  const displayBool = req.body.result.parameters[DISPLAY_BOOL_PARAM];
-  const user = dbRoot.child(username);
 
   // ACTION TO DISPLAY ALL COMPONENT
   function displayAll(assistant) {
+    const username = req.body.result.parameters[USERNAME_PARAM];
+    const displayBool = req.body.result.parameters[DISPLAY_BOOL_PARAM];
+
+    const user = dbRoot.child(username);
     const displayUpdates = {};
     displayUpdates['/news/settings/active'] = displayBool;
     displayUpdates['/time/settings/active'] = displayBool;
@@ -42,20 +46,25 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
     displayUpdates['/pet/settings/active'] = displayBool;
     user.update(displayUpdates);
 
-    const status = displayBool ? 'Here are all the good stuff for you!' : 'Here is an empty mirror for you!';
+    const status = stringBoolMap[displayBool] ? 'Here are all the good stuff for you!' : 'Here is an empty mirror for you!';
     const speech = `Hey ${username}! ${status}`;
     assistant.ask(speech);
   }
 
   // TODO:  EXPAND WEATHER ACTIONS
   function weatherSettings(assistant) {
+    const username = req.body.result.parameters[USERNAME_PARAM];
+    const component = req.body.result.parameters[COMPONENT_PARAM];
+    const displayBool = req.body.result.parameters[DISPLAY_BOOL_PARAM];
+    
+    const user = dbRoot.child(username);
     const settingUpdates = {};
     const path = `/${component}/settings/active`;
-    settingUpdates[path] = displayBool;
+    settingUpdates[path] = stringBoolMap[displayBool];
     user.update(settingUpdates);
 
-    const status = displayBool ? 'on' : 'off';
-    const speech = `I turned ${status} ${component} for you!`;
+    const status = stringBoolMap[displayBool] ? 'on' : 'off';
+    const speech = `I turned ${status} the ${component} for you!`;
     assistant.ask(speech);
   }
 });
