@@ -14,19 +14,45 @@ class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fireNews: false,
+      newsActive: false,
+      petActive: false,
+      timeActive: true,
+      weatherActive: false,
     };
   }
 
   componentDidMount() {
-    const rootRef = fire.database().ref().child('animal-knowledge');
-    const fireUser = rootRef.child('lola');
-    const userNews = fireUser.child('news');
+    const rootRef = fire.database().ref().child('voice-pi');
+    const fireUser = rootRef.child('admin-apple');
+    const newsActive = fireUser.child('/news/settings/active');
+    const weatherActive = fireUser.child('/weather/settings/active');
+    const petActive = fireUser.child('/pet/settings/active');
+    const timeActive = fireUser.child('/time/settings/active');
+
+    const stringBoolMap = {
+      false: false,
+      true: true,
+    };
+
     // "on" method sync data in realtime
-    userNews.on('value', (snap) => {
-      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIRE: ', snap);
+    newsActive.on('value', (snap) => {
       this.setState({
-        fireNews: snap.val(),
+        newsActive: stringBoolMap[snap.val()],
+      });
+    });
+    weatherActive.on('value', (snap) => {
+      this.setState({
+        weatherActive: stringBoolMap[snap.val()],
+      });
+    });
+    petActive.on('value', (snap) => {
+      this.setState({
+        petActive: stringBoolMap[snap.val()],
+      });
+    });
+    timeActive.on('value', (snap) => {
+      this.setState({
+        timeActive: stringBoolMap[snap.val()],
       });
     });
   }
@@ -34,16 +60,13 @@ class Landing extends React.Component {
   render() {
     return (
       <Layout>
-        <Time />
-        { this.state.fireNews ? <News /> : null }
-        <App />
-        <Weather />
+        { this.state.timeActive ? <Time /> : null }
+        { this.state.newsActive ? <News /> : null }
+        { this.state.petActive ? <App /> : null }
+        { this.state.weatherActive ? <Weather /> : null }
       </Layout>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  test: state.test,
-});
-export default connect(mapStateToProps)(Landing);
+export default connect()(Landing);
