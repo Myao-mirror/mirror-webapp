@@ -1,6 +1,8 @@
 # DEPENDENCIES
 /node_modules
 /functions/node_modules
+*/*/*/*/node_modules
+*/*/*/node_modules
 
 # IDE and EDITOR FILES
 /.idea
@@ -218,5 +220,4 @@ public/dist
 appsettings*.json
 server/appsettings*.json
 assets.json
-*/*/*/*/node_modules
-*/*/*/node_modules
+package-lock.json
