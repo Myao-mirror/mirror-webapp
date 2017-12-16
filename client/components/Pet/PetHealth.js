@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import fire from '../../utils/firebase/setup';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 import * as Materialize from '../../../node_modules/materialize-css/dist/js/materialize.min';
 import MaterialIcon from '../../../node_modules/react-google-material-icons';
+
+const currentDb = fire.database().ref().child('voice-pi');
+const currentUser = currentDb.child('alice-kiwi');
 
 class PetHealth extends React.Component {
   constructor(props) {
@@ -15,16 +19,56 @@ class PetHealth extends React.Component {
     this.state = {
       life: 100,
       image: 'dojodachiIdling.gif',
+      restCount: 0,
+      playCount: 0,
+      workCount: 0,
+      foodCount: 0,
     };
   }
 
   componentDidMount() {
+    const rootRef = currentDb;
+    console.log('PetHealth rootRef: ' + rootRef); // eslint-disable-line
+    const fireUser = currentUser;
+    console.log('PetHealth fireUser: ' + fireUser); // eslint-disable-line
+    const restCount = fireUser.child('/pet/settings/rest/count');
+    const playCount = fireUser.child('/pet/settings/play/count');
+    const workCount = fireUser.child('/pet/settings/work/count');
+    const foodCount = fireUser.child('/pet/settings/food/count');
+
     this.life = setInterval(() =>
       this.reduceLife(), 10000);
+
+    // "on" method sync data in realtime
+    restCount.on('value', (snap) => {
+      this.setState({
+        restCount: snap.val(),
+      });
+      console.log('Rest count: ' + snap.val()); // eslint-disable-line
+    });
+    playCount.on('value', (snap) => {
+      this.setState({
+        playCount: snap.val(),
+      });
+      console.log('Play count: ' + snap.val()); // eslint-disable-line
+    });
+    workCount.on('value', (snap) => {
+      this.setState({
+        workCount: snap.val(),
+      });
+      console.log('Work count: ' + snap.val()); // eslint-disable-line
+    });
+    foodCount.on('value', (snap) => {
+      this.setState({
+        foodCount: snap.val(),
+      });
+      console.log('Food count: ' + snap.val()); // eslint-disable-line
+    });
   }
 
   componentWillUnmount() {
     clearInterval(this.life);
+    // TODO: Replace alert with toast or otherwise remove
     alert('Sorry your pet has died');
     const clearLife = this.state.life - (this.state.life);
     this.setState({
@@ -36,9 +80,9 @@ class PetHealth extends React.Component {
   }
 
   reduceLife() {
-    console.log('Life reduced');
+    console.log('Life reduced'); // eslint-disable-line
     const newLife = this.state.life - 5;
-    console.log(newLife);
+    console.log(newLife); // eslint-disable-line
     this.setState({ life: newLife });
     if (newLife < 0) {
       this.componentWillUnmount();
@@ -46,46 +90,50 @@ class PetHealth extends React.Component {
   }
 
   addFood(event) {
-    console.log(event);
+    console.log(event); // eslint-disable-line
     const newFoodGif = 'dojodachiEating.gif';
     const newFood = this.state.life + 5;
-    console.log('Food clicked');
+    console.log('Food clicked'); // eslint-disable-line
     this.setState({
       life: newFood,
       image: newFoodGif,
+      foodCount: this.foodCount += 1,
     });
   }
 
   addRest(event) {
-    console.log(event);
+    console.log(event); // eslint-disable-line
     const newRestGif = 'dojodachiSleeping.gif';
     const newRest = this.state.life + 10;
-    console.log('Rest clicked');
+    console.log('Rest clicked'); // eslint-disable-line
     this.setState({
       life: newRest,
       image: newRestGif,
+      restCount: this.restCount += 1,
     });
   }
 
   addWork(event) {
-    console.log(event);
+    console.log(event); // eslint-disable-line
     const newWorkGif = 'dojodachiWorking.gif';
     const newWork = this.state.life - 3;
-    console.log('Work clicked');
+    console.log('Work clicked'); // eslint-disable-line
     this.setState({
       life: newWork,
       image: newWorkGif,
+      workCount: this.workCount += 1,
     });
   }
 
   addPlay(event) {
-    console.log(event);
+    console.log(event); // eslint-disable-line
     const newPlayGif = 'dojodachiPlaying.gif';
     const newPlay = this.state.life + 3;
-    console.log('Play clicked');
+    console.log('Play clicked'); // eslint-disable-line
     this.setState({
       life: newPlay,
       image: newPlayGif,
+      playCount: this.playCount += 1,
     });
   }
 
@@ -125,13 +173,21 @@ PetHealth.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
   reduceLife: PropTypes.func,
+  restCount: PropTypes.number,
+  playCount: PropTypes.number,
+  workCount: PropTypes.number,
+  foodCount: PropTypes.number,
 };
 
 PetHealth.defaultProps = {
-  life: 0,
+  life: 100,
   image: '',
   name: '',
   reduceLife: null,
+  restCount: 0,
+  playCount: 0,
+  workCount: 0,
+  foodCount: 0,
 };
 
 export default PetHealth;

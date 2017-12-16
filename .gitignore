@@ -224,3 +224,4 @@ server/appsettings*.json
 assets.json
 package-lock.json
 docs/recipes/*
+server.test/obj/*

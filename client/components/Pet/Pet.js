@@ -30,7 +30,7 @@ class Pet extends React.Component {
     const newMasterPet = this.state.masterPet.slice();
     newMasterPet.push(newPet);
     this.setState({ masterPet: newMasterPet });
-    console.log(this.state.masterPet);
+    console.log(this.state.masterPet); // eslint-disable-line
   }
 
   updatePetLife() {
@@ -53,7 +53,7 @@ class Pet extends React.Component {
 }
 
 function PetList(props) {
-  console.log(props.creatures);
+  console.log(props.creatures); // eslint-disable-line
   return (
     <div className={[s.card, s.black, s['white-text']].join(' ')}>
       <div className={s['card-content']}>

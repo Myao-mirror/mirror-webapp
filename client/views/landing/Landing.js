@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import fire from '../../utils/firebase/setup';
 
 import Layout from '../../components/Layout';
@@ -7,6 +6,9 @@ import Time from '../../components/Time/Time';
 import News from '../../components/News/News';
 import App from '../../components/Pet/PetComponent';
 import Weather from '../../components/Weather/Weather';
+
+const currentDb = fire.database().ref().child('voice-pi');
+const currentUser = currentDb.child('alice-kiwi');
 
 // TODO: get rid of all the test
 class Landing extends React.Component {
@@ -21,8 +23,10 @@ class Landing extends React.Component {
   }
 
   componentDidMount() {
-    const rootRef = fire.database().ref().child('voice-pi');
-    const fireUser = rootRef.child('steven-kumquat');
+    const rootRef = currentDb;
+    console.log('Landing rootRef: ' + rootRef); // eslint-disable-line
+    const fireUser = currentUser;
+    console.log('Landing fireUser: ' + fireUser); // eslint-disable-line
     const newsActive = fireUser.child('/news/settings/active');
     const weatherActive = fireUser.child('/weather/settings/active');
     const petActive = fireUser.child('/pet/settings/active');
@@ -40,8 +44,8 @@ class Landing extends React.Component {
       });
     });
     weatherActive.on('value', (snap) => {
-      console.log('WEATHER STATE: ', this.state.weatherActive);
-      console.log('weather snap: ', snap.val());
+      console.log('WEATHER STATE: ', this.state.weatherActive); // eslint-disable-line
+      console.log('weather snap: ', snap.val()); // eslint-disable-line
       this.setState({
         weatherActive: stringBoolMap[snap.val()],
       });
