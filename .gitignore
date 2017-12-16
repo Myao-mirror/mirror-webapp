@@ -23,6 +23,7 @@
 */.vscode/
 
 # MISC
+# This is here to test changes
 /.sass-cache
 /connect.lock
 /coverage
