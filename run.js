@@ -164,7 +164,7 @@ tasks.set('start', () => {
               // For more information visit https://browsersync.io/docs/options
               require('browser-sync').create().init({ // eslint-disable-line global-require
                 proxy: {
-                  target: 'localhost:5000',
+                  target: 'localhost:5000:8080',
                   middleware: [
                     webpackDevMiddleware,
                     require('webpack-hot-middleware')(compiler), // eslint-disable-line global-require
