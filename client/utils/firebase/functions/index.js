@@ -17,7 +17,7 @@ const USERNAME_PARAM = 'username';
 const COMPONENT_PARAM = 'component';
 const DISPLAY_BOOL_PARAM = 'bool';
 
-// CHANGE THE STRING "TRUE"/"FALSE" TO BOOL
+// CHANGE THE STRING "TRUE"/"FALSE" TO BOOL (Mapping string to bool)
 const stringBoolMap = {
   false: false,
   true: true,

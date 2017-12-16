@@ -22,7 +22,7 @@ class Landing extends React.Component {
 
   componentDidMount() {
     const rootRef = fire.database().ref().child('voice-pi');
-    const fireUser = rootRef.child('admin-apple');
+    const fireUser = rootRef.child('steven-kumquat');
     const newsActive = fireUser.child('/news/settings/active');
     const weatherActive = fireUser.child('/weather/settings/active');
     const petActive = fireUser.child('/pet/settings/active');
