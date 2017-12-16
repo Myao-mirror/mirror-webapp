@@ -1,0 +1,44 @@
+* {
+  font-family: 'Cousine', monospace;
+}
+
+body {
+  background-color: #000000;
+  color: #00FFFF; 
+  /* cyan */
+}
+
+
+.content {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  /* color: #ffffff; */
+}
+
+.ribbon {
+  width: 100%;
+  height: 40vh;
+  background-color: #35363b;
+  background-image: linear-gradient(0deg, #000000, #2f2f36);
+  flex-shrink: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tagline,
+.summary {
+  /* color: #fff; */
+}
+
+.tagline {
+  font-size: 3em;
+  margin-top: 6vh;
+}
+
+.summary {
+  font-size: 2em;
+}
