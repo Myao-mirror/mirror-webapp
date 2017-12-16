@@ -35,15 +35,15 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
 
   // ACTION TO DISPLAY ALL COMPONENT
   function displayAll(assistant) {
-    const username = req.body.result.parameters[USERNAME_PARAM];
+    const username = req.body.result.parameters[USERNAME_PARAM].toLowerCase();
     const displayBool = req.body.result.parameters[DISPLAY_BOOL_PARAM];
 
     const user = dbRoot.child(username);
     const displayUpdates = {};
-    displayUpdates['/news/settings/active'] = displayBool;
-    displayUpdates['/time/settings/active'] = displayBool;
-    displayUpdates['/weather/settings/active'] = displayBool;
-    displayUpdates['/pet/settings/active'] = displayBool;
+    displayUpdates['/news/settings/active'] = stringBoolMap[displayBool];
+    displayUpdates['/time/settings/active'] = stringBoolMap[displayBool];
+    displayUpdates['/weather/settings/active'] = stringBoolMap[displayBool];
+    displayUpdates['/pet/settings/active'] = stringBoolMap[displayBool];
     user.update(displayUpdates);
 
     const status = stringBoolMap[displayBool] ? 'Here are all the good stuff for you!' : 'Here is an empty mirror for you!';
@@ -53,7 +53,7 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
 
   // TODO:  EXPAND WEATHER ACTIONS
   function weatherSettings(assistant) {
-    const username = req.body.result.parameters[USERNAME_PARAM];
+    const username = req.body.result.parameters[USERNAME_PARAM].toLowerCase();
     const component = req.body.result.parameters[COMPONENT_PARAM];
     const displayBool = req.body.result.parameters[DISPLAY_BOOL_PARAM];
     
