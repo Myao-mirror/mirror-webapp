@@ -154,7 +154,7 @@ tasks.set('start', () => {
             cwd: path.resolve(__dirname, './server/'),
             stdio: ['ignore', 'pipe', 'inherit'],
             env: Object.assign({}, process.env, {
-              ASPNETCORE_ENVIRONMENT: 'Development',
+              ASPNETCORE_ENVIRONMENT: 'Production',
             }),
           };
           cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', (data) => {
@@ -164,7 +164,7 @@ tasks.set('start', () => {
               // For more information visit https://browsersync.io/docs/options
               require('browser-sync').create().init({ // eslint-disable-line global-require
                 proxy: {
-                  target: 'localhost:8080',
+                  target: 'localhost:5000',
                   middleware: [
                     webpackDevMiddleware,
                     require('webpack-hot-middleware')(compiler), // eslint-disable-line global-require
