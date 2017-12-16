@@ -71,4 +71,4 @@ class Landing extends React.Component {
   }
 }
 
-export default connect()(Landing);
+export default Landing;
