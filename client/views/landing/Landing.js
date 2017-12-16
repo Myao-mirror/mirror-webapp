@@ -40,6 +40,8 @@ class Landing extends React.Component {
       });
     });
     weatherActive.on('value', (snap) => {
+      console.log('WEATHER STATE: ', this.state.weatherActive);
+      console.log('weather snap: ', snap.val());
       this.setState({
         weatherActive: stringBoolMap[snap.val()],
       });
@@ -68,4 +70,4 @@ class Landing extends React.Component {
   }
 }
 
-export default connect()(Landing);
+export default Landing;

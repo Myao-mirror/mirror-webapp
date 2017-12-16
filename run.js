@@ -96,8 +96,8 @@ tasks.set('build', () => {
 tasks.set('publish', () => {
   global.DEBUG = process.argv.includes('--debug') || false;
   const remote = {
-    name: 'azure',
-    url: 'https://mroggers@makiroggers.scm.azurewebsites.net:443/makiroggers.git', // TODO: Update deployment URL
+    name: 'googleAppEngine',
+    url: 'https://github.com/Myao-mirror/mirror-webapp.git', // TODO: Update deployment URL
   };
   const opts = { cwd: path.resolve(__dirname, './build'), stdio: ['ignore', 'inherit', 'inherit'] };
   const git = (...args) => new Promise((resolve, reject) => {
@@ -154,7 +154,7 @@ tasks.set('start', () => {
             cwd: path.resolve(__dirname, './server/'),
             stdio: ['ignore', 'pipe', 'inherit'],
             env: Object.assign({}, process.env, {
-              ASPNETCORE_ENVIRONMENT: 'Development',
+              ASPNETCORE_ENVIRONMENT: 'Production',
             }),
           };
           cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', (data) => {
