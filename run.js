@@ -17,8 +17,7 @@ function run(task) {
 }
 
 //
-// Clean up the output directory 
-// This is here to test changes
+// Clean up the output directory
 // -----------------------------------------------------------------------------
 tasks.set('clean', () => Promise.resolve()
   .then(() => del(['build/*', 'public/dist/*', '!build/.git'], { dot: true }))

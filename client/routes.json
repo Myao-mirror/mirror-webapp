@@ -1,0 +1,43 @@
+[
+  {
+    "path": "/",
+    "view": "./views/home",
+    "chunk": "main",
+    "data": {
+      "articles": "GET https://gist.githubusercontent.com/makiroggers/4c591aacebd5184a4b52eb31485141c6/raw/technologies.json"
+    }
+  },
+  {
+    "path": "/error",
+    "view": "./views/error",
+    "chunk": "main"
+  },
+  {
+    "path": "/about",
+    "view": "./views/about"
+  },
+  {
+    "path": "/news",
+    "view": "./views/modules/news"
+  },
+  {
+    "path": "/weather",
+    "view": "./views/modules/weather"
+  },
+  {
+    "path": "/time",
+    "view": "./views/modules/time"
+  },
+  {
+    "path": "/pet",
+    "view": "./views/modules/pet"
+  },
+  {
+    "path": "/landing",
+    "view": "./views/landing"
+  },
+  {
+    "path": "/tasks/:status(pending|completed)?",
+    "view": "./views/home"
+  }
+]
