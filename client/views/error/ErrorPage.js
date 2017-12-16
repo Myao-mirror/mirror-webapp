@@ -4,7 +4,6 @@ import history from '../../history';
 import Link from '../../components/Link';
 import s from './ErrorPage.css';
 
-// This is here to test changes
 class ErrorPage extends React.Component {
   static propTypes = {
     error: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
