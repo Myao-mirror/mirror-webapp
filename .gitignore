@@ -1,6 +1,8 @@
 # DEPENDENCIES
 /node_modules
 /functions/node_modules
+*/*/*/*/node_modules
+*/*/*/node_modules
 
 # IDE and EDITOR FILES
 /.idea
@@ -21,6 +23,7 @@
 */.vscode/
 
 # MISC
+# This is here to test changes
 /.sass-cache
 /connect.lock
 /coverage
@@ -219,3 +222,5 @@ public/dist
 appsettings*.json
 server/appsettings*.json
 assets.json
+package-lock.json
+docs/recipes/*

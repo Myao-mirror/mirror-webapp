@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import fire from '../../Firebase/setup';
+import fire from '../../utils/firebase/setup';
 
 import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
@@ -23,7 +22,7 @@ class Landing extends React.Component {
 
   componentDidMount() {
     const rootRef = fire.database().ref().child('voice-pi');
-    const fireUser = rootRef.child('lola-banana');
+    const fireUser = rootRef.child('steven-kumquat');
     const newsActive = fireUser.child('/news/settings/active');
     const weatherActive = fireUser.child('/weather/settings/active');
     const petActive = fireUser.child('/pet/settings/active');
