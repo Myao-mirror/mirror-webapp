@@ -33,7 +33,7 @@
     "view": "./views/modules/pet"
   },
   {
-    "path": "/landing",
+    "path": "/Landing",
     "view": "./views/landing"
   },
   {
