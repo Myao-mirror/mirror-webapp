@@ -60,14 +60,14 @@ class Username extends React.Component {
     let placeholderFname = '';
     let placeholderFruit = '';
     let lsUsername = '';
-    let routeFromLS = '/landing/';
+    let routeFromLS = '';
     let routeFromState = `/landing/${this.props.username.username}`;
 
     try {
       placeholderFname = localStorage.getItem('fname');
       placeholderFruit = localStorage.getItem('fruit');
       lsUsername = localStorage.getItem('username');
-      routeFromLS += lsUsername;
+      routeFromLS = `/landing/${lsUsername}`;
     } catch (e) {
       placeholderFname = 'your first name';
       placeholderFruit = 'your favortite fruit';
