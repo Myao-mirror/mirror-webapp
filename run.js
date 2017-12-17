@@ -154,7 +154,7 @@ tasks.set('start', () => {
             cwd: path.resolve(__dirname, './server/'),
             stdio: ['ignore', 'pipe', 'inherit'],
             env: Object.assign({}, process.env, {
-              ASPNETCORE_ENVIRONMENT: 'Production',
+              ASPNETCORE_ENVIRONMENT: 'Development',
             }),
           };
           cp.spawn('dotnet', ['watch', 'run'], options).stdout.on('data', (data) => {

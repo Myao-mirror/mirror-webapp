@@ -1,14 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { setInterval } from 'timers';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
-
-
-// const mapStateToProps = state => ({
-//   news: state.news,
-// });
 
 class News extends React.Component {
   constructor(props) {
@@ -32,7 +26,7 @@ class News extends React.Component {
   }
 
   getNews() {
-    axios.get(`http://www.reddit.com/r/${this.props.subreddit}/.json`)
+    axios.get(`https://www.reddit.com/r/${this.props.subreddit}/.json`)
       .then((res) => {
         const newsResults = res.data.data.children.map(obj => obj.data);
         newsResults.length = 6;
@@ -97,5 +91,4 @@ News.defaultProps = {
   subreddit: 'news/new',
 };
 
-// export default connect(mapStateToProps)(News);
 export default News;

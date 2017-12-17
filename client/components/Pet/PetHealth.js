@@ -43,24 +43,28 @@ class PetHealth extends React.Component {
         restCount: snap.val(),
       });
       console.log('Rest count: ' + snap.val()); // eslint-disable-line
+      this.addRest(snap);
     });
     playCount.on('value', (snap) => {
       this.setState({
         playCount: snap.val(),
       });
       console.log('Play count: ' + snap.val()); // eslint-disable-line
+      this.addPlay(snap);
     });
     workCount.on('value', (snap) => {
       this.setState({
         workCount: snap.val(),
       });
       console.log('Work count: ' + snap.val()); // eslint-disable-line
+      this.addWork(snap);
     });
     foodCount.on('value', (snap) => {
       this.setState({
         foodCount: snap.val(),
       });
       console.log('Food count: ' + snap.val()); // eslint-disable-line
+      this.addFood(this);
     });
   }
 
@@ -72,17 +76,19 @@ class PetHealth extends React.Component {
     this.setState({
       life: clearLife,
       image: 'dojodachiDead.gif',
+      restCount: 0,
+      playCount: 0,
+      workCount: 0,
+      foodCount: 0,
     });
 
-    // // Reset firebase count
-    // const restUpdate = {};
-    // const newRestCount = fire.database().ref(`/voice-pi/${fireUser}/pet/settings/rest/count`);
-    // newRestCount.on('value', (snap) => {
-    //   snap.val();
-    //   restUpdate['/pet/settings/rest/count'] = snap.val() + (-snap.val());
-    //   fireUser.update(restUpdate);
-    //   console.log('Rest count: ' + snap.val()); // eslint-disable-line
-    // });
+    const updates = {};
+    const actionsRef = fire.database().ref(`/voice-pi/${fireUser}/pet/settings/actions`);
+    updates[`${actionsRef}/rest/count`] = 0;
+    updates[`${actionsRef}/play/count`] = 0;
+    updates[`${actionsRef}/work/count`] = 0;
+    updates[`${actionsRef}/food/count`] = 0;
+    fire.database().ref().update(updates);
   }
 
   reduceLife() {
@@ -175,14 +181,14 @@ class PetHealth extends React.Component {
 }
 
 PetHealth.propTypes = {
-  life: PropTypes.number,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  reduceLife: PropTypes.func,
-  restCount: PropTypes.number,
-  playCount: PropTypes.number,
-  workCount: PropTypes.number,
-  foodCount: PropTypes.number,
+  life: PropTypes.number, // eslint-disable-line
+  image: PropTypes.string, // eslint-disable-line
+  name: PropTypes.string, // eslint-disable-line
+  reduceLife: PropTypes.func, // eslint-disable-line
+  restCount: PropTypes.number, // eslint-disable-line
+  playCount: PropTypes.number, // eslint-disable-line
+  workCount: PropTypes.number, // eslint-disable-line
+  foodCount: PropTypes.number, // eslint-disable-line
 };
 
 PetHealth.defaultProps = {
