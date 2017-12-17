@@ -5,8 +5,8 @@ import * as s from '../../../node_modules/materialize-css/dist/css/materialize.m
 import * as Materialize from '../../../node_modules/materialize-css/dist/js/materialize.min';
 import MaterialIcon from '../../../node_modules/react-google-material-icons';
 
-const currentDb = fire.database().ref().child('voice-pi');
-const currentUser = currentDb.child('alice-kiwi');
+const dbRoot = fire.database().ref().child('voice-pi');
+const fireUser = dbRoot.child('alice-kiwi');
 
 class PetHealth extends React.Component {
   constructor(props) {
@@ -27,14 +27,12 @@ class PetHealth extends React.Component {
   }
 
   componentDidMount() {
-    const rootRef = currentDb;
-    console.log('PetHealth rootRef: ' + rootRef); // eslint-disable-line
-    const fireUser = currentUser;
+    console.log('PetHealth dbRoot: ' + dbRoot); // eslint-disable-line
     console.log('PetHealth fireUser: ' + fireUser); // eslint-disable-line
-    const restCount = fireUser.child('/pet/settings/rest/count');
-    const playCount = fireUser.child('/pet/settings/play/count');
-    const workCount = fireUser.child('/pet/settings/work/count');
-    const foodCount = fireUser.child('/pet/settings/food/count');
+    const restCount = fireUser.child('/pet/settings/actions/rest/count');
+    const playCount = fireUser.child('/pet/settings/actions/play/count');
+    const workCount = fireUser.child('/pet/settings/actions/work/count');
+    const foodCount = fireUser.child('/pet/settings/actions/food/count');
 
     this.life = setInterval(() =>
       this.reduceLife(), 10000);
@@ -68,15 +66,23 @@ class PetHealth extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.life);
-    // TODO: Replace alert with toast or otherwise remove
-    alert('Sorry your pet has died');
+    alert('Sorry your pet has died'); // TODO: Replace alert with toast or otherwise remove
+    Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000); // TODO: Either make work or remove
     const clearLife = this.state.life - (this.state.life);
     this.setState({
       life: clearLife,
       image: 'dojodachiDead.gif',
     });
-    // TODO: Either make work or remove
-    Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000);
+
+    // // Reset firebase count
+    // const restUpdate = {};
+    // const newRestCount = fire.database().ref(`/voice-pi/${fireUser}/pet/settings/rest/count`);
+    // newRestCount.on('value', (snap) => {
+    //   snap.val();
+    //   restUpdate['/pet/settings/rest/count'] = snap.val() + (-snap.val());
+    //   fireUser.update(restUpdate);
+    //   console.log('Rest count: ' + snap.val()); // eslint-disable-line
+    // });
   }
 
   reduceLife() {

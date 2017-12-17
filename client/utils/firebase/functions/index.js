@@ -4,7 +4,6 @@ const Assistant = require('actions-on-google').DialogflowApp;
 const admin = require('firebase-admin');
 
 admin.initializeApp(functions.config().firebase);
-
 const dbRoot = admin.database().ref('/voice-pi');
 
 // INTENT NAMES
@@ -61,20 +60,20 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
     assistant.ask(speech);
   }
 
+  // ACTION FOR PET COMPONENT
   function petSettings(assistant) {
     const username = req.body.result.parameters[USERNAME_PARAM].toLowerCase();
     const petCommand = req.body.result.parameters[PET_COMMAND_PARAM].toLowerCase();
 
     const user = dbRoot.child(username);
     const petUpdates = {};
-    const path = `/$pet/settings/${petCommand}/count`;
-    let currentCount = admin.database().ref(`/voice-pi/${username}/pet/settings/${petCommand}/count`);
+    const path = `/pet/settings/actions/${petCommand}/count`;
+    let currentCount = admin.database().ref(`/voice-pi/${username}/pet/settings/actions/${petCommand}/count`);
     currentCount.on('value', (snap) => {
       snap.val();
-      petUpdates[`/pet/settings/${petCommand}/count`] = (snap.val() + 1);
+      petUpdates[`/pet/settings/actions/${petCommand}/count`] = snap.val() + 1;
       user.update(petUpdates);
     });
-
     const speech = `Hey, I made your pet go ${petCommand} for you!`;
     assistant.ask(speech);
   }
