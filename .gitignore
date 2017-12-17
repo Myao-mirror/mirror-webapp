@@ -225,3 +225,4 @@ assets.json
 package-lock.json
 docs/recipes/*
 server.test/obj/*
+server.test/obj/Debug

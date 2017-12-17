@@ -19,59 +19,59 @@ class PetHealth extends React.Component {
     this.state = {
       life: 100,
       image: 'dojodachiIdling.gif',
-      // restCount: 0,
-      // playCount: 0,
-      // workCount: 0,
-      // foodCount: 0,
+      restCount: 0,
+      playCount: 0,
+      workCount: 0,
+      foodCount: 0,
     };
   }
 
   componentDidMount() {
     console.log('PetHealth dbRoot: ' + dbRoot); // eslint-disable-line
     console.log('PetHealth fireUser: ' + fireUser); // eslint-disable-line
-    const restCount = fireUser.child('/pet/settings/actions/rest/count');
-    const playCount = fireUser.child('/pet/settings/actions/play/count');
-    const workCount = fireUser.child('/pet/settings/actions/work/count');
-    const foodCount = fireUser.child('/pet/settings/actions/food/count');
+    const restCount = fireUser.child('/pet/actions/rest/count');
+    const playCount = fireUser.child('/pet/actions/play/count');
+    const workCount = fireUser.child('/pet/actions/work/count');
+    const foodCount = fireUser.child('/pet/actions/food/count');
     const petName = fireUser.child('/pet/settings/petName');
 
     this.life = setInterval(() =>
-      this.reduceLife(), 10000);
+      this.reduceLife(), 30000);
 
     // "on" method sync data in realtime
     petName.on('value', (snap) => {
-      // this.setState({
-      //   name: snap.val(),
-      // });
+      this.setState({
+        name: snap.val(),
+      });
       console.log('Name changed: ' + snap.val()); // eslint-disable-line
     });
     restCount.on('value', (snap) => {
-      // this.setState({
-      //   restCount: snap.val(),
-      // });
+      this.setState({
+        restCount: snap.val(),
+      });
       console.log('Rest count: ' + snap.val()); // eslint-disable-line
       this.addRest(snap);
     });
     playCount.on('value', (snap) => {
-      // this.setState({
-      //   playCount: snap.val(),
-      // });
+      this.setState({
+        playCount: snap.val(),
+      });
       console.log('Play count: ' + snap.val()); // eslint-disable-line
       this.addPlay(snap);
     });
     workCount.on('value', (snap) => {
-      // this.setState({
-      //   workCount: snap.val(),
-      // });
+      this.setState({
+        workCount: snap.val(),
+      });
       console.log('Work count: ' + snap.val()); // eslint-disable-line
       this.addWork(snap);
     });
     foodCount.on('value', (snap) => {
-      // this.setState({
-      //   foodCount: snap.val(),
-      // });
+      this.setState({
+        foodCount: snap.val(),
+      });
       console.log('Food count: ' + snap.val()); // eslint-disable-line
-      this.addFood(this);
+      this.addFood(snap);
     });
   }
 
@@ -83,10 +83,10 @@ class PetHealth extends React.Component {
     this.setState({
       life: clearLife,
       image: 'dojodachiDead.gif',
-      // restCount: 0,
-      // playCount: 0,
-      // workCount: 0,
-      // foodCount: 0,
+      restCount: 0,
+      playCount: 0,
+      workCount: 0,
+      foodCount: 0,
     });
 
     const updates = {};
@@ -115,6 +115,7 @@ class PetHealth extends React.Component {
     this.setState({
       life: newFood,
       image: newFoodGif,
+      foodCount: this.foodCount += 1,
     });
   }
 
@@ -126,6 +127,7 @@ class PetHealth extends React.Component {
     this.setState({
       life: newRest,
       image: newRestGif,
+      restCount: this.restCount += 1,
     });
   }
 
@@ -137,6 +139,7 @@ class PetHealth extends React.Component {
     this.setState({
       life: newWork,
       image: newWorkGif,
+      workCount: this.workCount += 1,
     });
   }
 
@@ -148,6 +151,7 @@ class PetHealth extends React.Component {
     this.setState({
       life: newPlay,
       image: newPlayGif,
+      playCount: this.playCount += 1,
     });
   }
 
@@ -187,10 +191,10 @@ PetHealth.propTypes = {
   image: PropTypes.string, // eslint-disable-line
   name: PropTypes.string, // eslint-disable-line
   reduceLife: PropTypes.func, // eslint-disable-line
-  // restCount: PropTypes.number, // eslint-disable-line
-  // playCount: PropTypes.number, // eslint-disable-line
-  // workCount: PropTypes.number, // eslint-disable-line
-  // foodCount: PropTypes.number, // eslint-disable-line
+  restCount: PropTypes.number, // eslint-disable-line
+  playCount: PropTypes.number, // eslint-disable-line
+  workCount: PropTypes.number, // eslint-disable-line
+  foodCount: PropTypes.number, // eslint-disable-line
 };
 
 PetHealth.defaultProps = {
@@ -198,10 +202,10 @@ PetHealth.defaultProps = {
   image: '',
   name: '',
   reduceLife: null,
-  // restCount: 0,
-  // playCount: 0,
-  // workCount: 0,
-  // foodCount: 0,
+  restCount: 0,
+  playCount: 0,
+  workCount: 0,
+  foodCount: 0,
 };
 
 export default PetHealth;

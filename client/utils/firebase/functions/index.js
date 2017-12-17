@@ -63,20 +63,21 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
     // Parameters from Dialogflow prompt
     const username = req.body.result.parameters[USERNAME_PARAM].toLowerCase();
     const petCommand = req.body.result.parameters[PET_COMMAND_PARAM].toLowerCase();
+    const petName = req.body.result.parameters[PET_NAME_PARAM] ? req.body.result.parameters[PET_NAME_PARAM] : 'Ms. Myao';
     // Capture and update value in user settings count when pet command fired
     const user = dbRoot.child(username);
     const petUpdates = {};
-    const petName = dbRoot.ref(`/${username}/pet/settings/petName`);
-    const currentCount = dbRoot.child(`/${username}/pet/settings/actions/${petCommand}/count`);
+    const currentCount = dbRoot.child(`/${username}/pet/actions/${petCommand}/count`);
     currentCount.once('value', (snap) => {
-      snap.val();
-      petUpdates[`/pet/settings/actions/${petCommand}/count`] = snap.val() + 1;
+      // snap.val();
+      petUpdates[`/pet/actions/${petCommand}/count`] = snap.val() + 1;
       user.update(petUpdates);
     });
     // Response returned back to Dialogflow
-    const statusName = petName ? `${petName}` : 'your pet';
+    petUpdates['/pet/settings/petName'] = petName;
+    user.update(petUpdates);
     const statusText = petCommandMap[petCommand];
-    const speech = `Hey, I made ${statusName} ${statusText} for you!`;
+    const speech = `Hey, I made ${petName} ${statusText} for you!`;
     assistant.ask(speech);
   }
 
