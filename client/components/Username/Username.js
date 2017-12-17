@@ -51,7 +51,7 @@ class Username extends React.Component {
     };
 
     // bool to disable button
-    let bool = false;
+    let bool = true;
     try {
       bool = (!this._fname.value || !this._fruit.value);
     } catch (e) {
@@ -106,25 +106,41 @@ class Username extends React.Component {
                   />
                 </div>
               </div>
-              {lsUsername ? 
-                <div>
-                  <h4>is this you?&nbsp;<strong>"{lsUsername}"</strong><br /></h4>
-                  <p className={s.center}>Not you? change it up there!</p>
-                </div> : null}
-              <h4>Your username looks like this:<br />
-                <strong>"{ this.props.username.username }"</strong>
-              </h4>
 
-              {this.props.username.exist ? <h5>Oh uh, this username is taken!</h5> : null }
-              {this.props.username.exist ? <Link to="/landing" >TAKE ME TO MIRROR!</Link> : null}
+              {/* see if localStorage has username */}
+              {lsUsername ?
+                <div>
+                  <h5>is this you?&nbsp;<strong>"{lsUsername}"</strong><br /></h5>
+                  <p className={s.center}>Not you? change it up there!</p>
+                  <button
+                    onClick={this.handleClick}
+                    className={[s.btn]}
+                  >
+                    <Link to="/landing/{lsUsername}" >TAKE ME TO THE MIRROR!</Link>
+                  </button>
+                </div> : null}
+
+              {/* display username on input */}
+              <h5>Your username looks like this:<br />
+                <strong>"{ this.props.username.username }"</strong>
+              </h5>
+              
+              {/* username taken, display link to take user to landing */}
+              {this.props.username.exist ? <p className={s.center}>Oh uh, this username is already taken!</p> : null }
+              {this.props.username.exist ?
+                <button
+                  onClick={this.handleClick}
+                  className={[s.btn]}
+                >
+                  <Link to="/landing/{this.props.username.username}" >TAKE ME TO THE MIRROR!</Link>
+                </button> : null}
               {this.props.username.exist ? null :
               <button
                 onClick={this.handleClick}
                 className={[s.btn]}
-                type="submit"
                 disabled={bool}
               >
-                <Link to="/landing" >SET USERNAME</Link>
+                <Link to="/landing/{this.props.username.username}" >SET USERNAME</Link>
 
               </button>}
             </form>
@@ -135,10 +151,6 @@ class Username extends React.Component {
   }
 }
 
-// Username.propTypes = {
-//   addNewCreatureToPet: PropTypes.func,
-//   hideFormAfterSubmission: PropTypes.func,
-// };
 const mapStateToProps = state => ({
   username: state.username,
 });
