@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
-import s from '../../components/Layout/Layout.css';
+import Username from '../../components/Username/Username';
 
 const title = 'Myao Mirror';
 const link1 = 'https://github.com/Myao-mirror';
@@ -18,6 +18,7 @@ class Home extends React.Component {
         <p>
           For more information visit <a href={link1}>{link1}</a>.
         </p>
+        <Username />
         <h1>Featured Technologies</h1>
         <ul>
           {this.props.articles.map((article, i) => (
