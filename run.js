@@ -97,7 +97,7 @@ tasks.set('publish', () => {
   global.DEBUG = process.argv.includes('--debug') || false;
   const remote = {
     name: 'googleAppEngine',
-    url: 'https://github.com/Myao-mirror/mirror-webapp.git', // TODO: Update deployment URL
+    url: '', // TODO: Update deployment URL
   };
   const opts = { cwd: path.resolve(__dirname, './build'), stdio: ['ignore', 'inherit', 'inherit'] };
   const git = (...args) => new Promise((resolve, reject) => {
