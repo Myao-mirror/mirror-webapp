@@ -11,6 +11,7 @@ class Username extends React.Component {
     super(props);
     this.onUsernameInput = this.onUsernameInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.rootRef = fire.database().ref().child('voice-pi');
   }
 
   onUsernameInput(event) {
@@ -19,10 +20,9 @@ class Username extends React.Component {
       this._fname.value.toLowerCase(),
       this._fruit.value.toLowerCase(),
     ));
-    const rootRef = fire.database().ref().child('voice-pi');
     const username = `${this._fname.value}-${this._fruit.value}`;
     if (username) {
-      rootRef.child(username).on('value', (snap) => {
+      this.rootRef.child(username).on('value', (snap) => {
         const userData = snap.val();
         if (userData) {
           this.props.dispatch(checkIfExist(true));
@@ -35,12 +35,24 @@ class Username extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
+    // save username to localStorage so that the mirror remembers the user
     const fname = this.props.username.fname;
     const fruit = this.props.username.fruit;
     const username = this.props.username.username;
     localStorage.setItem('username', username);
     localStorage.setItem('fname', fname);
     localStorage.setItem('fruit', fruit);
+    // TODO: how about other settings
+    console.log("this rootRef: ", this.rootRef);
+    // create user profile in Firebase
+    if (!this.props.username.exist) {
+      this.rootRef.child(username).set({
+        news: { settings: { active: true } },
+        time: { settings: { active: true } },
+        weather: { settings: { active: true } },
+        pet: { settings: { active: true } },
+      });
+    }
   }
 
   render() {
@@ -136,6 +148,8 @@ class Username extends React.Component {
                 >
                   <Link to={routeFromState} >TAKE ME TO THE MIRROR!</Link>
                 </button> : null}
+
+              {/* if username valid and not taken, enable button to link user to landing/:username */}
               {this.props.username.exist ? null :
               <button
                 onClick={this.handleClick}
