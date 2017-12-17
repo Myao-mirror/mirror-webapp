@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
+import PetControlTop from './PetControlTop';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 import * as Materialize from '../../../node_modules/materialize-css/dist/js/materialize.min';
 import MaterialIcon from '../../../node_modules/react-google-material-icons';
@@ -26,14 +27,19 @@ class PetHealth extends React.Component {
     };
   }
 
+  componentWillMount() {
+    const setStatus = {};
+    setStatus['pet/settings/status'] = 'alive';
+    fireUser.update(setStatus);
+  }
+
   componentDidMount() {
-    console.log('PetHealth dbRoot: ' + dbRoot); // eslint-disable-line
-    console.log('PetHealth fireUser: ' + fireUser); // eslint-disable-line
     const restCount = fireUser.child('/pet/actions/rest/count');
     const playCount = fireUser.child('/pet/actions/play/count');
     const workCount = fireUser.child('/pet/actions/work/count');
     const foodCount = fireUser.child('/pet/actions/food/count');
     const petName = fireUser.child('/pet/settings/petName');
+    const petAge = fireUser.child('/pet/settings/petAge');
 
     this.life = setInterval(() =>
       this.reduceLife(), 30000);
@@ -44,6 +50,12 @@ class PetHealth extends React.Component {
         name: snap.val(),
       });
       console.log('Name changed: ' + snap.val()); // eslint-disable-line
+    });
+    petAge.on('value', (snap) => {
+      this.setState({
+        timeSinceBirth: snap.val(),
+      });
+      console.log('Age updated: ' + snap.val()); // eslint-disable-line
     });
     restCount.on('value', (snap) => {
       this.setState({
@@ -80,8 +92,13 @@ class PetHealth extends React.Component {
     alert('Sorry your pet has died'); // TODO: Replace alert with toast or otherwise remove
     Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000); // TODO: Either make work or remove
     const clearLife = this.state.life - (this.state.life);
+    // PetControlTop.setState({
+    //   formVisibleOnPage: true,
+    // });
     this.setState({
       life: clearLife,
+      name: '',
+      timeSinceBirth: '',
       image: 'dojodachiDead.gif',
       restCount: 0,
       playCount: 0,
@@ -89,12 +106,14 @@ class PetHealth extends React.Component {
       foodCount: 0,
     });
 
-    const updates = {};
-    updates['pet/actions/rest/count'] = 0;
-    updates['pet/actions/play/count'] = 0;
-    updates['pet/actions/work/count'] = 0;
-    updates['pet/actions/food/count'] = 0;
-    fireUser.update(updates);
+    const updatePetInfo = {};
+    updatePetInfo['pet/actions/rest/count'] = 0;
+    updatePetInfo['pet/actions/play/count'] = 0;
+    updatePetInfo['pet/actions/work/count'] = 0;
+    updatePetInfo['pet/actions/food/count'] = 0;
+    updatePetInfo['pet/settings/status'] = 'dead';
+    updatePetInfo['pet/settings/petAge'] = '';
+    fireUser.update(updatePetInfo);
   }
 
   reduceLife() {
@@ -190,6 +209,7 @@ PetHealth.propTypes = {
   life: PropTypes.number, // eslint-disable-line
   image: PropTypes.string, // eslint-disable-line
   name: PropTypes.string, // eslint-disable-line
+  timeSinceBirth: PropTypes.string, // es-lint-disable-line
   reduceLife: PropTypes.func, // eslint-disable-line
   restCount: PropTypes.number, // eslint-disable-line
   playCount: PropTypes.number, // eslint-disable-line
@@ -201,6 +221,7 @@ PetHealth.defaultProps = {
   life: 100,
   image: '',
   name: '',
+  timeSinceBirth: '',
   reduceLife: null,
   restCount: 0,
   playCount: 0,

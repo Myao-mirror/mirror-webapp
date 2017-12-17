@@ -8,8 +8,7 @@ const dbRoot = admin.database().ref('/voice-pi');
 /*
 INTENT NAMES
 🔥 IMPORTANT: make sure the INTENT NAME is exactly the same as ACTION NAME(aka the function name below).
-e.g: INTENT NAME is 'displayAll', function name is 'displayAll'.
-Otherwise it cause error: no matching intent handler for: <intent name>.
+e.g: INTENT NAME is 'displayAll', function name is 'displayAll'. Otherwise it cause error: no matching intent handler for: <intent name>.
 */
 const DISPLAY_ALL_INTENT = 'displayAll';
 const WEATHER_INTENT = 'weatherSettings';
@@ -53,8 +52,8 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
     displayUpdates['/weather/settings/active'] = stringBoolMap[displayBool];
     displayUpdates['/pet/settings/active'] = stringBoolMap[displayBool];
     user.update(displayUpdates);
-    const status = stringBoolMap[displayBool] ? 'Enjoy your smart mirror display!' : 'Enjoy your boring mirror!';
-    const speech = `Hey ${name}! ${status}`;
+    const status = stringBoolMap[displayBool] ? 'Enjoy your Myao mirror display.' : 'Enjoy your boring mirror.';
+    const speech = `Here you go ${name}! ${status}`;
     assistant.ask(speech);
   }
 
@@ -69,7 +68,7 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
     const petUpdates = {};
     const currentCount = dbRoot.child(`/${username}/pet/actions/${petCommand}/count`);
     currentCount.once('value', (snap) => {
-      // snap.val();
+      snap.val();
       petUpdates[`/pet/actions/${petCommand}/count`] = snap.val() + 1;
       user.update(petUpdates);
     });
