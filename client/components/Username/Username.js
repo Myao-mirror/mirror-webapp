@@ -9,14 +9,11 @@ import * as s from '../../../node_modules/materialize-css/dist/css/materialize.m
 class Username extends React.Component {
   constructor(props) {
     super(props);
-    this.setUsername = this.setUsername.bind(this);
+    this.onUsernameInput = this.onUsernameInput.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-
-  }
-
-  setUsername(event) {
+  onUsernameInput(event) {
     event.preventDefault();
     this.props.dispatch(usernameSubmit(
       this._fname.value.toLowerCase(),
@@ -37,16 +34,41 @@ class Username extends React.Component {
     }
   }
 
+  handleClick(event) {
+    event.preventDefault();
+    const fname = this.props.username.fname;
+    const fruit = this.props.username.fruit;
+    const username = this.props.username.username;
+    localStorage.setItem('username', username);
+    localStorage.setItem('fname', fname);
+    localStorage.setItem('fruit', fruit);
+  }
+
   render() {
     const inputStyle = {
       color: '#00FFFF',
       backgroundColor: '#000000',
     };
+
+    // bool to disable button
     let bool = false;
     try {
       bool = (!this._fname.value || !this._fruit.value);
     } catch (e) {
       console.log(e);
+    }
+
+    let placeholderFname = '';
+    let placeholderFruit = '';
+    let lsUsername = '';
+
+    try {
+      placeholderFname = localStorage.getItem('fname');
+      placeholderFruit = localStorage.getItem('fruit');
+      lsUsername = localStorage.getItem('username');
+    } catch (e) {
+      placeholderFname = 'your first name';
+      placeholderFruit = 'your favortite fruit';
     }
 
     return (
@@ -61,7 +83,7 @@ class Username extends React.Component {
         </div>
         <div className={s.section}>
           <div className={[s.card, s.black].join(' ')}>
-            <form onSubmit={this.setUsername} className={s['card-content']}>
+            <form className={s['card-content']}>
               <div className={s.row}>
                 <div className={[s['input-field'], s.col, s.m6].join(' ')}>
                   <input
@@ -69,8 +91,8 @@ class Username extends React.Component {
                     ref={(input) => { this._fname = input; }}
                     type="text"
                     id="fname"
-                    placeholder="your first name"
-                    onChange={this.setUsername}
+                    placeholder={placeholderFname}
+                    onChange={this.onUsernameInput}
                   />
                 </div>
                 <div className={[s['input-field'], s.col, s.m6].join(' ')}>
@@ -79,23 +101,31 @@ class Username extends React.Component {
                     ref={(input) => { this._fruit = input; }}
                     type="text"
                     id="fruit"
-                    placeholder="your favortite fruit"
-                    onChange={this.setUsername}
+                    placeholder={placeholderFruit}
+                    onChange={this.onUsernameInput}
                   />
                 </div>
               </div>
+              {lsUsername ? 
+                <div>
+                  <h4>is this you?&nbsp;<strong>"{lsUsername}"</strong><br /></h4>
+                  <p className={s.center}>Not you? change it up there!</p>
+                </div> : null}
               <h4>Your username looks like this:<br />
                 <strong>"{ this.props.username.username }"</strong>
               </h4>
+
               {this.props.username.exist ? <h5>Oh uh, this username is taken!</h5> : null }
               {this.props.username.exist ? <Link to="/landing" >TAKE ME TO MIRROR!</Link> : null}
               {this.props.username.exist ? null :
               <button
+                onClick={this.handleClick}
                 className={[s.btn]}
                 type="submit"
                 disabled={bool}
               >
-                SET USERNAME
+                <Link to="/landing" >SET USERNAME</Link>
+
               </button>}
             </form>
           </div>
