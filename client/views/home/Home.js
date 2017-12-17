@@ -15,11 +15,11 @@ class Home extends React.Component {
     return (
       <Layout>
         <h1>Welcome to {title}!</h1>
-        <p>
+        {/* <p>
           For more information visit <a href={link1}>{link1}</a>.
-        </p>
+        </p> */}
         <Username />
-        <h1>Featured Technologies</h1>
+        {/* <h1>Featured Technologies</h1>
         <ul>
           {this.props.articles.map((article, i) => (
             <li key={i}>
@@ -40,7 +40,7 @@ class Home extends React.Component {
               </ul>
             </li>))
           }
-        </ul>
+        </ul> */}
       </Layout>
     );
   }
