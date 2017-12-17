@@ -22,7 +22,6 @@ class Username extends React.Component {
     const rootRef = fire.database().ref().child('voice-pi');
     const username = `${this._fname.value}-${this._fruit.value}`;
     if (username) {
-      console.log('____________________USERNAME for FIRE: ', username);
       rootRef.child(username).on('value', (snap) => {
         const userData = snap.val();
         if (userData) {
@@ -61,11 +60,14 @@ class Username extends React.Component {
     let placeholderFname = '';
     let placeholderFruit = '';
     let lsUsername = '';
+    let routeFromLS = '/landing/';
+    let routeFromState = `/landing/${this.props.username.username}`;
 
     try {
       placeholderFname = localStorage.getItem('fname');
       placeholderFruit = localStorage.getItem('fruit');
       lsUsername = localStorage.getItem('username');
+      routeFromLS += lsUsername;
     } catch (e) {
       placeholderFname = 'your first name';
       placeholderFruit = 'your favortite fruit';
@@ -116,7 +118,7 @@ class Username extends React.Component {
                     onClick={this.handleClick}
                     className={[s.btn]}
                   >
-                    <Link to="/landing/{lsUsername}" >TAKE ME TO THE MIRROR!</Link>
+                    <Link to={routeFromLS} >TAKE ME TO THE MIRROR!</Link>
                   </button>
                 </div> : null}
 
@@ -132,7 +134,7 @@ class Username extends React.Component {
                   onClick={this.handleClick}
                   className={[s.btn]}
                 >
-                  <Link to="/landing/{this.props.username.username}" >TAKE ME TO THE MIRROR!</Link>
+                  <Link to={routeFromState} >TAKE ME TO THE MIRROR!</Link>
                 </button> : null}
               {this.props.username.exist ? null :
               <button
@@ -140,7 +142,7 @@ class Username extends React.Component {
                 className={[s.btn]}
                 disabled={bool}
               >
-                <Link to="/landing/{this.props.username.username}" >SET USERNAME</Link>
+                <Link to={routeFromState} >SET USERNAME</Link>
 
               </button>}
             </form>

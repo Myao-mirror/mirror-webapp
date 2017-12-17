@@ -22,6 +22,7 @@ class Landing extends React.Component {
 
   componentDidMount() {
     const username = this.props.route.params.username;
+    console.log('+++++++++++++++++++ username from URL: ', username);
     const rootRef = fire.database().ref().child('voice-pi');
     const fireUser = rootRef.child(username);
     const newsActive = fireUser.child('/news/settings/active');
