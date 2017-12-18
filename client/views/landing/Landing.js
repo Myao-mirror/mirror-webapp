@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import fire from '../../utils/firebase/setup';
 
 import Layout from '../../components/Layout';
@@ -7,7 +8,7 @@ import News from '../../components/News/News';
 import App from '../../components/Pet/PetComponent';
 import Weather from '../../components/Weather/Weather';
 
-// const dbRoot = fire.database().ref().child('voice-pi');
+const dbRoot = fire.database().ref().child('voice-pi');
 // const fireUser = dbRoot.child('alice-kiwi');
 // const newsActive = fireUser.child('/news/settings/active');
 // const weatherActive = fireUser.child('/weather/settings/active');
@@ -29,17 +30,22 @@ class Landing extends React.Component {
       timeActive: true,
       weatherActive: false,
     };
+    this.fireUser = {};
+    this.newsActive = null;
+    this.weatherActive = null;
+    this.petActive = null;
+    this.timeActive = null;
   }
-
+  
   componentDidMount() {
-    const username = this.props.route.params.username;
+    const username = this.props.route.params ? this.props.route.params.username : null;
     console.log('+++++++++++++++++++ username from URL: ', username);
-    const rootRef = fire.database().ref().child('voice-pi');
-    const fireUser = rootRef.child(username);
-    const newsActive = fireUser.child('/news/settings/active');
-    const weatherActive = fireUser.child('/weather/settings/active');
-    const petActive = fireUser.child('/pet/settings/active');
-    const timeActive = fireUser.child('/time/settings/active');
+    // const rootRef = fire.database().ref().child('voice-pi');
+    this.fireUser = dbRoot.child(username);
+    this.newsActive = this.fireUser.child('/news/settings/active');
+    this.weatherActive = this.fireUser.child('/weather/settings/active');
+    this.petActive = this.fireUser.child('/pet/settings/active');
+    this.timeActive = this.fireUser.child('/time/settings/active');
 
     const stringBoolMap = {
       false: false,
@@ -47,22 +53,22 @@ class Landing extends React.Component {
     };
 
     // "on" method sync data in realtime
-    newsActive.on('value', (snap) => {
+    this.newsActive.on('value', (snap) => {
       this.setState({
         newsActive: stringBoolMap[snap.val()],
       });
     });
-    weatherActive.on('value', (snap) => {
+    this.weatherActive.on('value', (snap) => {
       this.setState({
         weatherActive: stringBoolMap[snap.val()],
       });
     });
-    petActive.on('value', (snap) => {
+    this.petActive.on('value', (snap) => {
       this.setState({
         petActive: stringBoolMap[snap.val()],
       });
     });
-    timeActive.on('value', (snap) => {
+    this.timeActive.on('value', (snap) => {
       this.setState({
         timeActive: stringBoolMap[snap.val()],
       });
@@ -70,10 +76,10 @@ class Landing extends React.Component {
   }
 
   componentWillUnmount() {
-    newsActive.off();
-    weatherActive.off();
-    petActive.off();
-    timeActive.off();
+    this.newsActive.off();
+    this.weatherActive.off();
+    this.petActive.off();
+    this.timeActive.off();
   }
 
   render() {
@@ -88,4 +94,5 @@ class Landing extends React.Component {
   }
 }
 
-export default connect()(Landing);
+// export default connect()(Landing);
+export default Landing;
