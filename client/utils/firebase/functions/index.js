@@ -62,22 +62,31 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
     // Parameters from Dialogflow prompt
     const username = req.body.result.parameters[USERNAME_PARAM].toLowerCase();
     const petCommand = req.body.result.parameters[PET_COMMAND_PARAM].toLowerCase();
-    const petName = req.body.result.parameters[PET_NAME_PARAM] ? req.body.result.parameters[PET_NAME_PARAM] : 'Ms. Myao';
+    const petName = req.body.result.parameters[PET_NAME_PARAM] ? req.body.result.parameters[PET_NAME_PARAM] : 'your pet';
     // Capture and update value in user settings count when pet command fired
     const user = dbRoot.child(username);
     const petUpdates = {};
-    const currentCount = dbRoot.child(`/${username}/pet/actions/${petCommand}/count`);
-    currentCount.once('value', (snap) => {
-      snap.val();
-      petUpdates[`/pet/actions/${petCommand}/count`] = snap.val() + 1;
+    let speech = '';
+    if (petCommand === 'quit') {
+      petUpdates['/pet/settings/active'] = false;
       user.update(petUpdates);
-    });
-    // Response returned back to Dialogflow
-    petUpdates['/pet/settings/petName'] = petName;
-    user.update(petUpdates);
-    const statusText = petCommandMap[petCommand];
-    const speech = `Hey, I made ${petName} ${statusText} for you!`;
-    assistant.ask(speech);
+      speech = 'Pet display turned off.';
+      assistant.ask(speech);
+    } else if (petCommand === 'open') {
+      petUpdates['/pet/settings/active'] = true;
+      user.update(petUpdates);
+      speech = 'Pet display turned on.';
+      assistant.ask(speech);
+    } else {
+      const currentCount = dbRoot.child(`/${username}/pet/actions/${petCommand}/count`);
+      currentCount.once('value', (snap) => {
+        petUpdates[`/pet/actions/${petCommand}/count`] = snap.val() + 1;
+        user.update(petUpdates);
+        const statusText = petCommandMap[petCommand];
+        speech = `Hey, I made ${petName} ${statusText} for you!`;
+        assistant.ask(speech);
+      });
+    }
   }
 
   // ACTION TO UPDATE PET NAME
@@ -88,6 +97,8 @@ exports.myaoMirrorWebhook = functions.https.onRequest((req, res) => {
     const name = req.body.result.parameters[FIRST_NAME_PARAM];
     const petNameUpdate = {};
     petNameUpdate['/pet/settings/petName'] = petName;
+    petNameUpdate['/pet/settings/active'] = true;
+    petNameUpdate['/pet/settings/status'] = 'alive';
     user.update(petNameUpdate);
     const speech = `Congrats ${name}! I'm sure you and ${petName} will be very happy together.`;
     assistant.ask(speech);

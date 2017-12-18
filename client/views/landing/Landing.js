@@ -7,8 +7,17 @@ import News from '../../components/News/News';
 import App from '../../components/Pet/PetComponent';
 import Weather from '../../components/Weather/Weather';
 
-const currentDb = fire.database().ref().child('voice-pi');
-const currentUser = currentDb.child('alice-kiwi');
+const dbRoot = fire.database().ref().child('voice-pi');
+const fireUser = dbRoot.child('alice-kiwi');
+const newsActive = fireUser.child('/news/settings/active');
+const weatherActive = fireUser.child('/weather/settings/active');
+const petActive = fireUser.child('/pet/settings/active');
+const timeActive = fireUser.child('/time/settings/active');
+
+const stringBoolMap = {
+  false: false,
+  true: true,
+};
 
 // TODO: get rid of all the test
 class Landing extends React.Component {
@@ -23,20 +32,6 @@ class Landing extends React.Component {
   }
 
   componentDidMount() {
-    const rootRef = currentDb;
-    console.log('Landing rootRef: ' + rootRef); // eslint-disable-line
-    const fireUser = currentUser;
-    console.log('Landing fireUser: ' + fireUser); // eslint-disable-line
-    const newsActive = fireUser.child('/news/settings/active');
-    const weatherActive = fireUser.child('/weather/settings/active');
-    const petActive = fireUser.child('/pet/settings/active');
-    const timeActive = fireUser.child('/time/settings/active');
-
-    const stringBoolMap = {
-      false: false,
-      true: true,
-    };
-
     // "on" method sync data in realtime
     newsActive.on('value', (snap) => {
       this.setState({
@@ -60,6 +55,13 @@ class Landing extends React.Component {
         timeActive: stringBoolMap[snap.val()],
       });
     });
+  }
+
+  componentWillUnmount() {
+    newsActive.off();
+    weatherActive.off();
+    petActive.off();
+    timeActive.off();
   }
 
   render() {

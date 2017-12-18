@@ -18,7 +18,7 @@ class Pet extends React.Component {
     this.timeSinceBirth = setInterval(
       () =>
         this.updatePetLife(),
-      5000,
+      3000,
     );
   }
 
@@ -28,6 +28,7 @@ class Pet extends React.Component {
 
   addNewCreatureToPet(newPet) {
     const newMasterPet = this.state.masterPet.slice();
+    newMasterPet.pop();
     newMasterPet.push(newPet);
     this.setState({ masterPet: newMasterPet });
     console.log(this.state.masterPet); // eslint-disable-line
@@ -35,9 +36,11 @@ class Pet extends React.Component {
 
   updatePetLife() {
     const newMasterPet = this.state.masterPet.slice();
-    newMasterPet.forEach(creature =>
-      creature.setTimeSinceBirth());
-    this.setState({ masterPet: newMasterPet });
+    newMasterPet.forEach(
+      creature =>
+        this.state.timeSinceBirth,
+      this.setState({ masterPet: newMasterPet }),
+    );
   }
 
   render() {

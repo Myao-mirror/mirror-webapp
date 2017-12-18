@@ -8,6 +8,8 @@ const dbRoot = fire.database().ref().child('voice-pi');
 const fireUser = dbRoot.child('alice-kiwi');
 let createPetName = '';
 let createPetAge = '';
+const dbPetName = fireUser.child('/pet/settings/petName');
+const dbPetAge = fireUser.child('/pet/settings/petAge');
 
 class CreatePet extends React.Component {
   constructor(props) {
@@ -20,22 +22,37 @@ class CreatePet extends React.Component {
   }
 
   componentDidMount() {
-    const dbPetName = fireUser.child('/pet/settings/petName');
-    const dbPetAge = fireUser.child('/pet/settings/petAge');
-    dbPetName.on('value', (snap) => {
-      this.setState({
-        name: snap.val(),
-      });
-      createPetName = snap.val();
-      console.log('Name changed: ' + snap.val()); // eslint-disable-line
-    });
     dbPetAge.on('value', (snap) => {
       this.setState({
         timeSinceBirth: snap.val(),
       });
       createPetAge = snap.val();
-      console.log('Age updated: ' + snap.val()); // eslint-disable-line
+      console.log('Age updated: ' + createPetAge); // eslint-disable-line
     });
+    dbPetName.on('value', (snap) => {
+      this.setState({
+        name: snap.val(),
+      });
+      createPetName = snap.val();
+      console.log('Name changed: ' + createPetName); // eslint-disable-line
+      if (createPetName.length > 2) {
+        const createPet = new PetModel(createPetName);
+        this.props.addNewCreatureToPet(createPet);
+        this.props.hideFormAfterSubmission();
+        console.log(`Your new pet's name has been set to: ${createPetName}`);
+        console.log(`Your new pet's age has been set to: ${createPetAge}`);
+        const createPetUpdate = {};
+        createPetUpdate['pet/settings/petAge'] = createPetAge;
+        createPetUpdate['pet/settings/status'] = 'alive';
+        createPetUpdate['/pet/settings/active'] = true;
+        fireUser.update(createPetUpdate);
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    dbPetAge.off();
+    dbPetName.off();
   }
 
   preparePetCreation(event) {
@@ -46,11 +63,12 @@ class CreatePet extends React.Component {
     this.props.hideFormAfterSubmission();
     console.log(`The pet name has been set to: ${petName.value}`);
     console.log(`The pet's age has been updated to: ${createPetAge}`);
-    const updates = {};
-    updates['pet/settings/petName'] = petName.value;
-    updates['pet/settings/petAge'] = createPetAge;
-    updates['pet/settings/status'] = 'alive';
-    fireUser.update(updates);
+    const preparePetUpdates = {};
+    preparePetUpdates['pet/settings/petName'] = petName.value;
+    preparePetUpdates['pet/settings/petAge'] = createPetAge;
+    preparePetUpdates['pet/settings/status'] = 'alive';
+    preparePetUpdates['pet/settings/active'] = true;
+    fireUser.update(preparePetUpdates);
   }
 
   render() {
@@ -97,6 +115,13 @@ CreatePet.propTypes = {
   hideFormAfterSubmission: PropTypes.func,
   name: PropTypes.string,
   timeSinceBirth: PropTypes.string,
+};
+
+CreatePet.defaultProps = {
+  addNewCreatureToPet: null,
+  hideFormAfterSubmission: null,
+  name: '',
+  timeSinceBirth: '',
 };
 
 export default CreatePet;

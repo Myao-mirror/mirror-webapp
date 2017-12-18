@@ -1,13 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
-import PetControlTop from './PetControlTop';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 import * as Materialize from '../../../node_modules/materialize-css/dist/js/materialize.min';
 import MaterialIcon from '../../../node_modules/react-google-material-icons';
 
 const dbRoot = fire.database().ref().child('voice-pi');
 const fireUser = dbRoot.child('alice-kiwi');
+const restCount = fireUser.child('/pet/actions/rest/count');
+const playCount = fireUser.child('/pet/actions/play/count');
+const workCount = fireUser.child('/pet/actions/work/count');
+const foodCount = fireUser.child('/pet/actions/food/count');
+const petName = fireUser.child('/pet/settings/petName');
+const petLife = fireUser.child('/pet/settings/life');
+const petAge = fireUser.child('/pet/settings/petAge');
 
 class PetHealth extends React.Component {
   constructor(props) {
@@ -17,8 +23,8 @@ class PetHealth extends React.Component {
     this.addWork = this.addWork.bind(this);
     this.addFood = this.addFood.bind(this);
     this.reduceLife = this.reduceLife.bind(this);
+    this.updatePetLife = this.updatePetLife.bind(this);
     this.state = {
-      life: 100,
       image: 'dojodachiIdling.gif',
       restCount: 0,
       playCount: 0,
@@ -27,93 +33,128 @@ class PetHealth extends React.Component {
     };
   }
 
-  componentWillMount() {
-    const setStatus = {};
-    setStatus['pet/settings/status'] = 'alive';
-    fireUser.update(setStatus);
-  }
-
   componentDidMount() {
-    const restCount = fireUser.child('/pet/actions/rest/count');
-    const playCount = fireUser.child('/pet/actions/play/count');
-    const workCount = fireUser.child('/pet/actions/work/count');
-    const foodCount = fireUser.child('/pet/actions/food/count');
-    const petName = fireUser.child('/pet/settings/petName');
-    const petAge = fireUser.child('/pet/settings/petAge');
-
     this.life = setInterval(() =>
-      this.reduceLife(), 30000);
+      this.reduceLife(), 5000);
 
     // "on" method sync data in realtime
     petName.on('value', (snap) => {
       this.setState({
         name: snap.val(),
       });
-      console.log('Name changed: ' + snap.val()); // eslint-disable-line
+      console.log('Name updated: ' + snap.val()); // eslint-disable-line
     });
+
+    petLife.on('value', (snap) => {
+      this.setState({
+        life: snap.val(),
+      });
+      console.log('Life updated: ' + snap.val()); // eslint-disable-line
+    });
+
     petAge.on('value', (snap) => {
       this.setState({
         timeSinceBirth: snap.val(),
       });
       console.log('Age updated: ' + snap.val()); // eslint-disable-line
     });
+
     restCount.on('value', (snap) => {
-      this.setState({
-        restCount: snap.val(),
-      });
-      console.log('Rest count: ' + snap.val()); // eslint-disable-line
-      this.addRest(snap);
+      const currentRestCount = snap.val();
+      if (currentRestCount !== 0) {
+        this.setState({
+          restCount: currentRestCount,
+        });
+        console.log('Rest count: ' + currentRestCount); // eslint-disable-line
+        this.addRest(snap);
+      }
     });
+
     playCount.on('value', (snap) => {
-      this.setState({
-        playCount: snap.val(),
-      });
-      console.log('Play count: ' + snap.val()); // eslint-disable-line
-      this.addPlay(snap);
+      const currentPlayCount = snap.val();
+      if (currentPlayCount !== 0) {
+        this.setState({
+          playCount: currentPlayCount,
+        });
+        console.log('Play count: ' + currentPlayCount); // eslint-disable-line
+        this.addPlay(snap);
+      }
     });
+
     workCount.on('value', (snap) => {
-      this.setState({
-        workCount: snap.val(),
-      });
-      console.log('Work count: ' + snap.val()); // eslint-disable-line
-      this.addWork(snap);
+      const currentWorkCount = snap.val();
+      if (currentWorkCount !== 0) {
+        this.setState({
+          workCount: currentWorkCount,
+        });
+        console.log('Work count: ' + currentWorkCount); // eslint-disable-line
+        this.addWork(snap);
+      }
     });
+
     foodCount.on('value', (snap) => {
-      this.setState({
-        foodCount: snap.val(),
-      });
-      console.log('Food count: ' + snap.val()); // eslint-disable-line
-      this.addFood(snap);
+      const currentFoodCount = snap.val();
+      if (currentFoodCount !== 0) {
+        this.setState({
+          foodCount: currentFoodCount,
+        });
+        console.log('Food count: ' + currentFoodCount); // eslint-disable-line
+        this.addFood(snap);
+      }
     });
   }
 
   componentWillUnmount() {
     clearInterval(this.life);
-    alert('Sorry your pet has died'); // TODO: Replace alert with toast or otherwise remove
-    Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000); // TODO: Either make work or remove
-    const clearLife = this.state.life - (this.state.life);
-    // PetControlTop.setState({
-    //   formVisibleOnPage: true,
-    // });
-    this.setState({
-      life: clearLife,
-      name: '',
-      timeSinceBirth: '',
-      image: 'dojodachiDead.gif',
-      restCount: 0,
-      playCount: 0,
-      workCount: 0,
-      foodCount: 0,
-    });
-
+    foodCount.off();
+    workCount.off();
+    playCount.off();
+    restCount.off();
+    petAge.off();
+    petLife.off();
+    petName.off();
     const updatePetInfo = {};
-    updatePetInfo['pet/actions/rest/count'] = 0;
-    updatePetInfo['pet/actions/play/count'] = 0;
-    updatePetInfo['pet/actions/work/count'] = 0;
-    updatePetInfo['pet/actions/food/count'] = 0;
-    updatePetInfo['pet/settings/status'] = 'dead';
-    updatePetInfo['pet/settings/petAge'] = '';
+    if (this.state.life < 10) {
+      this.setState({
+        life: 0,
+        name: '',
+        timeSinceBirth: '',
+        image: 'dojodachiDead.gif',
+        restCount: 0,
+        playCount: 0,
+        workCount: 0,
+        foodCount: 0,
+      });
+      updatePetInfo['pet/settings/status'] = 'dead';
+    } else {
+      updatePetInfo['pet/settings/status'] = 'alive';
+    }
+    updatePetInfo['pet/actions/rest/count'] = this.state.restCount;
+    updatePetInfo['pet/actions/play/count'] = this.state.playCount;
+    updatePetInfo['pet/actions/work/count'] = this.state.workCount;
+    updatePetInfo['pet/actions/food/count'] = this.state.foodCount;
+    updatePetInfo['pet/settings/life'] = this.state.life;
+    updatePetInfo['pet/settings/petName'] = this.state.name;
+    updatePetInfo['pet/settings/petAge'] = this.state.timeSinceBirth;
     fireUser.update(updatePetInfo);
+    // alert('Sorry your pet has died'); // TODO: Replace alert with toast or otherwise remove
+    Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000); // TODO: Either make work or remove
+  }
+
+  updatePetLife() {
+    if ((typeof this.state.life === 'number') && this.state.life > 0) {
+      const updateLifeVal = {};
+      updateLifeVal['pet/settings/life'] = this.state.life;
+      fireUser.update(updateLifeVal);
+    } else {
+      const dbPetLife = fireUser.child('/pet/settings/life');
+      dbPetLife.once('value', (snap) => {
+        this.setState({
+          life: snap.val(),
+        });
+        console.log('Life updated: ' + this.state.life); // eslint-disable-line
+      });
+    }
   }
 
   reduceLife() {
@@ -121,6 +162,7 @@ class PetHealth extends React.Component {
     const newLife = this.state.life - 5;
     console.log(newLife); // eslint-disable-line
     this.setState({ life: newLife });
+    this.updatePetLife();
     if (newLife < 0) {
       this.componentWillUnmount();
     }
@@ -134,8 +176,9 @@ class PetHealth extends React.Component {
     this.setState({
       life: newFood,
       image: newFoodGif,
-      foodCount: this.foodCount += 1,
+      foodCount: this.state.foodCount += 1,
     });
+    this.updatePetLife();
   }
 
   addRest(event) {
@@ -146,8 +189,9 @@ class PetHealth extends React.Component {
     this.setState({
       life: newRest,
       image: newRestGif,
-      restCount: this.restCount += 1,
+      restCount: this.state.restCount += 1,
     });
+    this.updatePetLife();
   }
 
   addWork(event) {
@@ -158,8 +202,9 @@ class PetHealth extends React.Component {
     this.setState({
       life: newWork,
       image: newWorkGif,
-      workCount: this.workCount += 1,
+      workCount: this.state.workCount += 1,
     });
+    this.updatePetLife();
   }
 
   addPlay(event) {
@@ -170,8 +215,9 @@ class PetHealth extends React.Component {
     this.setState({
       life: newPlay,
       image: newPlayGif,
-      playCount: this.playCount += 1,
+      playCount: this.state.playCount += 1,
     });
+    this.updatePetLife();
   }
 
   render() {
@@ -218,7 +264,7 @@ PetHealth.propTypes = {
 };
 
 PetHealth.defaultProps = {
-  life: 100,
+  life: 0,
   image: '',
   name: '',
   timeSinceBirth: '',
