@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
 import { setInterval } from 'timers';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
@@ -91,4 +92,6 @@ News.defaultProps = {
   subreddit: 'news/new',
 };
 
+// TODO: can potentially move news to store
+// export default connect(mapStateToProps)(News);
 export default News;
