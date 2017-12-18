@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../../components/Layout';
-import s from '../../components/Layout/Layout.css';
+import Username from '../../components/Username/Username';
 
 const title = 'Myao Mirror';
 const link1 = 'https://github.com/Myao-mirror';
@@ -15,10 +15,11 @@ class Home extends React.Component {
     return (
       <Layout>
         <h1>Welcome to {title}!</h1>
-        <p>
+        {/* <p>
           For more information visit <a href={link1}>{link1}</a>.
-        </p>
-        <h1>Featured Technologies</h1>
+        </p> */}
+        <Username />
+        {/* <h1>Featured Technologies</h1>
         <ul>
           {this.props.articles.map((article, i) => (
             <li key={i}>
@@ -39,7 +40,7 @@ class Home extends React.Component {
               </ul>
             </li>))
           }
-        </ul>
+        </ul> */}
       </Layout>
     );
   }

@@ -8,7 +8,7 @@ import News from '../../components/News/News';
 import App from '../../components/Pet/PetComponent';
 import Weather from '../../components/Weather/Weather';
 
-// TODO: get rid of all the test
+
 class Landing extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +21,10 @@ class Landing extends React.Component {
   }
 
   componentDidMount() {
+    const username = this.props.route.params.username;
+    console.log('+++++++++++++++++++ username from URL: ', username);
     const rootRef = fire.database().ref().child('voice-pi');
-    const fireUser = rootRef.child('steven-kumquat');
+    const fireUser = rootRef.child(username);
     const newsActive = fireUser.child('/news/settings/active');
     const weatherActive = fireUser.child('/weather/settings/active');
     const petActive = fireUser.child('/pet/settings/active');
@@ -40,8 +42,6 @@ class Landing extends React.Component {
       });
     });
     weatherActive.on('value', (snap) => {
-      console.log('WEATHER STATE: ', this.state.weatherActive);
-      console.log('weather snap: ', snap.val());
       this.setState({
         weatherActive: stringBoolMap[snap.val()],
       });
@@ -70,4 +70,4 @@ class Landing extends React.Component {
   }
 }
 
-export default Landing;
+export default connect()(Landing);

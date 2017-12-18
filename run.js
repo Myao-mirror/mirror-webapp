@@ -97,7 +97,7 @@ tasks.set('publish', () => {
   global.DEBUG = process.argv.includes('--debug') || false;
   const remote = {
     name: 'googleAppEngine',
-    url: 'https://github.com/Myao-mirror/mirror-webapp.git', // TODO: Update deployment URL
+    url: '', // TODO: Update deployment URL. ❗️if you put your github repo address here, it'd be wiped will all the published files when execute "node publish"
   };
   const opts = { cwd: path.resolve(__dirname, './build'), stdio: ['ignore', 'inherit', 'inherit'] };
   const git = (...args) => new Promise((resolve, reject) => {

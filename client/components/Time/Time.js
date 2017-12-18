@@ -45,7 +45,6 @@ class Time extends React.Component {
   render() {
     return (
       <div>
-        <h4>Myao Mirror</h4>
         <h2>{this.state.time}</h2>
         <h5>{this.state.date}</h5>
       </div>
