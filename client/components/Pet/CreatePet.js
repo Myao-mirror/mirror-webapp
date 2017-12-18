@@ -35,7 +35,7 @@ class CreatePet extends React.Component {
       });
       createPetName = snap.val();
       console.log('Name changed: ' + createPetName); // eslint-disable-line
-      if (createPetName.length > 2) {
+      if (createPetName && createPetName.length > 2) {
         const createPet = new PetModel(createPetName);
         this.props.addNewCreatureToPet(createPet);
         this.props.hideFormAfterSubmission();

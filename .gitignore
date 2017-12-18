@@ -224,4 +224,8 @@ server/appsettings*.json
 assets.json
 package-lock.json
 docs/recipes/*
-server.test/obj
+server.test/
+server.test/obj/project.assets.json
+server.test/obj/server.test.csproj.nuget.cache
+server.test/obj/server.test.csproj.nuget.g.props
+server.test/obj/server.test.csproj.nuget.g.targets

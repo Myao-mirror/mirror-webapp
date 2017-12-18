@@ -43,7 +43,7 @@ class Username extends React.Component {
     localStorage.setItem('fname', fname);
     localStorage.setItem('fruit', fruit);
     // TODO: how about other settings
-    console.log("this rootRef: ", this.rootRef);
+    console.log('this rootRef: ', this.rootRef);
     // create user profile in Firebase
     if (!this.props.username.exist) {
       this.rootRef.child(username).set({
@@ -73,7 +73,7 @@ class Username extends React.Component {
     let placeholderFruit = '';
     let lsUsername = '';
     let routeFromLS = '';
-    let routeFromState = `/landing/${this.props.username.username}`;
+    const routeFromState = `/landing/${this.props.username.username}`;
 
     try {
       placeholderFname = localStorage.getItem('fname');
@@ -81,8 +81,8 @@ class Username extends React.Component {
       lsUsername = localStorage.getItem('username');
       routeFromLS = `/landing/${lsUsername}`;
     } catch (e) {
-      placeholderFname = 'your first name';
-      placeholderFruit = 'your favortite fruit';
+      placeholderFname = 'Your first name';
+      placeholderFruit = 'Your favorite fruit';
     }
 
     return (
@@ -90,7 +90,7 @@ class Username extends React.Component {
         <div className={s.section}>
           <h4>Did you talk to your mirror assistant about your username?</h4>
           <div className={[s.card, s.black].join(' ')}>
-            <p className={[s['card-panel'], s.purple, s['lighten-4'], s['black-text']].join(' ')}>
+            <p className={[s['card-panel'], s.yellow, s['lighten-4'], s['black-text']].join(' ')}>
               If it's your first time using Myao Mirror, please talk to your mirror assistant to set up your username.
             </p>
           </div>
@@ -124,39 +124,39 @@ class Username extends React.Component {
               {/* see if localStorage has username */}
               {lsUsername ?
                 <div>
-                  <h5>is this you?&nbsp;<strong>"{lsUsername}"</strong><br /></h5>
-                  <p className={s.center}>Not you? change it up there!</p>
+                  <h5>Is your username &nbsp;<strong>"{lsUsername}"</strong>?<br /></h5>
+                  <p className={s.center}>Not you? Enter a different name!</p>
                   <button
                     onClick={this.handleClick}
-                    className={[s.btn]}
+                    className={[s.btn, s.yellow].join(' ')}
                   >
-                    <Link to={routeFromLS} >TAKE ME TO THE MIRROR!</Link>
+                    <Link to={routeFromLS} className={s['white-text']}><span className={s['black-text']}>See My Myao Mirror</span></Link>
                   </button>
                 </div> : null}
 
               {/* display username on input */}
-              <h5>Your username looks like this:<br />
+              <h5>Your username should look like this:<br />
                 <strong>"{ this.props.username.username }"</strong>
               </h5>
-              
+
               {/* username taken, display link to take user to landing */}
-              {this.props.username.exist ? <p className={s.center}>Oh uh, this username is already taken!</p> : null }
+              {this.props.username.exist ? <p className={[s.center, s['red-text']].join(' ')}>Uh oh, this username is already taken!</p> : null }
               {this.props.username.exist ?
                 <button
                   onClick={this.handleClick}
-                  className={[s.btn]}
+                  className={[s.btn, s.yellow].join(' ')}
                 >
-                  <Link to={routeFromState} >TAKE ME TO THE MIRROR!</Link>
+                  <Link to={routeFromState} className={s['white-text']}><span className={s['black-text']}>See My Myao Mirror</span></Link>
                 </button> : null}
 
-              {/* if username valid and not taken, enable button to link user to landing/:username */}
+              {/* If username valid and not taken, enable button to link user to landing/:username */}
               {this.props.username.exist ? null :
               <button
                 onClick={this.handleClick}
-                className={[s.btn]}
+                className={[s.btn, s.yellow].join(' ')}
                 disabled={bool}
               >
-                <Link to={routeFromState} >SET USERNAME</Link>
+                <Link to={routeFromState} className={s['white-text']}><span className={s['black-text']}>Enter Username</span></Link>
 
               </button>}
             </form>
