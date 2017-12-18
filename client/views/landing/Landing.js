@@ -39,7 +39,7 @@ class Landing extends React.Component {
   
   componentDidMount() {
     const username = this.props.route.params ? this.props.route.params.username : null;
-    console.log('+++++++++++++++++++ username from URL: ', username);
+    console.log('+++++++++++++++++++ username from store: ', this.props.username.username);
     // const rootRef = fire.database().ref().child('voice-pi');
     this.fireUser = dbRoot.child(username);
     this.newsActive = this.fireUser.child('/news/settings/active');
@@ -94,5 +94,4 @@ class Landing extends React.Component {
   }
 }
 
-// export default connect()(Landing);
-export default Landing;
+export default connect()(Landing);

@@ -18,7 +18,7 @@ class PetControlTop extends React.Component {
     this.hideForm = this.hideForm.bind(this);
     this.state = { formVisibleOnPage: true };
   }
-  
+
   componentDidMount() {
     petStatus.on('value', (snap) => {
       const currentPetStatus = snap.val();
