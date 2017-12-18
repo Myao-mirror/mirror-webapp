@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import fire from '../../utils/firebase/setup';
 
 import Layout from '../../components/Layout';
@@ -19,7 +20,6 @@ const stringBoolMap = {
   true: true,
 };
 
-// TODO: get rid of all the test
 class Landing extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +32,19 @@ class Landing extends React.Component {
   }
 
   componentDidMount() {
+    const username = this.props.route.params.username;
+    console.log('+++++++++++++++++++ username from URL: ', username);
+    // const rootRef = fire.database().ref().child('voice-pi');
+    // const fireUser = rootRef.child(username);
+    // const newsActive = fireUser.child('/news/settings/active');
+    // const weatherActive = fireUser.child('/weather/settings/active');
+    // const petActive = fireUser.child('/pet/settings/active');
+    // const timeActive = fireUser.child('/time/settings/active');
+
+    const stringBoolMap = {
+      false: false,
+      true: true,
+    };
     // "on" method sync data in realtime
     newsActive.on('value', (snap) => {
       this.setState({
@@ -76,4 +89,4 @@ class Landing extends React.Component {
   }
 }
 
-export default Landing;
+export default connect()(Landing);
