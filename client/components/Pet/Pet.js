@@ -90,7 +90,6 @@ Pet.propTypes = {
 
 Pet.defaultProps = {
   addNewCreatureToPet: null,
-  store,
 };
 
 export default connect()(Pet);
