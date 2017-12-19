@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { setInterval } from 'timers';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
@@ -11,10 +11,12 @@ class News extends React.Component {
     this.state = {
       news: [],
     };
+    this.username = '';
   }
 
   componentWillMount() {
     this.getNews();
+    this.username = this.props.username.username;
   }
 
   componentDidMount() {
@@ -92,6 +94,8 @@ News.defaultProps = {
   subreddit: 'news/new',
 };
 
-// TODO: can potentially move news to store
-// export default connect(mapStateToProps)(News);
-export default News;
+const mapStateToProps = state => ({
+  username: state.username,
+});
+
+export default connect(mapStateToProps)(News);
