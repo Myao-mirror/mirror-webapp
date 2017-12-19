@@ -11,9 +11,11 @@ class Weather extends React.PureComponent {
   constructor(props) {
     super(props);
     this.fetchWeatherComponentFunc = this.fetchWeatherComponentFunc.bind(this);
+    this.username = '';
   }
 
   componentWillMount() {
+    this.username = this.props.username.username;
     this.props.dispatch(fetchWeather());
   }
   componentDidMount() {
@@ -58,6 +60,7 @@ class Weather extends React.PureComponent {
 
 const mapStateToProps = state => ({
   weather: state.weather,
+  username: state.username,
 });
 
 // DID NOT USE "mapDispatchToProps" bcuz if done so, this.props.<action> does not work

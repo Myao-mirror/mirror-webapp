@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
 import PetControlTop from './PetControlTop';
 import PetDetail from './PetDetail';
+import store from '../../store';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 const dbRoot = fire.database().ref().child('voice-pi');
@@ -120,4 +122,4 @@ Pet.defaultProps = {
   addNewCreatureToPet: null,
 };
 
-export default Pet;
+export default connect()(Pet);

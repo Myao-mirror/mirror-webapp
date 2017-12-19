@@ -1,10 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import fire from '../../utils/firebase/setup';
 import Pet from './Pet';
 
 const dbRoot = fire.database().ref().child('voice-pi');
-const fireUser = dbRoot.child('alice-kiwi');
-const petActive = fireUser.child('/pet/settings/active');
 
 class App extends React.Component {
   constructor(props) {
@@ -12,14 +11,23 @@ class App extends React.Component {
     this.state = {
       petActive: true,
     };
+    this.username = '';
+    this.fireUser = {};
+    this.petActive = null;
   }
 
+  componentWillMount() {
+    this.username = this.props.username.username;
+  }
+  
   componentDidMount() {
+    this.fireUser = dbRoot.child(this.username);
+    this.petActive = this.fireUser.child('/pet/settings/active');
     const stringBoolMap = {
       false: false,
       true: true,
     };
-    petActive.on('value', (snap) => {
+    this.petActive.on('value', (snap) => {
       this.setState({
         petActive: stringBoolMap[snap.val()],
       });
@@ -27,7 +35,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    petActive.off();
+    this.petActive.off();
   }
 
   render() {
@@ -39,4 +47,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  username: state.username,
+});
+
+export default connect(mapStateToProps)(App);

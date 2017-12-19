@@ -16,6 +16,7 @@ class Home extends React.Component {
     return (
       <Layout>
         <h2 className={[s['white-text'], s['center-align']].join(' ')}>Welcome to your {title}!</h2>
+        <h1>Welcome to {title}!</h1>
         {/* <p>
           For more information visit <a href={link1}>{link1}</a>.
         </p> */}

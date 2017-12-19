@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 
 function getTimeNDay() {
   const options = {
@@ -25,6 +27,11 @@ class Time extends React.Component {
       date: getTimeNDay().day,
     };
     this.updateTime = this.updateTime.bind(this);
+    this.username = '';
+  }
+
+  componentWillMount() {
+    this.username = this.props.username.username;
   }
 
   componentDidMount() {
@@ -52,6 +59,9 @@ class Time extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  username: state.username,
+});
 
-export default Time;
+export default connect(mapStateToProps)(Time);
 

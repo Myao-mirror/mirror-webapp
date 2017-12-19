@@ -2,16 +2,13 @@ import Moment from 'moment';
 import fire from '../../utils/firebase/setup';
 
 const dbRoot = fire.database().ref().child('voice-pi');
-const fireUser = dbRoot.child('alice-kiwi');
-const dbPetAlive = fireUser.child('/pet/settings/status');
-const dbPetName = fireUser.child('/pet/settings/petName');
-const dbPetAge = fireUser.child('/pet/settings/petAge');
-const dbPetLife = fireUser.child('/pet/settings/life');
 
 class PetModel {
-  constructor(name) {
+  constructor(name, username) {
     this.name = name;
-
+    this.image = '/dojodachiIdling.gif';
+    this.fireUser = dbRoot.child(username);
+    const dbPetAlive = this.fireUser.child('/pet/settings/status');
     dbPetAlive.once('value', (snap) => {
       const results = snap.val();
       if (results === 'dead') {
@@ -27,6 +24,7 @@ class PetModel {
         this.getPetName();
         this.getPetAge();
         this.getPetLife();
+        this.fireUser.update(createPet);
       }
     });
     this.image = 'dojodachiIdling.gif';
@@ -40,6 +38,7 @@ class PetModel {
   }
 
   getPetAge() {
+    const dbPetAge = this.fireUser.child('/pet/settings/petAge');
     dbPetAge.once('value', (snap) => {
       const results = snap.val();
       this.timeSinceBirth = results;
@@ -47,6 +46,7 @@ class PetModel {
   }
 
   getPetLife() {
+    const dbPetLife = this.fireUser.child('/pet/settings/life');
     dbPetLife.once('value', (snap) => {
       const results = snap.val();
       this.life = results;

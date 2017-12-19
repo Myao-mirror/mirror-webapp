@@ -1,12 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
 import CreatePet from './CreatePet';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
+
 const dbRoot = fire.database().ref().child('voice-pi');
-const fireUser = dbRoot.child('alice-kiwi');
-const petStatus = fireUser.child('/pet/settings/status');
+// const fireUser = dbRoot.child('alice-kiwi');
+// const petStatus = fireUser.child('/pet/settings/status');
 
 class PetControlTop extends React.Component {
   constructor(props) {
@@ -14,10 +16,18 @@ class PetControlTop extends React.Component {
     this.showForm = this.showForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
     this.state = { formVisibleOnPage: true };
+
+    this.username = '';
+  }
+
+  componentWillMount() {
+    this.username = this.props.username.username;
   }
 
   componentDidMount() {
-    petStatus.on('value', (snap) => {
+    this.fireUser = dbRoot.child(this.username);
+    this.petStatus = this.fireUser.child('/pet/settings/status');
+    this.petStatus.on('value', (snap) => {
       const currentPetStatus = snap.val();
       if (currentPetStatus === 'dead') {
         this.showForm();
@@ -28,7 +38,7 @@ class PetControlTop extends React.Component {
   }
 
   componentWillUnmount() {
-    petStatus.off();
+    this.petStatus.off();
   }
 
   showForm() {
@@ -67,4 +77,8 @@ PetControlTop.defaultProps = {
   addNewCreatureToPet: null,
 };
 
-export default PetControlTop;
+const mapStateToProps = state => ({
+  username: state.username,
+});
+
+export default connect(mapStateToProps)(PetControlTop);

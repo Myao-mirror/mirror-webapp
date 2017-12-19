@@ -229,3 +229,4 @@ server.test/obj/project.assets.json
 server.test/obj/server.test.csproj.nuget.cache
 server.test/obj/server.test.csproj.nuget.g.props
 server.test/obj/server.test.csproj.nuget.g.targets
+server.test/obj/Debug/netcoreapp2.0/server.test.csproj.CoreCompileInputs.cache

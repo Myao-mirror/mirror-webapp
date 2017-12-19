@@ -43,9 +43,8 @@ class Username extends React.Component {
     localStorage.setItem('fname', fname);
     localStorage.setItem('fruit', fruit);
     // TODO: how about other settings
-    console.log('this rootRef: ', this.rootRef);
     // create user profile in Firebase
-    if (!this.props.username.exist) {
+    if (!this.props.username.exist && this.props.username.username) {
       this.rootRef.child(username).set({
         news: { settings: { active: true } },
         time: { settings: { active: true } },
@@ -67,6 +66,7 @@ class Username extends React.Component {
       bool = (!this._fname.value || !this._fruit.value);
     } catch (e) {
       console.log(e);
+      null;
     }
 
     let placeholderFname = '';
@@ -74,6 +74,7 @@ class Username extends React.Component {
     let lsUsername = '';
     let routeFromLS = '';
     const routeFromState = `/landing/${this.props.username.username}`;
+    let routeFromState = `/landing/${this.props.username.username}`;
 
     try {
       placeholderFname = localStorage.getItem('fname');
@@ -90,7 +91,7 @@ class Username extends React.Component {
         <div className={s.section}>
           <h4>Did you talk to your mirror assistant about your username?</h4>
           <div className={[s.card, s.black].join(' ')}>
-            <p className={[s['card-panel'], s.yellow, s['lighten-4'], s['black-text']].join(' ')}>
+            <p className={[s['card-panel'], s.purple, s['lighten-4'], s['black-text']].join(' ')}>
               If it's your first time using Myao Mirror, please talk to your mirror assistant to set up your username.
             </p>
           </div>
@@ -157,7 +158,6 @@ class Username extends React.Component {
                 disabled={bool}
               >
                 <Link to={routeFromState} className={s['white-text']}><span className={s['black-text']}>Enter Username</span></Link>
-
               </button>}
             </form>
           </div>
