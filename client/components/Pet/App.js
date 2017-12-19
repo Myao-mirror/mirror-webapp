@@ -1,13 +1,54 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import fire from '../../utils/firebase/setup';
 import Pet from './Pet';
 
+const dbRoot = fire.database().ref().child('voice-pi');
 
-function App() {
-  return (
-    <div>
-      <Pet />
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      petActive: true,
+    };
+    this.username = '';
+    this.fireUser = {};
+    this.petActive = null;
+  }
+
+  componentWillMount() {
+    this.username = this.props.username.username;
+  }
+  
+  componentDidMount() {
+    this.fireUser = dbRoot.child(this.username);
+    this.petActive = this.fireUser.child('/pet/settings/active');
+    const stringBoolMap = {
+      false: false,
+      true: true,
+    };
+    this.petActive.on('value', (snap) => {
+      this.setState({
+        petActive: stringBoolMap[snap.val()],
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this.petActive.off();
+  }
+
+  render() {
+    return (
+      <div>
+        { this.state.petActive ? <Pet /> : null }
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  username: state.username,
+});
+
+export default connect(mapStateToProps)(App);

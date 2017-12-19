@@ -2,11 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import fire from '../../utils/firebase/setup';
 
+import { usernameSubmit } from '../../actions/usernameActions';
+
 import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
 import News from '../../components/News/News';
-import App from '../../components/Pet/PetComponent';
+// import App from '../../components/Pet/PetComponent';
+import App from '../../components/Pet/App';
+import Pet from '../../components/Pet/Pet';
 import Weather from '../../components/Weather/Weather';
+
+
+// Set the root of the DB
+const dbRoot = fire.database().ref().child('voice-pi');
+const stringBoolMap = {
+  false: false,
+  true: true,
+};
 
 
 class Landing extends React.Component {
@@ -18,44 +30,56 @@ class Landing extends React.Component {
       timeActive: true,
       weatherActive: false,
     };
+    this.fireUser = {};
+    this.newsActive = null;
+    this.weatherActive = null;
+    this.petActive = null;
+    this.timeActive = null;
+  }
+
+  componentWillMount() {
+    const username = this.props.route.params.username;
+    const distructUsername = username.split('-');
+    // Save username in store in case store doesn't have it already. When user directly put landing/<username>, without going thru the home page, the store won't have user info.
+    this.props.dispatch(usernameSubmit(distructUsername[0], distructUsername[1]));
   }
 
   componentDidMount() {
     const username = this.props.route.params.username;
-    console.log('+++++++++++++++++++ username from URL: ', username);
-    const rootRef = fire.database().ref().child('voice-pi');
-    const fireUser = rootRef.child(username);
-    const newsActive = fireUser.child('/news/settings/active');
-    const weatherActive = fireUser.child('/weather/settings/active');
-    const petActive = fireUser.child('/pet/settings/active');
-    const timeActive = fireUser.child('/time/settings/active');
-
-    const stringBoolMap = {
-      false: false,
-      true: true,
-    };
+    this.fireUser = dbRoot.child(username);
+    this.newsActive = this.fireUser.child('/news/settings/active');
+    this.weatherActive = this.fireUser.child('/weather/settings/active');
+    this.petActive = this.fireUser.child('/pet/settings/active');
+    this.timeActive = this.fireUser.child('/time/settings/active');
 
     // "on" method sync data in realtime
-    newsActive.on('value', (snap) => {
+    this.newsActive.on('value', (snap) => {
       this.setState({
         newsActive: stringBoolMap[snap.val()],
       });
     });
-    weatherActive.on('value', (snap) => {
+    this.weatherActive.on('value', (snap) => {
       this.setState({
         weatherActive: stringBoolMap[snap.val()],
       });
     });
-    petActive.on('value', (snap) => {
+    this.petActive.on('value', (snap) => {
       this.setState({
         petActive: stringBoolMap[snap.val()],
       });
     });
-    timeActive.on('value', (snap) => {
+    this.timeActive.on('value', (snap) => {
       this.setState({
         timeActive: stringBoolMap[snap.val()],
       });
     });
+  }
+
+  componentWillUnmount() {
+    this.newsActive.off();
+    this.weatherActive.off();
+    this.petActive.off();
+    this.timeActive.off();
   }
 
   render() {
@@ -70,4 +94,8 @@ class Landing extends React.Component {
   }
 }
 
-export default connect()(Landing);
+const mapStateToProps = state => ({
+  username: state.username,
+});
+
+export default connect(mapStateToProps)(Landing);

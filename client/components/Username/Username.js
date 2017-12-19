@@ -43,9 +43,8 @@ class Username extends React.Component {
     localStorage.setItem('fname', fname);
     localStorage.setItem('fruit', fruit);
     // TODO: how about other settings
-    console.log("this rootRef: ", this.rootRef);
     // create user profile in Firebase
-    if (!this.props.username.exist) {
+    if (!this.props.username.exist && this.props.username.username) {
       this.rootRef.child(username).set({
         news: { settings: { active: true } },
         time: { settings: { active: true } },
@@ -66,7 +65,7 @@ class Username extends React.Component {
     try {
       bool = (!this._fname.value || !this._fruit.value);
     } catch (e) {
-      console.log(e);
+      null;
     }
 
     let placeholderFname = '';

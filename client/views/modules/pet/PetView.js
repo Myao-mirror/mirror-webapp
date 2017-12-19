@@ -1,8 +1,7 @@
-// import { Provider } from 'react-redux';
 import React from 'react';
-import App from '../../../components/Pet/PetComponent';
+// import App from '../../../components/Pet/PetComponent';
+import App from '../../../components/Pet/App';
 import Layout from '../../../components/Layout';
-// import store from '../../../store';
 
 function PetView() {
   return (

@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PetControlTop from './PetControlTop';
 import PetDetail from './PetDetail';
+import store from '../../store';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 class Pet extends React.Component {
@@ -18,7 +20,7 @@ class Pet extends React.Component {
     this.timeSinceBirth = setInterval(
       () =>
         this.updatePetLife(),
-      1000,
+      3000,
     );
   }
 
@@ -28,16 +30,19 @@ class Pet extends React.Component {
 
   addNewCreatureToPet(newPet) {
     const newMasterPet = this.state.masterPet.slice();
+    newMasterPet.pop();
     newMasterPet.push(newPet);
     this.setState({ masterPet: newMasterPet });
-    console.log(this.state.masterPet);
+    console.log(this.state.masterPet); // eslint-disable-line
   }
 
   updatePetLife() {
     const newMasterPet = this.state.masterPet.slice();
-    newMasterPet.forEach(creature =>
-      creature.setTimeSinceBirth());
-    this.setState({ masterPet: newMasterPet });
+    newMasterPet.forEach(
+      creature =>
+        this.state.timeSinceBirth,
+      this.setState({ masterPet: newMasterPet }),
+    );
   }
 
   render() {
@@ -53,7 +58,7 @@ class Pet extends React.Component {
 }
 
 function PetList(props) {
-  console.log(props.creatures);
+  console.log(props.creatures); // eslint-disable-line
   return (
     <div className={[s.card, s.black, s['white-text']].join(' ')}>
       <div className={s['card-content']}>
@@ -87,4 +92,4 @@ Pet.defaultProps = {
   addNewCreatureToPet: null,
 };
 
-export default Pet;
+export default connect()(Pet);
