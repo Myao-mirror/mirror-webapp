@@ -73,7 +73,6 @@ class Username extends React.Component {
     let placeholderFruit = '';
     let lsUsername = '';
     let routeFromLS = '';
-    const routeFromState = `/landing/${this.props.username.username}`;
     let routeFromState = `/landing/${this.props.username.username}`;
 
     try {
