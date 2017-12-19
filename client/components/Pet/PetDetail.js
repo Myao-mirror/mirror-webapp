@@ -11,11 +11,12 @@ let currentPetName = '';
 let currentTimeSinceBirth = '';
 const getPetName = fireUser.child('/pet/settings/petName');
 const getPetAge = fireUser.child('/pet/settings/petAge');
+// const petStatus = fireUser.child('/pet/settings/status');
 
 class PetDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.updateName = this.updateName.bind(this);
+    // this.updateName = this.updateName.bind(this);
     this.updateAge = this.updateAge.bind(this);
     this.state = {
       name: CreatePet.name,
@@ -58,6 +59,14 @@ class PetDetail extends React.Component {
       currentTimeSinceBirth = snap.val();
       console.log('Age changed: ' + currentTimeSinceBirth); // eslint-disable-line
     });
+    // petStatus.on('value', (snap) => {
+    //   const currentPetStatus = snap.val();
+    //   if (currentPetStatus === 'dead') {
+    //     this.showForm();
+    //   } else {
+    //     this.hideForm();
+    //   }
+    // });
   }
 
   componentWillUnmount() {
@@ -65,17 +74,17 @@ class PetDetail extends React.Component {
       name: '',
       timeSinceBirth: null,
     });
-    this.updateName();
+    // this.updateName();
     this.updateAge();
     getPetName.off();
     getPetAge.off();
   }
 
-  updateName() {
-    const updateDbPetName = {};
-    updateDbPetName['pet/settings/petName'] = this.state.name;
-    fireUser.update(updateDbPetName);
-  }
+  // updateName() {
+  //   const updateDbPetName = {};
+  //   updateDbPetName['pet/settings/petName'] = this.state.name;
+  //   fireUser.update(updateDbPetName);
+  // }
 
   updateAge() {
     const updateDbPetAge = {};
@@ -87,7 +96,7 @@ class PetDetail extends React.Component {
     return (
       <div className={[s.card, s.black, s['white-text']].join(' ')}>
         <div className={s['card-content']}>
-          <h6>Pet Name: {currentPetName}</h6>
+          <h6>Pet Name: {this.state.name}</h6>
           <h6>Time Since Birth: {currentTimeSinceBirth}</h6>
           <h6><PetHealth reduceLife={this.reduceLife} /></h6>
         </div>
@@ -95,19 +104,5 @@ class PetDetail extends React.Component {
     );
   }
 }
-
-// PetDetail.propTypes = {
-//   name: PropTypes.string,
-//   timeSinceBirth: PropTypes.string,
-//   life: PropTypes.number,
-//   reduceLife: PropTypes.func,
-// };
-
-// PetDetail.defaultProps = {
-//   name: '',
-//   timeSinceBirth: '',
-//   life: 0,
-//   reduceLife: null,
-// };
 
 export default PetDetail;

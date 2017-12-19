@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import fire from '../../utils/firebase/setup';
 import PetControlTop from './PetControlTop';
 import PetDetail from './PetDetail';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+
+const dbRoot = fire.database().ref().child('voice-pi');
+const fireUser = dbRoot.child('alice-kiwi');
+const petStatus = fireUser.child('/pet/settings/status');
 
 class Pet extends React.Component {
   constructor(props) {
@@ -15,11 +20,19 @@ class Pet extends React.Component {
   }
 
   componentDidMount() {
-    this.timeSinceBirth = setInterval(
-      () =>
-        this.updatePetLife(),
-      3000,
-    );
+    petStatus.on('value', (snap) => {
+      const currentPetStatus = snap.val();
+      if (currentPetStatus === 'dead') {
+        const removeMasterPet = this.state.masterPet.slice();
+        removeMasterPet.pop();
+      } else {
+        this.timeSinceBirth = setInterval(
+          () =>
+            this.updatePetLife(),
+          3000,
+        );
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -34,6 +47,16 @@ class Pet extends React.Component {
     console.log(this.state.masterPet); // eslint-disable-line
   }
 
+  // updatePetLife() {
+  //   const newMasterPet = this.state.masterPet.slice();
+  //   newMasterPet.length = 1;
+  //   newMasterPet.forEach(
+  //     creature =>
+  //       this.state.timeSinceBirth,
+  //     this.setState({ masterPet: newMasterPet }),
+  //   );
+  // }
+
   updatePetLife() {
     const newMasterPet = this.state.masterPet.slice();
     newMasterPet.forEach(
@@ -41,6 +64,13 @@ class Pet extends React.Component {
         this.state.timeSinceBirth,
       this.setState({ masterPet: newMasterPet }),
     );
+    if ((typeof this.state.life === 'number') && this.state.life > 0) {
+      const updateLifeVal = {};
+      updateLifeVal['pet/settings/life'] = this.state.life;
+      fireUser.update(updateLifeVal);
+    } else {
+      this.componentWillUnmount();
+    }
   }
 
   render() {

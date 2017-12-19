@@ -35,7 +35,7 @@ class PetHealth extends React.Component {
 
   componentDidMount() {
     this.life = setInterval(() =>
-      this.reduceLife(), 5000);
+      this.reduceLife(), 20000);
 
     // "on" method sync data in realtime
     petName.on('value', (snap) => {
@@ -46,50 +46,61 @@ class PetHealth extends React.Component {
     });
 
     petLife.on('value', (snap) => {
+      const currentLife = snap.val();
       this.setState({
-        life: snap.val(),
+        life: currentLife,
       });
-      console.log('Life updated: ' + snap.val()); // eslint-disable-line
+      console.log('Life updated: ' + currentLife); // eslint-disable-line
     });
 
     petAge.on('value', (snap) => {
+      const currentAge = snap.val();
       this.setState({
-        timeSinceBirth: snap.val(),
+        timeSinceBirth: currentAge,
       });
-      console.log('Age updated: ' + snap.val()); // eslint-disable-line
+      console.log('Age updated: ' + currentAge); // eslint-disable-line
     });
 
     restCount.on('value', (snap) => {
       const currentRestCount = snap.val();
-      if (currentRestCount !== 0) {
+      if (this.state.restCount === 0) {
         this.setState({
           restCount: currentRestCount,
         });
-        console.log('Rest count: ' + currentRestCount); // eslint-disable-line
+      } else if (currentRestCount !== 0) {
         this.addRest(snap);
+      } else {
+        console.log(`this.state.restCount: ${this.state.restCount}`); // eslint-disable-line
       }
+      console.log(`currentRestCount: ${currentRestCount}`); // eslint-disable-line
     });
 
     playCount.on('value', (snap) => {
       const currentPlayCount = snap.val();
-      if (currentPlayCount !== 0) {
+      if (this.state.playCount === 0) {
         this.setState({
           playCount: currentPlayCount,
         });
-        console.log('Play count: ' + currentPlayCount); // eslint-disable-line
+      } else if (currentPlayCount !== 0) {
         this.addPlay(snap);
+      } else {
+        console.log(`this.state.playCount: ${this.state.playCount}`); // eslint-disable-line
       }
+      console.log(`currentPlayCount: ${currentPlayCount}`); // eslint-disable-line
     });
 
     workCount.on('value', (snap) => {
       const currentWorkCount = snap.val();
-      if (currentWorkCount !== 0) {
+      if (currentWorkCount === 0) {
         this.setState({
           workCount: currentWorkCount,
         });
-        console.log('Work count: ' + currentWorkCount); // eslint-disable-line
+      } else if (currentWorkCount !== 0) {
         this.addWork(snap);
+      } else {
+        console.log(`this.state.workCount: ${this.state.workCount}`); // eslint-disable-line
       }
+      console.log(`currentWorkCount: ${currentWorkCount}`); // eslint-disable-line
     });
 
     foodCount.on('value', (snap) => {
@@ -98,9 +109,12 @@ class PetHealth extends React.Component {
         this.setState({
           foodCount: currentFoodCount,
         });
-        console.log('Food count: ' + currentFoodCount); // eslint-disable-line
+      } else if (currentFoodCount !== 0) {
         this.addFood(snap);
+      } else {
+        console.log(`this.state.foodCount: ${this.state.foodCount}`); // eslint-disable-line
       }
+      console.log(`currentFoodCount: ${currentFoodCount}`); // eslint-disable-line
     });
   }
 
@@ -114,7 +128,7 @@ class PetHealth extends React.Component {
     petLife.off();
     petName.off();
     const updatePetInfo = {};
-    if (this.state.life < 10) {
+    if (this.state.life <= 0) {
       this.setState({
         life: 0,
         name: '',
@@ -147,14 +161,15 @@ class PetHealth extends React.Component {
       updateLifeVal['pet/settings/life'] = this.state.life;
       fireUser.update(updateLifeVal);
     } else {
-      const dbPetLife = fireUser.child('/pet/settings/life');
-      dbPetLife.once('value', (snap) => {
-        this.setState({
-          life: snap.val(),
-        });
-        console.log('Life updated: ' + this.state.life); // eslint-disable-line
-      });
+      this.componentWillUnmount();
     }
+    // const dbPetLife = fireUser.child('/pet/settings/life');
+    // dbPetLife.once('value', (snap) => {
+    //   this.setState({
+    //     life: snap.val(),
+    //   });
+    //   console.log('Life updated: ' + this.state.life); // eslint-disable-line
+    // });
   }
 
   reduceLife() {
