@@ -62,16 +62,16 @@ class PetHealth extends React.Component {
 
     this.petLife.on('value', (snap) => {
       this.setState({
-        life: currentLife,
+        life: snap.val(),
       });
-      console.log('Life updated: ' + currentLife); // eslint-disable-line
+      console.log('Life updated: ' + snap.val()); // eslint-disable-line
     });
 
     this.petAge.on('value', (snap) => {
       this.setState({
-        timeSinceBirth: currentAge,
+        timeSinceBirth: snap.val(),
       });
-      console.log('Age updated: ' + currentAge); // eslint-disable-line
+      console.log('Age updated: ' + snap.val()); // eslint-disable-line
     });
 
     this.restCount.on('value', (snap) => {
@@ -133,13 +133,6 @@ class PetHealth extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.life);
-    this.foodCount.off();
-    this.workCount.off();
-    this.playCount.off();
-    this.restCount.off();
-    this.petAge.off();
-    this.petLife.off();
-    this.petName.off();
     const updatePetInfo = {};
     if (this.state.life <= 0) {
       this.setState({
@@ -167,6 +160,13 @@ class PetHealth extends React.Component {
     this.fireUser.update(updatePetInfo);
     // alert('Sorry your pet has died'); // TODO: Replace alert with toast or otherwise remove
     Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000); // TODO: Either make work or remove
+    this.foodCount.off();
+    this.workCount.off();
+    this.playCount.off();
+    this.restCount.off();
+    this.petAge.off();
+    this.petLife.off();
+    this.petName.off();
   }
 
   updatePetLife() {

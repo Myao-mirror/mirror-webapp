@@ -8,8 +8,6 @@ import store from '../../store';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 const dbRoot = fire.database().ref().child('voice-pi');
-const fireUser = dbRoot.child('alice-kiwi');
-const petStatus = fireUser.child('/pet/settings/status');
 
 class Pet extends React.Component {
   constructor(props) {
@@ -19,10 +17,19 @@ class Pet extends React.Component {
     };
     this.addNewCreatureToPet = this.addNewCreatureToPet.bind(this);
     this.updatePetLife = this.updatePetLife.bind(this);
+    this.username = '';
+    this.fireUser = {};
+    this.petStatus = null;
+  }
+
+  componentWillMount() {
+    this.username = this.props.username.username;
   }
 
   componentDidMount() {
-    petStatus.on('value', (snap) => {
+    this.fireUser = dbRoot.child(this.username);
+    this.petStatus = this.fireUser.child('/pet/settings/status');
+    this.petStatus.on('value', (snap) => {
       const currentPetStatus = snap.val();
       if (currentPetStatus === 'dead') {
         const removeMasterPet = this.state.masterPet.slice();
@@ -31,7 +38,7 @@ class Pet extends React.Component {
         this.timeSinceBirth = setInterval(
           () =>
             this.updatePetLife(),
-          3000,
+          6000,
         );
       }
     });
@@ -49,16 +56,6 @@ class Pet extends React.Component {
     console.log(this.state.masterPet); // eslint-disable-line
   }
 
-  // updatePetLife() {
-  //   const newMasterPet = this.state.masterPet.slice();
-  //   newMasterPet.length = 1;
-  //   newMasterPet.forEach(
-  //     creature =>
-  //       this.state.timeSinceBirth,
-  //     this.setState({ masterPet: newMasterPet }),
-  //   );
-  // }
-
   updatePetLife() {
     const newMasterPet = this.state.masterPet.slice();
     newMasterPet.forEach(
@@ -66,10 +63,10 @@ class Pet extends React.Component {
         this.state.timeSinceBirth,
       this.setState({ masterPet: newMasterPet }),
     );
-    if ((typeof this.state.life === 'number') && this.state.life > 0) {
+    if ((typeof this.state.life === 'number') && this.state.life > -5) {
       const updateLifeVal = {};
       updateLifeVal['pet/settings/life'] = this.state.life;
-      fireUser.update(updateLifeVal);
+      this.fireUser.update(updateLifeVal);
     } else {
       this.componentWillUnmount();
     }
@@ -122,4 +119,8 @@ Pet.defaultProps = {
   addNewCreatureToPet: null,
 };
 
-export default connect()(Pet);
+const mapStateToProps = state => ({
+  username: state.username,
+});
+
+export default connect(mapStateToProps)(Pet);

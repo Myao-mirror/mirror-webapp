@@ -19,7 +19,7 @@ class App extends React.Component {
   componentWillMount() {
     this.username = this.props.username.username;
   }
-  
+
   componentDidMount() {
     this.fireUser = dbRoot.child(this.username);
     this.petActive = this.fireUser.child('/pet/settings/active');

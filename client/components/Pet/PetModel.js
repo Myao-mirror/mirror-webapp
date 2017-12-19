@@ -8,8 +8,11 @@ class PetModel {
     this.name = name;
     this.image = '/dojodachiIdling.gif';
     this.fireUser = dbRoot.child(username);
-    const dbPetAlive = this.fireUser.child('/pet/settings/status');
-    dbPetAlive.once('value', (snap) => {
+    this.dbPetAlive = this.fireUser.child('/pet/settings/status');
+    this.dbPetAge = this.fireUser.child('/pet/settings/petAge');
+    this.dbPetLife = this.fireUser.child('/pet/settings/life');
+    this.getPetName = this.getPetLife.bind(this);
+    this.dbPetAlive.once('value', (snap) => {
       const results = snap.val();
       if (results === 'dead') {
         this.timeBirth = new Moment();
@@ -19,37 +22,31 @@ class PetModel {
         createPet['pet/settings/petName'] = this.name;
         createPet['pet/settings/petAge'] = this.timeSinceBirth;
         createPet['pet/settings/life'] = this.life;
-        fireUser.update(createPet);
+        this.fireUser.update(createPet);
       } else {
         this.getPetName();
         this.getPetAge();
         this.getPetLife();
-        this.fireUser.update(createPet);
+        this.fireUser.update(this.createPet);
       }
     });
-    this.image = 'dojodachiIdling.gif';
   }
 
   getPetName() {
-    dbPetName.once('value', (snap) => {
-      const results = snap.val();
-      this.name = results;
+    this.dbPetName.once('value', (snap) => {
+      this.name = snap.val();
     });
   }
 
   getPetAge() {
-    const dbPetAge = this.fireUser.child('/pet/settings/petAge');
-    dbPetAge.once('value', (snap) => {
-      const results = snap.val();
-      this.timeSinceBirth = results;
+    this.dbPetAge.once('value', (snap) => {
+      this.timeSinceBirth = snap.val();
     });
   }
 
   getPetLife() {
-    const dbPetLife = this.fireUser.child('/pet/settings/life');
-    dbPetLife.once('value', (snap) => {
-      const results = snap.val();
-      this.life = results;
+    this.dbPetLife.once('value', (snap) => {
+      this.life = snap.val();
     });
   }
 }

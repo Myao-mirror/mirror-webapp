@@ -5,10 +5,7 @@ import fire from '../../utils/firebase/setup';
 import CreatePet from './CreatePet';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
-
 const dbRoot = fire.database().ref().child('voice-pi');
-// const fireUser = dbRoot.child('alice-kiwi');
-// const petStatus = fireUser.child('/pet/settings/status');
 
 class PetControlTop extends React.Component {
   constructor(props) {
@@ -16,7 +13,6 @@ class PetControlTop extends React.Component {
     this.showForm = this.showForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
     this.state = { formVisibleOnPage: true };
-
     this.username = '';
   }
 
