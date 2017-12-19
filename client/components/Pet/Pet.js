@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PetControlTop from './PetControlTop';
 import PetDetail from './PetDetail';
+import store from '../../store';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 class Pet extends React.Component {
@@ -18,7 +20,7 @@ class Pet extends React.Component {
     this.timeSinceBirth = setInterval(
       () =>
         this.updatePetLife(),
-      3000,
+      10000,
     );
   }
 
@@ -88,6 +90,7 @@ Pet.propTypes = {
 
 Pet.defaultProps = {
   addNewCreatureToPet: null,
+  store,
 };
 
-export default Pet;
+export default connect()(Pet);

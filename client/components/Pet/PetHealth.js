@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
@@ -6,14 +7,6 @@ import * as Materialize from '../../../node_modules/materialize-css/dist/js/mate
 import MaterialIcon from '../../../node_modules/react-google-material-icons';
 
 const dbRoot = fire.database().ref().child('voice-pi');
-const fireUser = dbRoot.child('alice-kiwi');
-const restCount = fireUser.child('/pet/actions/rest/count');
-const playCount = fireUser.child('/pet/actions/play/count');
-const workCount = fireUser.child('/pet/actions/work/count');
-const foodCount = fireUser.child('/pet/actions/food/count');
-const petName = fireUser.child('/pet/settings/petName');
-const petLife = fireUser.child('/pet/settings/life');
-const petAge = fireUser.child('/pet/settings/petAge');
 
 class PetHealth extends React.Component {
   constructor(props) {
@@ -25,41 +18,62 @@ class PetHealth extends React.Component {
     this.reduceLife = this.reduceLife.bind(this);
     this.updatePetLife = this.updatePetLife.bind(this);
     this.state = {
-      image: 'dojodachiIdling.gif',
+      image: '/dojodachiIdling.gif',
       restCount: 0,
       playCount: 0,
       workCount: 0,
       foodCount: 0,
     };
+    this.username = '';
+    this.fireUser = {};
+    this.restCount = null;
+    this.playCount = null;
+    this.workCount = null;
+    this.foodCount = null;
+    this.petName = null;
+    this.petLife = null;
+    this.petAge = null;
+  }
+
+  componentWillMount() {
+    this.username = this.props.username.username;
   }
 
   componentDidMount() {
     this.life = setInterval(() =>
       this.reduceLife(), 5000);
+    this.fireUser = dbRoot.child(this.username);
+    this.restCount = this.fireUser.child('/pet/actions/rest/count');
+    this.playCount = this.fireUser.child('/pet/actions/play/count');
+    this.workCount = this.fireUser.child('/pet/actions/work/count');
+    this.foodCount = this.fireUser.child('/pet/actions/food/count');
+    this.petName = this.fireUser.child('/pet/settings/petName');
+    this.petLife = this.fireUser.child('/pet/settings/life');
+    this.petAge = this.fireUser.child('/pet/settings/petAge');
 
     // "on" method sync data in realtime
-    petName.on('value', (snap) => {
+    this.petName.on('value', (snap) => {
       this.setState({
         name: snap.val(),
       });
       console.log('Name updated: ' + snap.val()); // eslint-disable-line
     });
 
-    petLife.on('value', (snap) => {
+    this.petLife.on('value', (snap) => {
       this.setState({
         life: snap.val(),
       });
       console.log('Life updated: ' + snap.val()); // eslint-disable-line
     });
 
-    petAge.on('value', (snap) => {
+    this.petAge.on('value', (snap) => {
       this.setState({
         timeSinceBirth: snap.val(),
       });
       console.log('Age updated: ' + snap.val()); // eslint-disable-line
     });
 
-    restCount.on('value', (snap) => {
+    this.restCount.on('value', (snap) => {
       const currentRestCount = snap.val();
       if (currentRestCount !== 0) {
         this.setState({
@@ -70,7 +84,7 @@ class PetHealth extends React.Component {
       }
     });
 
-    playCount.on('value', (snap) => {
+    this.playCount.on('value', (snap) => {
       const currentPlayCount = snap.val();
       if (currentPlayCount !== 0) {
         this.setState({
@@ -81,7 +95,7 @@ class PetHealth extends React.Component {
       }
     });
 
-    workCount.on('value', (snap) => {
+    this.workCount.on('value', (snap) => {
       const currentWorkCount = snap.val();
       if (currentWorkCount !== 0) {
         this.setState({
@@ -92,7 +106,7 @@ class PetHealth extends React.Component {
       }
     });
 
-    foodCount.on('value', (snap) => {
+    this.foodCount.on('value', (snap) => {
       const currentFoodCount = snap.val();
       if (currentFoodCount !== 0) {
         this.setState({
@@ -106,20 +120,20 @@ class PetHealth extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.life);
-    foodCount.off();
-    workCount.off();
-    playCount.off();
-    restCount.off();
-    petAge.off();
-    petLife.off();
-    petName.off();
+    this.foodCount.off();
+    this.workCount.off();
+    this.playCount.off();
+    this.restCount.off();
+    this.petAge.off();
+    this.petLife.off();
+    this.petName.off();
     const updatePetInfo = {};
     if (this.state.life < 10) {
       this.setState({
         life: 0,
         name: '',
         timeSinceBirth: '',
-        image: 'dojodachiDead.gif',
+        image: '/dojodachiDead.gif',
         restCount: 0,
         playCount: 0,
         workCount: 0,
@@ -136,7 +150,7 @@ class PetHealth extends React.Component {
     updatePetInfo['pet/settings/life'] = this.state.life;
     updatePetInfo['pet/settings/petName'] = this.state.name;
     updatePetInfo['pet/settings/petAge'] = this.state.timeSinceBirth;
-    fireUser.update(updatePetInfo);
+    this.fireUser.update(updatePetInfo);
     // alert('Sorry your pet has died'); // TODO: Replace alert with toast or otherwise remove
     Materialize.toast('I am a toast A VERY BIG TOAST!!', 4000); // TODO: Either make work or remove
   }
@@ -145,9 +159,9 @@ class PetHealth extends React.Component {
     if ((typeof this.state.life === 'number') && this.state.life > 0) {
       const updateLifeVal = {};
       updateLifeVal['pet/settings/life'] = this.state.life;
-      fireUser.update(updateLifeVal);
+      this.fireUser.update(updateLifeVal);
     } else {
-      const dbPetLife = fireUser.child('/pet/settings/life');
+      const dbPetLife = this.fireUser.child('/pet/settings/life');
       dbPetLife.once('value', (snap) => {
         this.setState({
           life: snap.val(),
@@ -170,7 +184,7 @@ class PetHealth extends React.Component {
 
   addFood(event) {
     console.log(event); // eslint-disable-line
-    const newFoodGif = 'dojodachiEating.gif';
+    const newFoodGif = '/dojodachiEating.gif';
     const newFood = this.state.life + 5;
     console.log('Food clicked'); // eslint-disable-line
     this.setState({
@@ -183,7 +197,7 @@ class PetHealth extends React.Component {
 
   addRest(event) {
     console.log(event); // eslint-disable-line
-    const newRestGif = 'dojodachiSleeping.gif';
+    const newRestGif = '/dojodachiSleeping.gif';
     const newRest = this.state.life + 10;
     console.log('Rest clicked'); // eslint-disable-line
     this.setState({
@@ -196,7 +210,7 @@ class PetHealth extends React.Component {
 
   addWork(event) {
     console.log(event); // eslint-disable-line
-    const newWorkGif = 'dojodachiWorking.gif';
+    const newWorkGif = '/dojodachiWorking.gif';
     const newWork = this.state.life - 3;
     console.log('Work clicked'); // eslint-disable-line
     this.setState({
@@ -209,7 +223,7 @@ class PetHealth extends React.Component {
 
   addPlay(event) {
     console.log(event); // eslint-disable-line
-    const newPlayGif = 'dojodachiPlaying.gif';
+    const newPlayGif = '/dojodachiPlaying.gif';
     const newPlay = this.state.life + 3;
     console.log('Play clicked'); // eslint-disable-line
     this.setState({
@@ -275,4 +289,8 @@ PetHealth.defaultProps = {
   foodCount: 0,
 };
 
-export default PetHealth;
+const mapStateToProps = state => ({
+  username: state.username,
+});
+
+export default connect(mapStateToProps)(PetHealth);
