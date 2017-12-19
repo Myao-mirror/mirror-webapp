@@ -4,10 +4,10 @@ import fire from '../../utils/firebase/setup';
 const dbRoot = fire.database().ref().child('voice-pi');
 
 class PetModel {
-  constructor(name) {
+  constructor(name, username) {
     this.name = name;
     this.image = '/dojodachiIdling.gif';
-    this.fireUser = dbRoot.child(name);
+    this.fireUser = dbRoot.child(username);
     const dbPetAlive = this.fireUser.child('/pet/settings/status');
     dbPetAlive.once('value', (snap) => {
       const results = snap.val();

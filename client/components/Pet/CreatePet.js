@@ -46,7 +46,7 @@ class CreatePet extends React.Component {
       this.createPetName = snap.val();
       console.log('Name changed: ' + this.createPetName); // eslint-disable-line
       if (this.createPetName.length > 2) {
-        const createPet = new PetModel(this.createPetName);
+        const createPet = new PetModel(this.createPetName, this.username);
         this.props.addNewCreatureToPet(createPet);
         this.props.hideFormAfterSubmission();
         console.log(`Your new pet's name has been set to: ${this.createPetName}`);
@@ -68,7 +68,7 @@ class CreatePet extends React.Component {
   preparePetCreation(event) {
     event.preventDefault();
     const { petName } = this.refs;
-    const newPet = new PetModel(petName.value);
+    const newPet = new PetModel(petName.value, this.username);
     this.props.addNewCreatureToPet(newPet);
     this.props.hideFormAfterSubmission();
     console.log(`The pet name has been set to: ${petName.value}`);

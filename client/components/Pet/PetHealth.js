@@ -23,6 +23,7 @@ class PetHealth extends React.Component {
       playCount: 0,
       workCount: 0,
       foodCount: 0,
+      life: 0,
     };
     this.username = '';
     this.fireUser = {};
@@ -143,6 +144,7 @@ class PetHealth extends React.Component {
     } else {
       updatePetInfo['pet/settings/status'] = 'alive';
     }
+    console.log('++++++++++++++++++++++ PLAYCOUNT: ', this.state.playCount);
     updatePetInfo['pet/actions/rest/count'] = this.state.restCount;
     updatePetInfo['pet/actions/play/count'] = this.state.playCount;
     updatePetInfo['pet/actions/work/count'] = this.state.workCount;
