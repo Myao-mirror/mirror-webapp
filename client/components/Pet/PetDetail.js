@@ -95,7 +95,7 @@ class PetDetail extends React.Component {
 
   render() {
     return (
-      <div className={[s.card, s.black, s['white-text']].join(' ')}>
+      <div className={[s.section, s.transparent, s['white-text']].join(' ')}>
         <div className={s['card-content']}>
           {/* <h6>Pet Name: {this.state.name}</h6>
           <h6>Time Since Birth: {currentTimeSinceBirth}</h6> */}

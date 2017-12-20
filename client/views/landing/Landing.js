@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Rnd from 'react-rnd';
 import fire from '../../utils/firebase/setup';
-
 import { usernameSubmit } from '../../actions/usernameActions';
-
 import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
 import News from '../../components/News/News';
-// import App from '../../components/Pet/PetComponent';
 import App from '../../components/Pet/App';
-import Pet from '../../components/Pet/Pet';
+// import Pet from '../../components/Pet/Pet';
 import Weather from '../../components/Weather/Weather';
 
 // Set the root of the DB
@@ -82,11 +80,12 @@ class Landing extends React.Component {
 
   render() {
     return (
+
       <Layout>
-        { this.state.timeActive ? <Time /> : null }
-        { this.state.newsActive ? <News /> : null }
-        { this.state.petActive ? <App /> : null }
-        { this.state.weatherActive ? <Weather /> : null }
+        { this.state.timeActive ? <Rnd><Time /></Rnd> : null }
+        { this.state.newsActive ? <Rnd><News /></Rnd> : null }
+        { this.state.petActive ? <Rnd><App /></Rnd> : null }
+        { this.state.weatherActive ? <Rnd><Weather /></Rnd> : null }
       </Layout>
     );
   }

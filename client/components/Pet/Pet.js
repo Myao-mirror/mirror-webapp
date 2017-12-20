@@ -87,7 +87,7 @@ class Pet extends React.Component {
 function PetList(props) {
   console.log(props.creatures); // eslint-disable-line
   return (
-    <div className={[s.card, s.black, s['white-text']].join(' ')}>
+    <div className={[s.section, s.transparent, s['white-text']].join(' ')}>
       <div className={s['card-content']}>
         <h6>{props.creatures.map((creature, index) =>
           (<PetDetail

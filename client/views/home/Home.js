@@ -16,33 +16,7 @@ class Home extends React.Component {
     return (
       <Layout>
         <h2 className={[s['white-text'], s['center-align']].join(' ')}>Welcome to your {title}!</h2>
-        <h1>Welcome to {title}!</h1>
-        {/* <p>
-          For more information visit <a href={link1}>{link1}</a>.
-        </p> */}
         <Username />
-        {/* <h1>Featured Technologies</h1>
-        <ul>
-          {this.props.articles.map((article, i) => (
-            <li key={i}>
-              <span>
-                <a href={article.url}>
-                  {article.title}
-                </a> [{article.author}]
-              </span>
-              <ul>
-                {article.includes.map((product, n) => (
-                  <li key={n}>
-                    <span>
-                      <a href={product.url}>
-                        {product.title}
-                      </a> [{product.author}]
-                    </span>
-                  </li>))}
-              </ul>
-            </li>))
-          }
-        </ul> */}
       </Layout>
     );
   }

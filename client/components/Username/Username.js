@@ -17,10 +17,10 @@ class Username extends React.Component {
   onUsernameInput(event) {
     event.preventDefault();
     this.props.dispatch(usernameSubmit(
-      this._fname.value.toLowerCase(),
-      this._fruit.value.toLowerCase(),
+      this._fname.value.toLowerCase(), // eslint-disable-line
+      this._fruit.value.toLowerCase(), // eslint-disable-line
     ));
-    const username = `${this._fname.value}-${this._fruit.value}`;
+    const username = `${this._fname.value}-${this._fruit.value}`;  // eslint-disable-line
     if (username) {
       this.rootRef.child(username).on('value', (snap) => {
         const userData = snap.val();
@@ -73,7 +73,7 @@ class Username extends React.Component {
     let placeholderFruit = '';
     let lsUsername = '';
     let routeFromLS = '';
-    let routeFromState = `/landing/${this.props.username.username}`;
+    const routeFromState = `/landing/${this.props.username.username}`;
 
     try {
       placeholderFname = localStorage.getItem('fname');
@@ -88,10 +88,9 @@ class Username extends React.Component {
     return (
       <div className={[s.row, s['center-align']].join(' ')}>
         <div className={s.section}>
-          <h4>Did you talk to your mirror assistant about your username?</h4>
           <div className={[s.card, s.black].join(' ')}>
             <p className={[s['card-panel'], s.purple, s['lighten-4'], s['black-text']].join(' ')}>
-              If it's your first time using Myao Mirror, please talk to your mirror assistant to set up your username.
+              If this is your first time using your Myao Mirror, please speak to your mirror assistant to set up an account to begin.
             </p>
           </div>
         </div>
@@ -102,7 +101,7 @@ class Username extends React.Component {
                 <div className={[s['input-field'], s.col, s.m6].join(' ')}>
                   <input
                     style={inputStyle}
-                    ref={(input) => { this._fname = input; }}
+                    ref={(input) => { this._fname = input; }} // eslint-disable-line
                     type="text"
                     id="fname"
                     placeholder={placeholderFname}
@@ -112,7 +111,7 @@ class Username extends React.Component {
                 <div className={[s['input-field'], s.col, s.m6].join(' ')}>
                   <input
                     style={inputStyle}
-                    ref={(input) => { this._fruit = input; }}
+                    ref={(input) => { this._fruit = input; }} // eslint-disable-line
                     type="text"
                     id="fruit"
                     placeholder={placeholderFruit}
@@ -125,39 +124,28 @@ class Username extends React.Component {
               {lsUsername ?
                 <div>
                   <h5>Is your username &nbsp;<strong>"{lsUsername}"</strong>?<br /></h5>
-                  <p className={s.center}>Not you? Enter a different name!</p>
+                  <p className={s.center}>If not, please enter the username assigned by your voice assistant.</p>
                   <button
                     onClick={this.handleClick}
                     className={[s.btn, s.yellow].join(' ')}
                   >
                     <Link to={routeFromLS} className={s['white-text']}><span className={s['black-text']}>See My Myao Mirror</span></Link>
                   </button>
-                </div> : null}
+                </div> : <h5>Your username should look like this:<br />
 
-              {/* display username on input */}
-              <h5>Your username should look like this:<br />
-                <strong>"{ this.props.username.username }"</strong>
-              </h5>
+                  <strong>"{ this.props.username.username }"</strong>
+                </h5>}
 
-              {/* username taken, display link to take user to landing */}
-              {this.props.username.exist ? <p className={[s.center, s['red-text']].join(' ')}>Uh oh, this username is already taken!</p> : null }
-              {this.props.username.exist ?
+              {/* username valid, display link to take user to landing */}
+              {this.props.username.exist && !lsUsername ? <div><h5 className={[s.center, s['green-text']].join(' ')}>We found your account!</h5><p /></div> : <p /> }
+              {this.props.username.exist && !lsUsername ?
                 <button
                   onClick={this.handleClick}
                   className={[s.btn, s.yellow].join(' ')}
+                  disabled={bool}
                 >
                   <Link to={routeFromState} className={s['white-text']}><span className={s['black-text']}>See My Myao Mirror</span></Link>
-                </button> : null}
-
-              {/* If username valid and not taken, enable button to link user to landing/:username */}
-              {this.props.username.exist ? null :
-              <button
-                onClick={this.handleClick}
-                className={[s.btn, s.yellow].join(' ')}
-                disabled={bool}
-              >
-                <Link to={routeFromState} className={s['white-text']}><span className={s['black-text']}>Enter Username</span></Link>
-              </button>}
+                </button> : null }
             </form>
           </div>
         </div>

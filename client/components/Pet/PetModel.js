@@ -6,7 +6,7 @@ const dbRoot = fire.database().ref().child('voice-pi');
 class PetModel {
   constructor(name, username) {
     this.name = name;
-    this.image = '/dojodachiIdling.gif';
+    this.image = '/dojodachiDancing-md.gif';
     this.fireUser = dbRoot.child(username);
     this.dbPetAlive = this.fireUser.child('/pet/settings/status');
     this.dbPetAge = this.fireUser.child('/pet/settings/petAge');

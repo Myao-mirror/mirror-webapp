@@ -18,7 +18,7 @@ class PetHealth extends React.Component {
     this.reduceLife = this.reduceLife.bind(this);
     this.updatePetLife = this.updatePetLife.bind(this);
     this.state = {
-      image: '/dojodachiIdling.gif',
+      image: '/dojodachiDancing-md.gif',
       restCount: 0,
       playCount: 0,
       workCount: 0,
@@ -139,7 +139,7 @@ class PetHealth extends React.Component {
         life: 0,
         name: '',
         timeSinceBirth: '',
-        image: '/dojodachiDead.gif',
+        image: '',
         restCount: 0,
         playCount: 0,
         workCount: 0,
@@ -212,7 +212,7 @@ class PetHealth extends React.Component {
 
   addRest(event) {
     console.log(event); // eslint-disable-line
-    const newRestGif = '/dojodachiSleeping.gif';
+    const newRestGif = '/dojodachiSleeping-md.gif';
     const newRest = this.state.life + 10;
     console.log('Rest clicked'); // eslint-disable-line
     this.setState({
@@ -225,7 +225,7 @@ class PetHealth extends React.Component {
 
   addWork(event) {
     console.log(event); // eslint-disable-line
-    const newWorkGif = '/dojodachiWorking.gif';
+    const newWorkGif = '/dojodachiWorking-md.gif';
     const newWork = this.state.life - 3;
     console.log('Work clicked'); // eslint-disable-line
     this.setState({
@@ -238,7 +238,7 @@ class PetHealth extends React.Component {
 
   addPlay(event) {
     console.log(event); // eslint-disable-line
-    const newPlayGif = '/dojodachiPlaying.gif';
+    const newPlayGif = '/dojodachiPlaying-md.gif';
     const newPlay = this.state.life + 3;
     console.log('Play clicked'); // eslint-disable-line
     this.setState({
@@ -251,10 +251,10 @@ class PetHealth extends React.Component {
 
   render() {
     const imgStyle = {
-      width: 200,
+      maxHeight: 300,
     };
     return (
-      <div className={[s.card, s.black, s['white-text'], s['center-align']].join(' ')}>
+      <div className={[s.card, s.transparent, s['white-text'], s['center-align']].join(' ')}>
         <img style={imgStyle} src={this.state.image} alt="This is alt" />
         <div className={s['card-content']}>
           <div className={[s.section, s.row].join(' ')}>
