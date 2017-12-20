@@ -4,7 +4,7 @@
 
 body {
   background-color: #000000;
-  color: #5ff; 
+  color: #3ff; 
   /* cyan */
 }
 
@@ -16,17 +16,21 @@ html {
     background: transparent; /* make scrollbar transparent */
 }
 
-.hoverable:hover {
-  border: 1px solid white !important;
-  outline: #3ff dotted thick !important;
-}
-
 .main-color-background {
   background-color: #3ff;
 }
 
 .main-color-text {
   background-color: #3ff;
+}
+
+.component {
+  width: auto;
+}
+
+.component:hover {
+  border: 1px solid white;
+  outline: #3ff dotted thick;
 }
 
 .content {
