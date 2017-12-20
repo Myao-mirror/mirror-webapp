@@ -8,6 +8,27 @@ body {
   /* cyan */
 }
 
+html {
+  overflow:   scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.hoverable:hover {
+  border: 1px solid white !important;
+  outline: #3ff dotted thick !important;
+}
+
+.main-color-background {
+  background-color: #3ff;
+}
+
+.main-color-text {
+  background-color: #3ff;
+}
+
 .content {
   width: 100%;
   max-width: 1000px;
@@ -30,7 +51,7 @@ body {
 
 .tagline,
 .summary {
-  /* color: #fff; */
+  color: #fff;
 }
 
 .tagline {

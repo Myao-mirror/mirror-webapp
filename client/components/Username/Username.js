@@ -5,6 +5,7 @@ import fire from '../../utils/firebase/setup';
 import Link from '../Link';
 import { usernameSubmit, checkIfExist } from '../../actions/usernameActions';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import * as l from '../Layout/Layout.css';
 
 class Username extends React.Component {
   constructor(props) {
@@ -89,7 +90,7 @@ class Username extends React.Component {
       <div className={[s.row, s['center-align']].join(' ')}>
         <div className={s.section}>
           <div className={[s.card, s.black].join(' ')}>
-            <p className={[s['card-panel'], s.purple, s['lighten-4'], s['black-text']].join(' ')}>
+            <p className={[s['card-panel'], l['main-color-background'], s['lighten-4'], s['black-text']].join(' ')}>
               If this is your first time using your Myao Mirror, please speak to your mirror assistant to set up an account to begin.
             </p>
           </div>

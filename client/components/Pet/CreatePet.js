@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
 import PetModel from './PetModel';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import * as l from '../Layout/Layout.css';
 
 const dbRoot = fire.database().ref().child('voice-pi');
 
@@ -94,7 +95,7 @@ class CreatePet extends React.Component {
         <div className={s.section} style={createPetStyle}>
           <h3>Myao Pet</h3>
           <div className={[s.card, s['white-text']].join(' ')}>
-            <p className={[s['card-panel'], s.purple, s['lighten-4'], s['black-text']].join(' ')}>
+            <p className={[s['card-panel'], l['main-color-background'], s['lighten-4'], s['black-text']].join(' ')}>
               Enter a name to create your pet. Feed, work, play or allow it to sleep. Do not let the score dip below 10 or it will die!
             </p>
           </div>

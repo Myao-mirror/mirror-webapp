@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setInterval } from 'timers';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import * as l from '../Layout/Layout.css';
 
 class News extends React.Component {
   constructor(props) {
@@ -44,8 +45,9 @@ class News extends React.Component {
     const newsCardStyle = {
       margin: '10px 10px auto auto',
       fontWeight: 600,
-      width: '40%',
-      maxHeight: '15vh',
+      width: 400,
+      height: 120,
+      padding: 0,
       display: 'inline-block',
       textAlign: 'center',
       verticalAlign: 'top',
@@ -56,20 +58,21 @@ class News extends React.Component {
     console.log('---------------, news.status: ', news.status);
     const result = news.status.map(post =>
       (
-        <li key={post.id} className={[s.card, s.small, s.lime].join(' ')} style={newsCardStyle}>
+        <li key={post.id} className={[s.card, s.small, l['main-color-background']].join(' ')} style={newsCardStyle}>
           <div className={s['card-content']}>
             <a href={post.url} className={s['black-text']}>
-              <span className={s['center-align']}>{post.title}</span>
+              <marquee direction="left" scrollAmount="1" behavior="scroll">{post.title}</marquee>
+              {/* <span className={s['center-align']}>{post.title}</span> */}
             </a>
           </div>
           <div className={s['card-action']}>
             <div className={[s.left, s['valign-wrapper']].join(' ')}>
               <a href={post.domain}>
-                <span className={[s.chip, s.truncate, s.black, s['white-text']].join(' ')}>{post.domain}</span>
+                <span className={[s.chip, s.truncate, s.white, s['black-text'], s.truncate].join(' ')}>{post.domain}</span>
               </a>
             </div>
             <div className={[s.right, s['valign-wrapper']].join(' ')}>
-              <span className={[s.chip, s.black, s['white-text']].join(' ')}>{post.score}</span>
+              <span className={[s.chip, s.white, s['black-text']].join(' ')}>{post.score}</span>
             </div>
           </div>
         </li>));
