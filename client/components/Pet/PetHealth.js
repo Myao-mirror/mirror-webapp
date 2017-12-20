@@ -18,7 +18,7 @@ class PetHealth extends React.Component {
     this.reduceLife = this.reduceLife.bind(this);
     this.updatePetLife = this.updatePetLife.bind(this);
     this.state = {
-      image: '/dojodachiDancing-md.gif',
+      image: '/dojodachiIdling.gif',
       restCount: 0,
       playCount: 0,
       workCount: 0,
@@ -251,11 +251,11 @@ class PetHealth extends React.Component {
 
   render() {
     const imgStyle = {
-      maxHeight: 300,
+      height: 300,
     };
     return (
       <div className={[s.card, s.transparent, s['white-text'], s['center-align']].join(' ')}>
-        <img style={imgStyle} src={this.state.image} alt="This is alt" />
+        {this.state.image.length > 0 ? <img style={imgStyle} src={this.state.image} alt="Your Myao Mirror pet" /> : <p>Your pet has died.</p>}
         <div className={s['card-content']}>
           <div className={[s.section, s.row].join(' ')}>
             <span className={s['red-text']}><MaterialIcon icon="favorite" size={16} /></span> {this.state.life}

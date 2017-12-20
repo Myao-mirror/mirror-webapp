@@ -63,7 +63,7 @@ class Username extends React.Component {
     // bool to disable button
     let bool = true;
     try {
-      bool = (!this._fname.value || !this._fruit.value);
+      bool = (!this._fname.value || !this._fruit.value); // eslint-disable-line
     } catch (e) {
       console.log(e);
       null;
@@ -134,7 +134,7 @@ class Username extends React.Component {
                 </div> : <h5>Your username should look like this:<br />
 
                   <strong>"{ this.props.username.username }"</strong>
-                </h5>}
+                         </h5>}
 
               {/* username valid, display link to take user to landing */}
               {this.props.username.exist && !lsUsername ? <div><h5 className={[s.center, s['green-text']].join(' ')}>We found your account!</h5><p /></div> : <p /> }

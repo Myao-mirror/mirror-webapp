@@ -6,6 +6,7 @@ import Sunny from './weatherIcons/sunny';
 import Mist from './weatherIcons/mist';
 import BigRain from './weatherIcons/bigRain';
 import Snowflake from './weatherIcons/snowflake';
+import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 class Weather extends React.PureComponent {
   constructor(props) {
@@ -49,10 +50,11 @@ class Weather extends React.PureComponent {
     const iconKey = weather.weather[0].main.toLowerCase();
     const icon = iconMap[iconKey];
     return (
-      <div>
+      <div className={[s['center-align'], s.panel, s.black].join(' ')}>
+        <h3>{ weather.name }</h3>
         <h1>{Math.floor(weather.main.temp)}˚F</h1>
         <h2>{ weather.weather[0].main.toLowerCase() } {icon}</h2>
-        <p>{ weather.name }</p>
+        {/* <p>{ weather.name }</p> */}
       </div>
     );
   }
