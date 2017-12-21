@@ -102,13 +102,12 @@ class CreatePet extends React.Component {
     const createPetStyle = {
       margin: 'auto',
       fontWeight: 600,
-      color: '#FFFFFF',
       // backgroundColor: '#000000',
     };
     return (
       <div className={[s.row, s['center-align']].join(' ')}>
         <div className={s.section} style={createPetStyle}>
-          <h3 className={l['main-color-text']}>Myao Pet</h3>
+          <h3 className={[l['main-color-text'], s.transparent].join(' ')}>Myao Pet</h3>
           <div className={[s.card, l['main-color-text']].join(' ')}>
             <p className={[s['card-panel'], l['main-color-background'], s['black-text']].join(' ')}>
               Enter a name to create your pet. Feed, work, play or make it go rest. Try not to let the health dip below 10 or it will die!
