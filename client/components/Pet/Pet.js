@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
 import PetControlTop from './PetControlTop';
 import PetDetail from './PetDetail';
-import PetModel from './PetModel';
+// import PetModel from './PetModel';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 const dbRoot = fire.database().ref().child('voice-pi');
