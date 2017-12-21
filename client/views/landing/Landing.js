@@ -22,10 +22,10 @@ class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newsActive: false,
-      petActive: false,
+      newsActive: true,
+      petActive: true,
       timeActive: true,
-      weatherActive: false,
+      weatherActive: true,
     };
     this.fireUser = {};
     this.newsActive = null;
@@ -83,10 +83,10 @@ class Landing extends React.Component {
     return (
 
       <Layout>
-        { this.state.timeActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, s.black].join(' ')}><Time /></Rnd> : null }
-        { this.state.newsActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, s.black].join(' ')}><News /></Rnd> : null }
-        { this.state.petActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, s.black].join(' ')}><App /></Rnd> : null }
-        { this.state.weatherActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, s.black].join(' ')}><Weather /></Rnd> : null }
+        { this.state.timeActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Time /></Rnd> : null }
+        { this.state.newsActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><News /></Rnd> : null }
+        { this.state.petActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><App /></Rnd> : null }
+        { this.state.weatherActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Weather /></Rnd> : null }
       </Layout>
     );
   }

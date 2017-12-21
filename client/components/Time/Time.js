@@ -13,7 +13,7 @@ function getTimeNDay() {
   const time = gotTime;
   const date = new Date().toLocaleDateString('en-US', options);
   const timeNday = {
-    time: time,
+    time,
     day: date,
   };
   return timeNday;

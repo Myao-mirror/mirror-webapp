@@ -61,7 +61,7 @@ class News extends React.Component {
         <li key={post.id} className={[s.card, s.small, l['main-color-background']].join(' ')} style={newsCardStyle}>
           <div className={s['card-content']}>
             <a href={post.url} className={s['black-text']}>
-              <marquee direction="left" scrollAmount="1" behavior="scroll">{post.title}</marquee>
+              <marquee direction="left" scrollamount="1" behavior="scroll">{post.title}</marquee>
               {/* <span className={s['center-align']}>{post.title}</span> */}
             </a>
           </div>

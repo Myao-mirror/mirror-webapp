@@ -16,11 +16,8 @@ class App extends React.Component {
     this.petActive = null;
   }
 
-  componentWillMount() {
-    this.username = this.props.username.username;
-  }
-
   componentDidMount() {
+    this.username = this.props.username.username;
     this.fireUser = dbRoot.child(this.username);
     this.petActive = this.fireUser.child('/pet/settings/active');
     const stringBoolMap = {
@@ -41,7 +38,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        { this.state.petActive ? <Pet /> : null }
+        <Pet />
       </div>
     );
   }
