@@ -17,6 +17,8 @@ class Username extends React.Component {
 
   onUsernameInput(event) {
     event.preventDefault();
+    // TODO: clear localStorage on input, then line 132 code block won't show
+    localStorage.clear();
     this.props.dispatch(usernameSubmit(
       this._fname.value.toLowerCase(), // eslint-disable-line
       this._fruit.value.toLowerCase(), // eslint-disable-line
@@ -43,24 +45,24 @@ class Username extends React.Component {
     localStorage.setItem('username', username);
     localStorage.setItem('fname', fname);
     localStorage.setItem('fruit', fruit);
-    // TODO: how about other settings
-    // create user profile in Firebase
-    if (!this.props.username.exist && this.props.username.username) {
-      this.rootRef.child(username).set({
-        news: { settings: { active: true } },
-        time: { settings: { active: true } },
-        weather: { settings: { active: true } },
-        pet: {
-          settings: {
-            active: true,
-            life: 0,
-            petName: '',
-            petAge: '',
-            status: 'dead',
-          },
-        },
-      });
-    }
+ 
+    // TODO: this set up the account for user, and we don't need
+    // if (!this.props.username.exist && this.props.username.username) {
+    //   this.rootRef.child(username).set({
+    //     news: { settings: { active: true } },
+    //     time: { settings: { active: true } },
+    //     weather: { settings: { active: true } },
+    //     pet: {
+    //       settings: {
+    //         active: true,
+    //         life: 0,
+    //         petName: '',
+    //         petAge: '',
+    //         status: 'dead',
+    //       },
+    //     },
+    //   });
+    // }
   }
 
   render() {
@@ -69,11 +71,11 @@ class Username extends React.Component {
       backgroundColor: '#000000',
     };
 
-    // bool to disable button
-    let bool = true;
-    try {
-      bool = (!this._fname.value || !this._fruit.value); // eslint-disable-line
-    } catch (e) { }
+    // // bool to disable button
+    // let bool = true;
+    // try {
+    //   bool = (!this._fname.value || !this._fruit.value); // eslint-disable-line
+    // } catch (e) { }
 
     let placeholderFname = '';
     let placeholderFruit = '';
@@ -143,15 +145,20 @@ class Username extends React.Component {
                 </h5>}
 
               {/* username valid, display link to take user to landing */}
-              {this.props.username.exist && !lsUsername ? <div><h5 className={[s.center, s['green-text']].join(' ')}>We found your account!</h5><p /></div> : <p /> }
-              {this.props.username.exist && !lsUsername ?
-                <button
-                  onClick={this.handleClick}
-                  className={[s.btn, s.yellow].join(' ')}
-                  disabled={bool}
-                >
-                  <Link to={routeFromState} className={s['white-text']}><span className={s['black-text']}>See My Myao Mirror</span></Link>
-                </button> : null }
+              {(this.props.username.exist && !lsUsername) ?
+                <div>
+                  <p
+                    className={[s.center, s['green-text']].join(' ')}
+                  >
+                    We found your account!
+                  </p>
+                  <button
+                    onClick={this.handleClick}
+                    className={[s.btn, s.yellow].join(' ')}
+                  >
+                    <Link to={routeFromState} className={s['white-text']}><span className={s['black-text']}>See My Myao Mirror</span></Link>
+                  </button>
+                </div> : null}
             </form>
           </div>
         </div>

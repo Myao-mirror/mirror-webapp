@@ -6,6 +6,7 @@ import PetControlTop from './PetControlTop';
 import PetDetail from './PetDetail';
 // import PetModel from './PetModel';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import * as l from '../Layout/Layout.css';
 
 const dbRoot = fire.database().ref().child('voice-pi');
 
@@ -77,7 +78,7 @@ class Pet extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={l.component}>
         <PetControlTop addNewCreatureToPet={this.addNewCreatureToPet} />
         <PetList
           creatures={this.state.masterPet}
@@ -90,7 +91,7 @@ class Pet extends React.Component {
 function PetList(props) {
   console.log(props.creatures); // eslint-disable-line
   return (
-    <div className={[s.section, s.transparent, s['white-text']].join(' ')}>
+    <div className={[s['card-panel'], s.transparent, s['white-text']].join(' ')}>
       <div className={s['card-content']}>
         <h6>{props.creatures.map((creature, index) =>
           (<PetDetail key={index} />))}

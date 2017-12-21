@@ -81,12 +81,43 @@ class Landing extends React.Component {
 
   render() {
     return (
-
+      // <Layout>
+      //   {/* { this.state.timeActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Time /></Rnd> : null } */}
+      //   {/* { this.state.timeActive ? <Rnd default={{ x: 0, y: 0, width: '30%', height: '10%', }} className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Time /></Rnd> : null } */}
+      //   { this.state.timeActive ? <Rnd default={{ x: 0, y: 0, width: '700', height: '20%', }}><Time /></Rnd> : null }
+      //   { this.state.newsActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><News /></Rnd> : null }
+      //   { this.state.petActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Pet /></Rnd> : null }
+      //   { this.state.weatherActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Weather /></Rnd> : null }
+      // </Layout>
       <Layout>
-        { this.state.timeActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Time /></Rnd> : null }
-        { this.state.newsActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><News /></Rnd> : null }
-        { this.state.petActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Pet /></Rnd> : null }
-        { this.state.weatherActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Weather /></Rnd> : null }
+        <div className={[l['upper-left'], s['center-align']].join(' ')}>
+          { this.state.newsActive ?
+            <Rnd>
+              <News />
+            </Rnd> :
+          null }
+        </div>
+        <div className={[l['upper-right'], s['center-align']].join(' ')}>
+          { this.state.timeActive ?
+            <Rnd>
+              <Time />
+            </Rnd> :
+          null }
+        </div>
+        <div className={[l['bottom-left'], s['center-align']].join(' ')}>
+          { this.state.weatherActive ?
+            <Rnd>
+              <Weather />
+            </Rnd> :
+          null }
+        </div>
+        <div className={[l['bottom-right'], s['center-align']].join(' ')}>
+          { this.state.petActive ?
+            <Rnd>
+              <Pet />
+            </Rnd> :
+          null }
+        </div>
       </Layout>
     );
   }

@@ -22,7 +22,7 @@ class CreatePet extends React.Component {
     this.fireUser = {};
     this.dbPetName = '';
     this.dbPetAge = '';
-    this.dbPetStatus = '';
+    // this.dbPetStatus = '';
     this.createPetName = '';
     this.createPetAge = '';
     this.petStatus = '';
@@ -33,7 +33,7 @@ class CreatePet extends React.Component {
     this.fireUser = dbRoot.child(this.username);
     this.dbPetName = this.fireUser.child('/pet/settings/petName');
     this.dbPetAge = this.fireUser.child('/pet/settings/petAge');
-    this.dbPetStatus = this.fireUser.child('/pet/settings/status');
+    // this.dbPetStatus = this.fireUser.child('/pet/settings/status');
 
     this.dbPetAge.on('value', (snap) => {
       this.setState({
@@ -43,13 +43,12 @@ class CreatePet extends React.Component {
       console.log('Age updated: ' + this.createPetAge); // eslint-disable-line
     });
 
-    this.dbPetStatus.on('value', (snap) => {
-      this.setState({
-        status: snap.val(),
-      });
-      this.petStatus = snap.val();
-      console.log('Status updated: ' + this.createPetAge); // eslint-disable-line
-    });
+    // this.dbPetStatus.on('value', (snap) => {
+    //   this.setState({
+    //     status: snap.val(),
+    //   });
+    //   this.petStatus = snap.val();
+    // });
 
     this.dbPetName.on('value', (snap) => {
       this.setState({
@@ -79,7 +78,7 @@ class CreatePet extends React.Component {
   componentWillUnmount() {
     this.dbPetAge.off();
     this.dbPetName.off();
-    this.dbPetStatus.off();
+    // this.dbPetStatus.off();
   }
 
   preparePetCreation(event) {
@@ -101,7 +100,6 @@ class CreatePet extends React.Component {
 
   render() {
     const createPetStyle = {
-      maxWidth: '60%',
       margin: 'auto',
       fontWeight: 600,
       color: '#FFFFFF',
@@ -117,21 +115,19 @@ class CreatePet extends React.Component {
             </p>
           </div>
         </div>
-        <div className={s.section} style={createPetStyle}>
-          <div className={[s.card, s.black, s['white-text']].join(' ')}>
-            <form onSubmit={this.preparePetCreation} className={s['card-content']}>
-              <div className={s['input-field']}>
-                <input
-                  ref="petName"
-                  type="text"
-                  id="petName"
-                  defaultValue={this.createPetName}
-                  className={s['white-text']}
-                />
-              </div>
-              <button className={[s.btn, s.white, s['black-text']].join(' ')} type="submit">Submit</button>
-            </form>
-          </div>
+        <div className={[s.card, s.black, s['white-text']].join(' ')} style={createPetStyle}>
+          <form onSubmit={this.preparePetCreation} className={s['card-content']}>
+            <div className={s['input-field']}>
+              <input
+                ref="petName"
+                type="text"
+                id="petName"
+                defaultValue={this.createPetName}
+                className={s['white-text']}
+              />
+            </div>
+            <button className={[s.btn, s.white, s['black-text']].join(' ')} type="submit">Submit</button>
+          </form>
         </div>
       </div>
     );

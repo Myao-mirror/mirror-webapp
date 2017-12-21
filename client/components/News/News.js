@@ -43,11 +43,10 @@ class News extends React.Component {
 
   render() {
     const newsCardStyle = {
-      margin: '10px 10px auto auto',
       fontWeight: 600,
-      width: 400,
-      height: 120,
       padding: 0,
+      width: '25vw',
+      height: '10vh',
       display: 'inline-block',
       textAlign: 'center',
       verticalAlign: 'top',
@@ -59,30 +58,26 @@ class News extends React.Component {
     const result = news.status.map(post =>
       (
         <li key={post.id} className={[s.card, s.small, l['main-color-background']].join(' ')} style={newsCardStyle}>
-          <div className={s['card-content']}>
-            <a href={post.url} className={s['black-text']}>
+          <div className={[l.url].join(' ')}>
+            <a href={post.url} className={[s['black-text'], s.left].join(' ')}>
               <marquee direction="left" scrollamount="1" behavior="scroll">{post.title}</marquee>
               {/* <span className={s['center-align']}>{post.title}</span> */}
             </a>
           </div>
-          <div className={s['card-action']}>
-            <div className={[s.left, s['valign-wrapper']].join(' ')}>
-              <a href={post.domain}>
-                <span className={[s.chip, s.truncate, s.white, s['black-text'], s.truncate].join(' ')}>{post.domain}</span>
-              </a>
-            </div>
-            <div className={[s.right, s['valign-wrapper']].join(' ')}>
-              <span className={[s.chip, s.white, s['black-text']].join(' ')}>{post.score}</span>
-            </div>
+          <div className={[l.source].join(' ')}>
+            <a href={post.domain}>
+              <span className={[s.chip, s.white, s['black-text'], s.truncate].join(' ')}>{post.domain}</span>
+            </a>
           </div>
+          {/* <div className={[s.right, s['valign-wrapper']].join(' ')}>
+            <span className={[s.chip, s.white, s['black-text']].join(' ')}>{post.score}</span>
+          </div> */}
         </li>));
     return (
-      <div className={s['center-align']}>
+      <div className={[s['center-align'], l.component].join(' ')}>
         <h3>{`News from /r/${this.props.subreddit}`}</h3>
         <ul>
-          <div>
-            { result }
-          </div>
+          { result }
         </ul>
       </div>
     );

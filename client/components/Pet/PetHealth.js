@@ -91,7 +91,7 @@ class PetHealth extends React.Component {
         this.addRest(snap);
         const updateRestCount = {};
         updateRestCount['pet/actions/rest/count'] = currentRestCount - 1;
-        this.fireUser.updatePetLife(updateRestCount);
+        this.fireUser.update(updateRestCount);
       }
     });
 
@@ -106,7 +106,7 @@ class PetHealth extends React.Component {
         this.addPlay(snap);
         const updatePlayCount = {};
         updatePlayCount['pet/actions/play/count'] = currentPlayCount - 1;
-        this.fireUser.updatePetLife(updatePlayCount);
+        this.fireUser.update(updatePlayCount);
       }
     });
 
@@ -121,7 +121,7 @@ class PetHealth extends React.Component {
         this.addWork(snap);
         const updateWorkCount = {};
         updateWorkCount['pet/actions/work/count'] = currentWorkCount - 1;
-        this.fireUser.updatePetLife(updateWorkCount);
+        this.fireUser.update(updateWorkCount);
       }
     });
 
@@ -136,7 +136,7 @@ class PetHealth extends React.Component {
         this.addFood(snap);
         const updateFoodCount = {};
         updateFoodCount['pet/actions/food/count'] = currentFoodCount - 1;
-        this.fireUser.updatePetLife(updateFoodCount);
+        this.fireUser.update(updateFoodCount);
       }
     });
   }
@@ -149,7 +149,7 @@ class PetHealth extends React.Component {
         life: 0,
         name: '',
         timeSinceBirth: '',
-        image: '',
+        image: 'dojodachiDead.gif',
         // restCount: 0,
         // playCount: 0,
         // workCount: 0,
@@ -201,7 +201,7 @@ class PetHealth extends React.Component {
     const newLife = this.state.life - 5;
     console.log(newLife); // eslint-disable-line
     this.setState({ life: newLife });
-    this.updatePetLife();
+    // this.updatePetLife();
     // if (newLife < 0) {
     //   this.componentWillUnmount();
     // }
@@ -220,9 +220,9 @@ class PetHealth extends React.Component {
       });
       const updatePetInfo = {};
       updatePetInfo['pet/settings/status'] = 'dead';
-      updatePetInfo['pet/settings/life'] = this.state.life;
-      updatePetInfo['pet/settings/petName'] = this.state.name;
-      updatePetInfo['pet/settings/petAge'] = this.state.timeSinceBirth;
+      updatePetInfo['pet/settings/life'] = 0;
+      updatePetInfo['pet/settings/petName'] = '';
+      updatePetInfo['pet/settings/petAge'] = '';
       this.fireUser.update(updatePetInfo);
     }
   }
