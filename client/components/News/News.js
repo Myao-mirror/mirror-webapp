@@ -43,10 +43,11 @@ class News extends React.Component {
 
   render() {
     const newsCardStyle = {
+      margin: '15px 10px auto auto',
       fontWeight: 600,
       padding: 0,
-      width: '25vw',
-      height: '10vh',
+      width: 450,
+      height: 110,
       display: 'inline-block',
       textAlign: 'center',
       verticalAlign: 'top',
@@ -54,27 +55,28 @@ class News extends React.Component {
     const news = {
       status: this.state.news,
     };
-    console.log('---------------, news.status: ', news.status);
     const result = news.status.map(post =>
       (
         <li key={post.id} className={[s.card, s.small, l['main-color-background']].join(' ')} style={newsCardStyle}>
-          <div className={[l.url].join(' ')}>
-            <a href={post.url} className={[s['black-text'], s.left].join(' ')}>
-              <marquee direction="left" scrollamount="1" behavior="scroll">{post.title}</marquee>
+          <div className={[s['card-content'], l.url].join(' ')}>
+            <a href={post.url} className={s['black-text']}>
+              <marquee direction="left" scrollamount="2" behavior="scroll">{post.title}</marquee>
               {/* <span className={s['center-align']}>{post.title}</span> */}
             </a>
           </div>
-          <div className={[l.source].join(' ')}>
-            <a href={post.domain}>
-              <span className={[s.chip, s.white, s['black-text'], s.truncate].join(' ')}>{post.domain}</span>
-            </a>
+          <div className={[s['card-action'], l.source].join(' ')}>
+            <div className={[s.left, s['valign-wrapper']].join(' ')}>
+              <a href={post.domain}>
+                <span className={[s.chip, s.truncate, s.white, s['black-text'], s.truncate].join(' ')}>{post.domain}</span>
+              </a>
+            </div>
+            <div className={[s.right, s['valign-wrapper']].join(' ')}>
+              <span className={[s.chip, s.white, s['black-text']].join(' ')}>{post.score}</span>
+            </div>
           </div>
-          {/* <div className={[s.right, s['valign-wrapper']].join(' ')}>
-            <span className={[s.chip, s.white, s['black-text']].join(' ')}>{post.score}</span>
-          </div> */}
         </li>));
     return (
-      <div className={[s['center-align'], l.component].join(' ')}>
+      <div className={[s['center-align'], l['main-text-color']].join(' ')}>
         <h3>{`News from /r/${this.props.subreddit}`}</h3>
         <ul>
           { result }

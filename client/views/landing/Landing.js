@@ -90,35 +90,77 @@ class Landing extends React.Component {
       //   { this.state.weatherActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Weather /></Rnd> : null }
       // </Layout>
       <Layout>
+          { this.state.newsActive ?
+            <Rnd className={[l['upper-left'], s['center-align']].join(' ')} default={{ x: 0,
+                                                                                       y: 0,
+                                                                                       width: '50%',
+                                                                                       height: '100%' }}>
+              <News />
+            </Rnd> : null }
+          { this.state.timeActive ?
+            <Rnd className={[l['upper-right'], s['center-align']].join(' ')} default={{ x: 500,
+                                                                                        y: 0,
+                                                                                        width: '50%',
+                                                                                        height: 160 }}>
+              <Time />
+            </Rnd> : null }
+          { this.state.weatherActive ?
+            <Rnd className={[l['middle-right'], s['center-align']].join(' ')} default={{ x: 500,
+                                                                                         y: 160,
+                                                                                         width: '50%',
+                                                                                         height: 200 }}>
+              <Weather />
+            </Rnd> : null }
+          { this.state.petActive ?
+            <Rnd className={[l['bottom-right'], s['center-align']].join(' ')} default={{ x: 500,
+                                                                                         y: 450,
+                                                                                         width: '50%',
+                                                                                         height: 'auto' }}>
+              <Pet />
+            </Rnd> : null }
+      </Layout>
+      /* <Layout>
         <div className={[l['upper-left'], s['center-align']].join(' ')}>
           { this.state.newsActive ?
-            <Rnd>
+            <Rnd default={{ x: 0,
+                            y: 0,
+                            width: '50%',
+                            height: '100%' }}>
               <News />
             </Rnd> :
           null }
         </div>
         <div className={[l['upper-right'], s['center-align']].join(' ')}>
           { this.state.timeActive ?
-            <Rnd>
+            <Rnd default={{ x: 500,
+                            y: 0,
+                            width: '50%',
+                            height: '12%' }}>
               <Time />
             </Rnd> :
           null }
         </div>
-        <div className={[l['bottom-left'], s['center-align']].join(' ')}>
+        <div className={[l['middle-right'], s['center-align']].join(' ')}>
           { this.state.weatherActive ?
-            <Rnd>
+            <Rnd default={{ x: 500,
+                            y: 150,
+                            width: '50%',
+                            height: '23%' }}>
               <Weather />
             </Rnd> :
           null }
         </div>
         <div className={[l['bottom-right'], s['center-align']].join(' ')}>
           { this.state.petActive ?
-            <Rnd>
+            <Rnd default={{ x: 500,
+                            y: 350,
+                            width: '50%',
+                            height: '65%' }}>
               <Pet />
             </Rnd> :
           null }
         </div>
-      </Layout>
+      </Layout> */
     );
   }
 }

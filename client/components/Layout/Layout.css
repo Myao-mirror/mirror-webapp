@@ -20,15 +20,15 @@ html {
 html, body { height: 100%; padding: 0; margin: 0; }
 
 .main-color-background {
-  background-color: #3ff;
+  background-color: #3ff !important;
 }
 
 .main-color-text {
-  background-color: #3ff;
+  background-color: #3ff !important;
 }
 
 .component {
-  width: 100%;
+  max-width: 50%;
   height: 100%;
 }
 
@@ -54,6 +54,7 @@ html, body { height: 100%; padding: 0; margin: 0; }
 
 .container {
   margin: 0 auto;
+  max-width: 1000px;
 }
 
 /* .tagline,
@@ -72,9 +73,6 @@ html, body { height: 100%; padding: 0; margin: 0; }
 .upper-left, .upper-right, .bottom-left, .bottom-right {
   margin: 0;
   padding: 0;
-  width: 50%; 
-  height: 50%; 
-  position: fixed;
 }
 
 /* 
@@ -92,24 +90,25 @@ html, body { height: 100%; padding: 0; margin: 0; }
   width: 48vw;
   height: 30vh;
 } */
-
+/* 
 .bottom-right {
   bottom: 0;
   right: 0;
   max-width: 50vw;
-} 
+}  */
 
 .url {
-  max-width: 65%;
-  float: right;
+  text-align: center;
   vertical-align: top;
   /* display: inline-block; */
 }
 
+
 .source {
-  max-width: 35%;
-  float: left;
+  border-top: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   vertical-align: top;
-  text-align: left;
+  text-align: center;
   /* display: inline-block; */
 }

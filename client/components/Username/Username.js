@@ -23,7 +23,7 @@ class Username extends React.Component {
       this._fname.value.toLowerCase(), // eslint-disable-line
       this._fruit.value.toLowerCase(), // eslint-disable-line
     ));
-    const username = `${this._fname.value}-${this._fruit.value}`;  // eslint-disable-line
+    const username = `${this._fname.value}-${this._fruit.value}`.toLowerCase();  // eslint-disable-line
     if (username) {
       this.rootRef.child(username).on('value', (snap) => {
         const userData = snap.val();
@@ -97,7 +97,7 @@ class Username extends React.Component {
       <div className={[s.row, s['center-align']].join(' ')}>
         <div className={s.section}>
           <div className={[s.card, s.black].join(' ')}>
-            <p className={[s['card-panel'], l['main-color-background'], s['lighten-4'], s['black-text']].join(' ')}>
+            <p className={[s['card-panel'], l['main-color-background'], s['black-text']].join(' ')}>
               If this is your first time using your Myao Mirror, please speak to your mirror assistant to set up an account to begin.
             </p>
           </div>
