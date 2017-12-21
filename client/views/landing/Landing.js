@@ -97,6 +97,7 @@ class Landing extends React.Component {
                                                                                        height: '100%' }}>
               <News />
             </Rnd> : null }
+          <section className={l.section}>
           { this.state.timeActive ?
             <Rnd className={[l['upper-right'], s['center-align']].join(' ')} default={{ x: 500,
                                                                                         y: 0,
@@ -118,49 +119,8 @@ class Landing extends React.Component {
                                                                                          height: 'auto' }}>
               <Pet />
             </Rnd> : null }
+          </section>
       </Layout>
-      /* <Layout>
-        <div className={[l['upper-left'], s['center-align']].join(' ')}>
-          { this.state.newsActive ?
-            <Rnd default={{ x: 0,
-                            y: 0,
-                            width: '50%',
-                            height: '100%' }}>
-              <News />
-            </Rnd> :
-          null }
-        </div>
-        <div className={[l['upper-right'], s['center-align']].join(' ')}>
-          { this.state.timeActive ?
-            <Rnd default={{ x: 500,
-                            y: 0,
-                            width: '50%',
-                            height: '12%' }}>
-              <Time />
-            </Rnd> :
-          null }
-        </div>
-        <div className={[l['middle-right'], s['center-align']].join(' ')}>
-          { this.state.weatherActive ?
-            <Rnd default={{ x: 500,
-                            y: 150,
-                            width: '50%',
-                            height: '23%' }}>
-              <Weather />
-            </Rnd> :
-          null }
-        </div>
-        <div className={[l['bottom-right'], s['center-align']].join(' ')}>
-          { this.state.petActive ?
-            <Rnd default={{ x: 500,
-                            y: 350,
-                            width: '50%',
-                            height: '65%' }}>
-              <Pet />
-            </Rnd> :
-          null }
-        </div>
-      </Layout> */
     );
   }
 }

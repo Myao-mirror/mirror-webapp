@@ -76,9 +76,9 @@ class News extends React.Component {
           </div>
         </li>));
     return (
-      <div className={[s['center-align'], l['main-text-color']].join(' ')}>
+      <div className={[s['center-align'], l['main-text-color'], l.news].join(' ')}>
         <h3>{`News from /r/${this.props.subreddit}`}</h3>
-        <ul>
+        <ul className={l.component}>
           { result }
         </ul>
       </div>
