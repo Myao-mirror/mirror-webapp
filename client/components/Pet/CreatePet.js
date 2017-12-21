@@ -61,6 +61,7 @@ class CreatePet extends React.Component {
         // this.refs.value = this.createPetName;
         // this.preparePetCreation(event);
         const createPet = new PetModel(this.createPetName, this.username);
+        createPet.createPet();
         this.props.addNewCreatureToPet(createPet);
         this.props.hideFormAfterSubmission();
         console.log(`Your new pet's name has been set to: ${this.createPetName}`);
@@ -85,6 +86,7 @@ class CreatePet extends React.Component {
     event.preventDefault();
     const { petName } = this.refs;
     const newPet = new PetModel(petName.value, this.username);
+    newPet.createPet();
     this.props.addNewCreatureToPet(newPet);
     this.props.hideFormAfterSubmission();
     console.log(`The pet name has been set to: ${petName.value}`);

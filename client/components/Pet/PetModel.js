@@ -7,7 +7,11 @@ class PetModel {
   constructor(name, username) {
     this.name = name;
     this.image = '/dojodachiIdling.gif';
-    this.fireUser = dbRoot.child(username);
+    this.username = username;
+  }
+
+  createPet() {
+    this.fireUser = dbRoot.child(this.username);
     this.dbPetName = this.fireUser.child('/pet/settings/petName');
     this.dbPetAlive = this.fireUser.child('/pet/settings/status');
     this.dbPetAge = this.fireUser.child('/pet/settings/petAge');
@@ -27,11 +31,11 @@ class PetModel {
         createPet['pet/settings/life'] = this.life;
         this.fireUser.update(createPet);
       } else {
-        // If pet is alive, instantiate pet and assign name and age
+      // If pet is alive, instantiate pet and assign name and age
         this.getPetName();
         this.getPetAge();
         this.getPetLife();
-        // this.fireUser.update(this.createPet);
+      // this.fireUser.update(this.createPet);
       }
     });
   }

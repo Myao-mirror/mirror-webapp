@@ -6,7 +6,7 @@ import { usernameSubmit } from '../../actions/usernameActions';
 import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
 import News from '../../components/News/News';
-import App from '../../components/Pet/App';
+import Pet from '../../components/Pet/Pet';
 import Weather from '../../components/Weather/Weather';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 import * as l from '../../components/Layout/Layout.css';
@@ -85,7 +85,7 @@ class Landing extends React.Component {
       <Layout>
         { this.state.timeActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Time /></Rnd> : null }
         { this.state.newsActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><News /></Rnd> : null }
-        { this.state.petActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><App /></Rnd> : null }
+        { this.state.petActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Pet /></Rnd> : null }
         { this.state.weatherActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Weather /></Rnd> : null }
       </Layout>
     );
