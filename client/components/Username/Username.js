@@ -50,7 +50,15 @@ class Username extends React.Component {
         news: { settings: { active: true } },
         time: { settings: { active: true } },
         weather: { settings: { active: true } },
-        pet: { settings: { active: true } },
+        pet: {
+          settings: {
+            active: true,
+            life: 0,
+            petName: '',
+            petAge: '',
+            status: 'dead',
+          },
+        },
       });
     }
   }
@@ -65,10 +73,7 @@ class Username extends React.Component {
     let bool = true;
     try {
       bool = (!this._fname.value || !this._fruit.value); // eslint-disable-line
-    } catch (e) {
-      console.log(e);
-      null;
-    }
+    } catch (e) { }
 
     let placeholderFname = '';
     let placeholderFruit = '';
@@ -135,7 +140,7 @@ class Username extends React.Component {
                 </div> : <h5>Your username should look like this:<br />
 
                   <strong>"{ this.props.username.username }"</strong>
-                         </h5>}
+                </h5>}
 
               {/* username valid, display link to take user to landing */}
               {this.props.username.exist && !lsUsername ? <div><h5 className={[s.center, s['green-text']].join(' ')}>We found your account!</h5><p /></div> : <p /> }

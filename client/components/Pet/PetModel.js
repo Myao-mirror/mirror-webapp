@@ -8,26 +8,30 @@ class PetModel {
     this.name = name;
     this.image = '/dojodachiIdling.gif';
     this.fireUser = dbRoot.child(username);
+    this.dbPetName = this.fireUser.child('/pet/settings/petName');
     this.dbPetAlive = this.fireUser.child('/pet/settings/status');
     this.dbPetAge = this.fireUser.child('/pet/settings/petAge');
     this.dbPetLife = this.fireUser.child('/pet/settings/life');
     this.getPetName = this.getPetLife.bind(this);
+    // Check DB to see if pet is alive
     this.dbPetAlive.once('value', (snap) => {
       const results = snap.val();
       if (results === 'dead') {
         this.timeBirth = new Moment();
         this.timeSinceBirth = this.timeBirth.fromNow(true);
         this.life = 100;
+        // Update DB with new pet
         const createPet = {};
         createPet['pet/settings/petName'] = this.name;
         createPet['pet/settings/petAge'] = this.timeSinceBirth;
         createPet['pet/settings/life'] = this.life;
         this.fireUser.update(createPet);
       } else {
+        // If pet is alive, instantiate pet and assign name and age
         this.getPetName();
         this.getPetAge();
         this.getPetLife();
-        this.fireUser.update(this.createPet);
+        // this.fireUser.update(this.createPet);
       }
     });
   }

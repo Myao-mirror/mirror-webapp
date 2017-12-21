@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
 import CreatePet from './CreatePet';
+// import PetModel from './PetModel';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
 const dbRoot = fire.database().ref().child('voice-pi');
@@ -14,13 +15,16 @@ class PetControlTop extends React.Component {
     this.hideForm = this.hideForm.bind(this);
     this.state = { formVisibleOnPage: true };
     this.username = '';
-  }
-
-  componentWillMount() {
-    this.username = this.props.username.username;
+    this.petStatus = '';
+    this.petLife = '';
+    this.petAge = '';
+    // this.name = '';
+    // this.life = 0;
+    // this.age = '';
   }
 
   componentDidMount() {
+    this.username = this.props.username.username;
     this.fireUser = dbRoot.child(this.username);
     this.petStatus = this.fireUser.child('/pet/settings/status');
     this.petStatus.on('value', (snap) => {
