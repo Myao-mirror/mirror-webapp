@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import * as l from '../Layout/Layout.css';
 
 function getTimeNDay() {
   const options = {
@@ -13,7 +14,7 @@ function getTimeNDay() {
   const time = gotTime;
   const date = new Date().toLocaleDateString('en-US', options);
   const timeNday = {
-    time: time,
+    time,
     day: date,
   };
   return timeNday;
@@ -51,7 +52,7 @@ class Time extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={[s['center-align'], l.component].join(' ')}>
         <h2>{this.state.time}</h2>
         <h5>{this.state.date}</h5>
       </div>

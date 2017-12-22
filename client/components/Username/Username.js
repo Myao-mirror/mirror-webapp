@@ -5,6 +5,7 @@ import fire from '../../utils/firebase/setup';
 import Link from '../Link';
 import { usernameSubmit, checkIfExist } from '../../actions/usernameActions';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import * as l from '../Layout/Layout.css';
 
 class Username extends React.Component {
   constructor(props) {
@@ -16,11 +17,13 @@ class Username extends React.Component {
 
   onUsernameInput(event) {
     event.preventDefault();
+    // TODO: clear localStorage on input, then line 132 code block won't show
+    localStorage.clear();
     this.props.dispatch(usernameSubmit(
-      this._fname.value.toLowerCase(),
-      this._fruit.value.toLowerCase(),
+      this._fname.value.toLowerCase(), // eslint-disable-line
+      this._fruit.value.toLowerCase(), // eslint-disable-line
     ));
-    const username = `${this._fname.value}-${this._fruit.value}`;
+    const username = `${this._fname.value}-${this._fruit.value}`.toLowerCase();  // eslint-disable-line
     if (username) {
       this.rootRef.child(username).on('value', (snap) => {
         const userData = snap.val();
@@ -42,16 +45,24 @@ class Username extends React.Component {
     localStorage.setItem('username', username);
     localStorage.setItem('fname', fname);
     localStorage.setItem('fruit', fruit);
-    // TODO: how about other settings
-    // create user profile in Firebase
-    if (!this.props.username.exist && this.props.username.username) {
-      this.rootRef.child(username).set({
-        news: { settings: { active: true } },
-        time: { settings: { active: true } },
-        weather: { settings: { active: true } },
-        pet: { settings: { active: true } },
-      });
-    }
+ 
+    // TODO: this set up the account for user, and we don't need
+    // if (!this.props.username.exist && this.props.username.username) {
+    //   this.rootRef.child(username).set({
+    //     news: { settings: { active: true } },
+    //     time: { settings: { active: true } },
+    //     weather: { settings: { active: true } },
+    //     pet: {
+    //       settings: {
+    //         active: true,
+    //         life: 0,
+    //         petName: '',
+    //         petAge: '',
+    //         status: 'dead',
+    //       },
+    //     },
+    //   });
+    // }
   }
 
   render() {
@@ -60,19 +71,17 @@ class Username extends React.Component {
       backgroundColor: '#000000',
     };
 
-    // bool to disable button
-    let bool = true;
-    try {
-      bool = (!this._fname.value || !this._fruit.value);
-    } catch (e) {
-      null;
-    }
+    // // bool to disable button
+    // let bool = true;
+    // try {
+    //   bool = (!this._fname.value || !this._fruit.value); // eslint-disable-line
+    // } catch (e) { }
 
     let placeholderFname = '';
     let placeholderFruit = '';
     let lsUsername = '';
     let routeFromLS = '';
-    let routeFromState = `/landing/${this.props.username.username}`;
+    const routeFromState = `/landing/${this.props.username.username}`;
 
     try {
       placeholderFname = localStorage.getItem('fname');
@@ -80,17 +89,16 @@ class Username extends React.Component {
       lsUsername = localStorage.getItem('username');
       routeFromLS = `/landing/${lsUsername}`;
     } catch (e) {
-      placeholderFname = 'your first name';
-      placeholderFruit = 'your favortite fruit';
+      placeholderFname = 'Your first name';
+      placeholderFruit = 'Your favorite fruit';
     }
 
     return (
       <div className={[s.row, s['center-align']].join(' ')}>
         <div className={s.section}>
-          <h4>Did you talk to your mirror assistant about your username?</h4>
           <div className={[s.card, s.black].join(' ')}>
-            <p className={[s['card-panel'], s.purple, s['lighten-4'], s['black-text']].join(' ')}>
-              If it's your first time using Myao Mirror, please talk to your mirror assistant to set up your username.
+            <p className={[s['card-panel'], l['main-color-background'], s['black-text']].join(' ')}>
+              If this is your first time using your Myao Mirror, please speak to your mirror assistant to set up an account to begin.
             </p>
           </div>
         </div>
@@ -101,7 +109,7 @@ class Username extends React.Component {
                 <div className={[s['input-field'], s.col, s.m6].join(' ')}>
                   <input
                     style={inputStyle}
-                    ref={(input) => { this._fname = input; }}
+                    ref={(input) => { this._fname = input; }} // eslint-disable-line
                     type="text"
                     id="fname"
                     placeholder={placeholderFname}
@@ -111,7 +119,7 @@ class Username extends React.Component {
                 <div className={[s['input-field'], s.col, s.m6].join(' ')}>
                   <input
                     style={inputStyle}
-                    ref={(input) => { this._fruit = input; }}
+                    ref={(input) => { this._fruit = input; }} // eslint-disable-line
                     type="text"
                     id="fruit"
                     placeholder={placeholderFruit}
@@ -123,41 +131,34 @@ class Username extends React.Component {
               {/* see if localStorage has username */}
               {lsUsername ?
                 <div>
-                  <h5>is this you?&nbsp;<strong>"{lsUsername}"</strong><br /></h5>
-                  <p className={s.center}>Not you? change it up there!</p>
+                  <h5>Is your username &nbsp;<strong>"{lsUsername}"</strong>?<br /></h5>
+                  <p className={s.center}>If not, please enter the username assigned by your voice assistant.</p>
                   <button
                     onClick={this.handleClick}
-                    className={[s.btn]}
+                    className={[s.btn, s.yellow].join(' ')}
                   >
-                    <Link to={routeFromLS} >TAKE ME TO THE MIRROR!</Link>
+                    <Link to={routeFromLS} className={s['white-text']}><span className={s['black-text']}>See My Myao Mirror</span></Link>
+                  </button>
+                </div> : <h5>Your username should look like this:<br />
+
+                  <strong>"{ this.props.username.username }"</strong>
+                </h5>}
+
+              {/* username valid, display link to take user to landing */}
+              {(this.props.username.exist && !lsUsername) ?
+                <div>
+                  <p
+                    className={[s.center, s['green-text']].join(' ')}
+                  >
+                    We found your account!
+                  </p>
+                  <button
+                    onClick={this.handleClick}
+                    className={[s.btn, s.yellow].join(' ')}
+                  >
+                    <Link to={routeFromState} className={s['white-text']}><span className={s['black-text']}>See My Myao Mirror</span></Link>
                   </button>
                 </div> : null}
-
-              {/* display username on input */}
-              <h5>Your username looks like this:<br />
-                <strong>"{ this.props.username.username }"</strong>
-              </h5>
-              
-              {/* username taken, display link to take user to landing */}
-              {this.props.username.exist ? <p className={s.center}>Oh uh, this username is already taken!</p> : null }
-              {this.props.username.exist ?
-                <button
-                  onClick={this.handleClick}
-                  className={[s.btn]}
-                >
-                  <Link to={routeFromState} >TAKE ME TO THE MIRROR!</Link>
-                </button> : null}
-
-              {/* if username valid and not taken, enable button to link user to landing/:username */}
-              {this.props.username.exist ? null :
-              <button
-                onClick={this.handleClick}
-                className={[s.btn]}
-                disabled={bool}
-              >
-                <Link to={routeFromState} >SET USERNAME</Link>
-
-              </button>}
             </form>
           </div>
         </div>

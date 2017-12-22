@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fire from '../../utils/firebase/setup';
 import CreatePet from './CreatePet';
+import PetModel from './PetModel';
 import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
 
-
 const dbRoot = fire.database().ref().child('voice-pi');
-// const fireUser = dbRoot.child('alice-kiwi');
-// const petStatus = fireUser.child('/pet/settings/status');
 
 class PetControlTop extends React.Component {
   constructor(props) {
@@ -16,22 +14,32 @@ class PetControlTop extends React.Component {
     this.showForm = this.showForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
     this.state = { formVisibleOnPage: true };
-
     this.username = '';
-  }
-
-  componentWillMount() {
-    this.username = this.props.username.username;
+    this.petStatus = '';
+    // this.petLife = '';
+    this.petName = '';
+    // this.petAge = '';
+    this.name = '';
+    // this.life = 0;
+    // this.age = '';
   }
 
   componentDidMount() {
+    this.username = this.props.username.username;
     this.fireUser = dbRoot.child(this.username);
     this.petStatus = this.fireUser.child('/pet/settings/status');
+    this.petName = this.fireUser.child('/pet/settings/status');
+    this.petName.on('value', (snap) => {
+      this.name = snap.val();
+    });
     this.petStatus.on('value', (snap) => {
       const currentPetStatus = snap.val();
       if (currentPetStatus === 'dead') {
         this.showForm();
       } else {
+        const newPet = new PetModel(this.name, this.username);
+        newPet.createPet();
+        this.props.addNewCreatureToPet(newPet);
         this.hideForm();
       }
     });
@@ -39,6 +47,7 @@ class PetControlTop extends React.Component {
 
   componentWillUnmount() {
     this.petStatus.off();
+    this.petName.off();
   }
 
   showForm() {

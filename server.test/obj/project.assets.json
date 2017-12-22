@@ -5866,11 +5866,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Lola/Scripts/apprenti/mirror-webapp/server.test/server.test.csproj",
+      "projectUniqueName": "/Users/Lola/Downloads/mirror-webapp/server.test/server.test.csproj",
       "projectName": "server.test",
-      "projectPath": "/Users/Lola/Scripts/apprenti/mirror-webapp/server.test/server.test.csproj",
+      "projectPath": "/Users/Lola/Downloads/mirror-webapp/server.test/server.test.csproj",
       "packagesPath": "/Users/Lola/.nuget/packages/",
-      "outputPath": "/Users/Lola/Scripts/apprenti/mirror-webapp/server.test/obj/",
+      "outputPath": "/Users/Lola/Downloads/mirror-webapp/server.test/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

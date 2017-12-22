@@ -1,17 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Rnd from 'react-rnd';
 import fire from '../../utils/firebase/setup';
-
 import { usernameSubmit } from '../../actions/usernameActions';
-
 import Layout from '../../components/Layout';
 import Time from '../../components/Time/Time';
 import News from '../../components/News/News';
-// import App from '../../components/Pet/PetComponent';
-import App from '../../components/Pet/App';
 import Pet from '../../components/Pet/Pet';
 import Weather from '../../components/Weather/Weather';
-
+import * as s from '../../../node_modules/materialize-css/dist/css/materialize.min.css';
+import * as l from '../../components/Layout/Layout.css';
 
 // Set the root of the DB
 const dbRoot = fire.database().ref().child('voice-pi');
@@ -20,15 +18,14 @@ const stringBoolMap = {
   true: true,
 };
 
-
 class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newsActive: false,
-      petActive: false,
+      newsActive: true,
+      petActive: true,
       timeActive: true,
-      weatherActive: false,
+      weatherActive: true,
     };
     this.fireUser = {};
     this.newsActive = null;
@@ -84,11 +81,45 @@ class Landing extends React.Component {
 
   render() {
     return (
+      // <Layout>
+      //   {/* { this.state.timeActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Time /></Rnd> : null } */}
+      //   {/* { this.state.timeActive ? <Rnd default={{ x: 0, y: 0, width: '30%', height: '10%', }} className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Time /></Rnd> : null } */}
+      //   { this.state.timeActive ? <Rnd default={{ x: 0, y: 0, width: '700', height: '20%', }}><Time /></Rnd> : null }
+      //   { this.state.newsActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><News /></Rnd> : null }
+      //   { this.state.petActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Pet /></Rnd> : null }
+      //   { this.state.weatherActive ? <Rnd className={[s.hoverable, s['center-align'], s.panel, l.component].join(' ')}><Weather /></Rnd> : null }
+      // </Layout>
       <Layout>
-        { this.state.timeActive ? <Time /> : null }
-        { this.state.newsActive ? <News /> : null }
-        { this.state.petActive ? <App /> : null }
-        { this.state.weatherActive ? <Weather /> : null }
+          { this.state.newsActive ?
+            <Rnd className={[l['upper-left'], s['center-align']].join(' ')} default={{ x: 0,
+                                                                                       y: 0,
+                                                                                       width: '50%',
+                                                                                       height: '100%' }}>
+              <News />
+            </Rnd> : null }
+          <section className={l.section}>
+          { this.state.timeActive ?
+            <Rnd className={[l['upper-right'], s['center-align']].join(' ')} default={{ x: 500,
+                                                                                        y: 0,
+                                                                                        width: '50%',
+                                                                                        height: 160 }}>
+              <Time />
+            </Rnd> : null }
+          { this.state.weatherActive ?
+            <Rnd className={[l['middle-right'], s['center-align']].join(' ')} default={{ x: 500,
+                                                                                         y: 160,
+                                                                                         width: '50%',
+                                                                                         height: 200 }}>
+              <Weather />
+            </Rnd> : null }
+          { this.state.petActive ?
+            <Rnd className={[l['bottom-right'], s['center-align']].join(' ')} default={{ x: 500,
+                                                                                         y: 450,
+                                                                                         width: '50%',
+                                                                                         height: 'auto' }}>
+              <Pet />
+            </Rnd> : null }
+          </section>
       </Layout>
     );
   }
